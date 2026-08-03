@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function Header(){return <header className="site-header"><div className="wrap nav"><Link className="brand" href="/"><span className="rose">✦</span><span>AfterTheChurch</span></Link><nav><Link href="/stories">Stories</Link><Link href="/resources">Resources</Link><Link href="/community">Community</Link><Link href="/about">About</Link></nav><Link className="button small" href="/submit">Share your story</Link></div></header>}

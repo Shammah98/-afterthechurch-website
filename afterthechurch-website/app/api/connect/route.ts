@@ -1,0 +1,3 @@
+import {NextResponse} from 'next/server';import {z} from 'zod';import {getAdminClient} from '@/lib/supabase';
+const schema=z.object({email:z.string().email(),name:z.string().min(1).max(80),interest:z.string().min(1).max(100),message:z.string().max(2000).optional(),consent:z.literal('yes')});
+export async function POST(req:Request){try{const v=schema.parse(await req.json());const {error}=await getAdminClient().from('connection_requests').insert(v);if(error)throw error;return NextResponse.json({ok:true},{status:201})}catch(e:any){return NextResponse.json({error:e?.issues?.[0]?.message||'Unable to submit request.'},{status:400})}}
