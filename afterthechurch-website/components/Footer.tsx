@@ -1,2 +1,0 @@
-import Link from 'next/link';
-export default function Footer(){return <footer><div className="wrap footer-grid"><div><strong>AfterTheChurch</strong><p>A survivor-centred, religiously neutral space for dignity, education, connection and recovery.</p></div><div><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/admin">Admin</Link></div></div><div className="wrap fine">Not emergency, medical or legal services. In immediate danger, contact local emergency services.</div></footer>}
