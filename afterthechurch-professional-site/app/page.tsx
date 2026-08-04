@@ -86,9 +86,13 @@ export default async function HomePage() {
             src="/images/woman-heart-sunset.jpg"
             alt="A person making a heart shape with their hands in warm evening light."
             fill
-            sizes="(max-width: 800px) 100vw, 45vw"
-          />
-        </div>
+            sizes="(max-width: 900px) 100vw, 55vw"
+    className="groundingImagePhoto"
+  />
+
+  <div className="groundingImageFade" />
+</div>
+       
         <div className="groundingCopy">
           <p className="eyebrow">Understanding everyday control</p>
           <h2>Harm does not always arrive looking dramatic.</h2>
