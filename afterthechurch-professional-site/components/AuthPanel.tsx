@@ -66,11 +66,11 @@ export default function AuthPanel() {
           }
         });
 
-        if (error) {
-          setStatus("We could not complete the request. Check the details and try again.");
-          return;
-        }
-
+       if (error) {
+  console.error("Signup error:", error);
+  setStatus(`Signup failed: ${error.message}`);
+  return;
+             }
         setStatus(
           "Check your email for the confirmation link. For privacy, this message is the same whether or not the address was previously used."
         );
