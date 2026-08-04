@@ -82,11 +82,12 @@ export default async function HomePage() {
 
       <section className="groundingSection editorialSection">
        
-          <Image
-            src="/images/woman-heart-sunset.jpg"
-            alt="A person making a heart shape with their hands in warm evening light."
-            fill
-            sizes="(max-width: 900px) 100vw, 55vw"
+<div className="groundingImage">
+  <Image
+    src="/images/Traumatic-Brain-Injury-X-Ray.webp"
+    alt="Medical illustration showing the brain and nervous system."
+    fill
+    sizes="(max-width: 900px) 100vw, 55vw"
     className="groundingImagePhoto"
   />
 
