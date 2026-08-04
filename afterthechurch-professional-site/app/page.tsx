@@ -81,7 +81,7 @@ export default async function HomePage() {
       </section>
 
       <section className="groundingSection editorialSection">
-        <div className="groundingImage">
+       
           <Image
             src="/images/woman-heart-sunset.jpg"
             alt="A person making a heart shape with their hands in warm evening light."
