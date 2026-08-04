@@ -8,11 +8,10 @@ export default function AboutPage() {
     <>
       <section className="pageHero splitHero">
         <div>
-          <p className="eyebrow">Who is behind AfterTheChurch</p>
-          <h1>A survivor-led project that must earn trust through transparency.</h1>
+          <p className="eyebrow">Who is behind AfterTheChurch?</p>
+          <h1>A survivors innitiative that aims to earn trust through transparency.</h1>
           <p className="lead">
-            AfterTheChurch was created by survivors and advocates who understand
-            how difficult it can be to question a trusted religious community.
+            AfterTheChurch was created by survivors of church harm and advocates who understood that it is not always safe in religious communities.
           </p>
         </div>
         <Image
