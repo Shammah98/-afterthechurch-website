@@ -94,17 +94,17 @@ export default async function HomePage() {
 </div>
        
         <div className="groundingCopy">
-          <p className="eyebrow">Understanding everyday control</p>
+          <p className="eyebrow">Understanding toxic control</p>
           <h2>Harm does not always arrive looking dramatic.</h2>
           <p className="largeCopy">
-            It may look like being required to disclose private thoughts,
+            It may look like being required to disclose private information,
             receiving repeated warnings about what will happen if you leave,
             losing friendships after asking a question, or being pressured to
             give money you cannot afford.
           </p>
           <p>
-            You do not have to decide whether every belief was true or false
-            before examining how people treated you. One option is to begin with
+            You do not have to decide whether your beliefs were true or false
+            you need to examine how people treated you. One option is to begin with
             observable behaviour: what was demanded, How did it make you feel, what happened when you
             hesitated, and whether saying no remained possible.
           </p>
@@ -116,7 +116,7 @@ export default async function HomePage() {
 
       <section className="needsSection">
         <div className="sectionIntro">
-          <p className="eyebrow">Choose what you need today</p>
+          <p className="eyebrow">Choose what you need today...</p>
           <h2>No fixed programme. No required order.</h2>
           <p>
             Open one section, save it for later, or leave. Each route is an
@@ -274,13 +274,13 @@ export default async function HomePage() {
         </div>
         <div>
           <p>
-            AfterTheChurch was created for people who know how difficult it can
-            be to question a trusted religious community. We are developing clear
+            AfterTheChurch was created for people who know how difficult it sis to survive in and question a 
+            religious community. We are developing clear
             information about leadership, funding, safeguarding, editorial
             decisions and conflicts of interest.
           </p>
           <p>
-            We will not claim independence, confidentiality or professional
+            We do not claim independence, confidentiality or professional
             expertise beyond what can be documented. Where a team member uses a
             pseudonym for safety, their role can be explained without exposing
             private information.
