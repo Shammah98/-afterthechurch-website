@@ -61,8 +61,8 @@ export default async function HomePage() {
         />
         <div className="heroShade" />
         <div className="homeHeroInner">
-          <p className="eyebrow lightEyebrow">Browse without registering or explaining</p>
-          <h1>You do not have to share anything to be here.</h1>
+          <p className="eyebrow lightEyebrow">You are most welcome</p>
+          <h1>You do not have to share unless you are ready to...</h1>
           <p>
             If you have been hurt by a religious community, your pacing is
             entirely up to you. This is a quiet, religiously neutral space where
@@ -101,7 +101,7 @@ export default async function HomePage() {
           <p>
             You do not have to decide whether every belief was true or false
             before examining how people treated you. One option is to begin with
-            observable behaviour: what was demanded, what happened when you
+            observable behaviour: what was demanded, How did it make you feel, what happened when you
             hesitated, and whether saying no remained possible.
           </p>
           <Link className="textLink" href="/resources/recognising-coercive-control">
@@ -228,7 +228,7 @@ export default async function HomePage() {
             <article>
               <strong>Identity and safety check</strong>
               <p>
-                A reviewer checks for addresses, contact details, legal names,
+                A reviewer checks for addresses, contact details,  names,
                 medical records and information that could expose another survivor.
               </p>
             </article>
