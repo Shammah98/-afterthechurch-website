@@ -4,7 +4,7 @@ import { LogOut } from "lucide-react";
 
 export default function QuickExit() {
   function exitNow() {
-    window.location.replace("https://www.wikipedia.org/");
+    window.location.replace("https://www.google.com/");
   }
 
   return (
@@ -12,10 +12,10 @@ export default function QuickExit() {
       type="button"
       className="quickExit"
       onClick={exitNow}
-      aria-label="Quick Exit: immediately leave this website for Wikipedia"
+      aria-label="Quick Exit: If you feel overwhelmed"
     >
       <LogOut size={18} aria-hidden="true" />
-      Quick Exit
+       Exit
     </button>
   );
 }
