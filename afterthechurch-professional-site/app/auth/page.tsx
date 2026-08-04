@@ -9,11 +9,11 @@ export default function AuthPage() {
     <section className="authPage">
       <div className="authIntro">
         <p className="eyebrow">Your account</p>
-        <h1>Use a pseudonym. Keep reading without an account.</h1>
+        <h1>We value your privacy!!.</h1>
         <p>
-          An account is only needed to save resources, submit or manage a story,
-          and participate in future moderated features. Public information remains
-          available without signing in.
+          An account is only needed to post your survival story,
+          and participate in future mod features. Public information remains
+          available to anyone without signing in. So please take that into account when creating a display name and posting your stories.
         </p>
         <QuoteCarousel />
       </div>
