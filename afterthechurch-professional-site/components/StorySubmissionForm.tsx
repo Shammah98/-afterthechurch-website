@@ -64,6 +64,12 @@ export default function StorySubmissionForm({
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    // Capture the real HTML form before any asynchronous work begins.
+    // React's event.currentTarget should not be relied on after an await.
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
+
     setStatus("");
     setBusy(true);
 
@@ -77,7 +83,6 @@ export default function StorySubmissionForm({
         return;
       }
 
-      const form = new FormData(event.currentTarget);
       const storyText = String(form.get("storyText") || "").trim();
 
       if (mediaType === "written" && storyText.length < 150) {
@@ -170,7 +175,7 @@ export default function StorySubmissionForm({
         throw new Error(result.error || "The submission could not be saved.");
       }
 
-      event.currentTarget.reset();
+      formElement.reset();
       setFile(null);
       setMediaType("written");
       setPrivacy("fully_anonymous");
