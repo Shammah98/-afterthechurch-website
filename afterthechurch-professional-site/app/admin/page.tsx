@@ -14,7 +14,7 @@ export default function AdminPage() {
         <h1>Review without rewriting a survivor’s meaning.</h1>
         <p className="lead">
           Check privacy exposure, consent, safeguarding and publication risk.
-          Record changes for the author instead of silently altering central claims.
+          Always record changes for the author instead of silently altering central claims.
         </p>
       </div>
       <AdminDashboard />
