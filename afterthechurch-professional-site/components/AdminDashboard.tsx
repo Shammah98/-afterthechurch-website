@@ -50,7 +50,8 @@ export default function AdminDashboard() {
     }
 
     const response = await fetch("/api/admin/stories", {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
+      cache: "no-store"
     });
     const result = await response.json();
 
@@ -61,7 +62,10 @@ export default function AdminDashboard() {
         setStories([]);
         setStatus("That email is not authorised for moderation.");
       } else {
-        setAuthorised(false);
+        // The sign-in succeeded. Keep the moderator inside the dashboard so a
+        // temporary database error does not misleadingly show the login form.
+        setAuthorised(true);
+        setStories([]);
         setStatus(result.error || "The moderation queue could not be loaded.");
       }
       return;
