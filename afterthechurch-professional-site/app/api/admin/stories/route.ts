@@ -2,6 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { getUserFromRequest, isAdminEmail } from "@/lib/auth-server";
 import { createAdminClient } from "@/lib/supabase-admin";
 
+const fullSelect =
+  "id,title,display_name,church_name,privacy_level,media_type,media_path,image_path,story_text,short_summary,categories,content_warnings,content_intensity,created_at,author_change_request";
+
+const legacySelect =
+  "id,title,display_name,church_name,privacy_level,media_type,media_path,story_text,short_summary,categories,content_warnings,content_intensity,created_at,author_change_request";
+
 export async function GET(request: NextRequest) {
   try {
     const user = await getUserFromRequest(request);
@@ -10,13 +16,25 @@ export async function GET(request: NextRequest) {
     }
 
     const supabase = createAdminClient();
-    const { data, error } = await supabase
+
+    let { data, error } = await supabase
       .from("stories")
-      .select(
-        "id,title,display_name,church_name,privacy_level,media_type,media_path,image_path,story_text,short_summary,categories,content_warnings,content_intensity,created_at,author_change_request"
-      )
+      .select(fullSelect)
       .in("status", ["pending", "changes_requested"])
       .order("created_at", { ascending: true });
+
+    // Existing Supabase projects may not yet have the newer image_path column.
+    // Keep moderation working until setup.sql is run again to add it.
+    if (error && /image_path/i.test(error.message || "")) {
+      const legacyResult = await supabase
+        .from("stories")
+        .select(legacySelect)
+        .in("status", ["pending", "changes_requested"])
+        .order("created_at", { ascending: true });
+
+      data = legacyResult.data;
+      error = legacyResult.error;
+    }
 
     if (error) throw error;
 
@@ -24,6 +42,7 @@ export async function GET(request: NextRequest) {
       (data || []).map(async (story) => {
         let mediaUrl: string | null = null;
         let imageUrl: string | null = null;
+
         if (story.media_path) {
           const { data: signed } = await supabase.storage
             .from("story-media")
@@ -31,10 +50,11 @@ export async function GET(request: NextRequest) {
           mediaUrl = signed?.signedUrl || null;
         }
 
-        if (story.image_path) {
+        const imagePath = "image_path" in story ? story.image_path : null;
+        if (imagePath) {
           const { data: signed } = await supabase.storage
             .from("story-media")
-            .createSignedUrl(story.image_path, 30 * 60);
+            .createSignedUrl(imagePath, 30 * 60);
           imageUrl = signed?.signedUrl || null;
         }
 
@@ -61,6 +81,12 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ stories });
   } catch (error) {
     console.error("Admin queue failed:", error);
-    return NextResponse.json({ error: "The moderation queue could not be loaded." }, { status: 500 });
+    return NextResponse.json(
+      {
+        error:
+          "The moderation queue could not be loaded. Refresh once; if this continues, run the latest supabase/setup.sql in Supabase."
+      },
+      { status: 500 }
+    );
   }
 }
