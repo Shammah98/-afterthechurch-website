@@ -11,6 +11,9 @@ const maxSizes: Record<MediaType, number> = {
   video: 250 * 1024 * 1024
 };
 
+const maxImageSize = 10 * 1024 * 1024;
+const acceptedImageTypes = ["image/jpeg", "image/png", "image/webp"];
+
 function publicPreview(
   privacy: PrivacyLevel,
   displayName: string,
@@ -50,6 +53,7 @@ export default function StorySubmissionForm({
   const [displayName, setDisplayName] = useState("");
   const [churchName, setChurchName] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
   const [signedIn, setSignedIn] = useState<boolean | null>(null);
@@ -111,7 +115,18 @@ export default function StorySubmissionForm({
         return;
       }
 
+      if (imageFile && !acceptedImageTypes.includes(imageFile.type)) {
+        setStatus("Choose a JPG, PNG or WebP picture.");
+        return;
+      }
+
+      if (imageFile && imageFile.size > maxImageSize) {
+        setStatus("The picture must be 10 MB or smaller.");
+        return;
+      }
+
       let mediaPath: string | null = null;
+      let imagePath: string | null = null;
 
       if (file) {
         setStatus("Preparing a private upload…");
@@ -150,6 +165,41 @@ export default function StorySubmissionForm({
         mediaPath = signed.path;
       }
 
+      if (imageFile) {
+        setStatus("Uploading your picture privately…");
+
+        const signResponse = await fetch("/api/uploads/sign", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            fileName: imageFile.name,
+            contentType: imageFile.type,
+            fileSize: imageFile.size,
+            mediaType: "image"
+          })
+        });
+
+        const signed = await signResponse.json();
+        if (!signResponse.ok) {
+          throw new Error(signed.error || "The picture upload could not start.");
+        }
+
+        const { error: uploadError } = await supabase.storage
+          .from("story-media")
+          .uploadToSignedUrl(signed.path, signed.token, imageFile, {
+            contentType: imageFile.type
+          });
+
+        if (uploadError) {
+          throw new Error("The picture upload failed. Please try again.");
+        }
+
+        imagePath = signed.path;
+      }
+
       const response = await fetch("/api/stories", {
         method: "POST",
         headers: {
@@ -165,6 +215,7 @@ export default function StorySubmissionForm({
           shortSummary: form.get("shortSummary"),
           storyText,
           mediaPath,
+          imagePath,
           categories: form.getAll("categories").map(String),
           contentWarnings: form.getAll("contentWarnings").map(String),
           contentIntensity: form.get("contentIntensity"),
@@ -184,6 +235,7 @@ export default function StorySubmissionForm({
 
       formElement.reset();
       setFile(null);
+      setImageFile(null);
       setMediaType("written");
       setPrivacy("fully_anonymous");
       setDisplayName("");
@@ -284,29 +336,21 @@ export default function StorySubmissionForm({
             />
             <span>
               <strong>Anonymous Church</strong>
-<label
-  className={
-    privacy === "anonymous_author"
-      ? "privacyChoice active"
-      : "privacyChoice"
-  }
->
-  <input
-    type="radio"
-    name="privacyLevel"
-    value="anonymous_author"
-    checked={privacy === "anonymous_author"}
-    onChange={() => setPrivacy("anonymous_author")}
-  />
-
-  <span>
-    <strong>Anonymous Author</strong>
-    Your name is hidden as “Anonymous Author.” The church or organisation
-    name is displayed.
-  </span>
-</label>
-              
               Your chosen name is displayed. The organisation appears as “Church Name Withheld.”
+            </span>
+          </label>
+
+          <label className={privacy === "anonymous_author" ? "privacyChoice active" : "privacyChoice"}>
+            <input
+              type="radio"
+              name="privacyLevel"
+              value="anonymous_author"
+              checked={privacy === "anonymous_author"}
+              onChange={() => setPrivacy("anonymous_author")}
+            />
+            <span>
+              <strong>Anonymous Author</strong>
+              Your name is hidden as “Anonymous Author.” The church or organisation name is displayed.
             </span>
           </label>
 
@@ -430,6 +474,18 @@ export default function StorySubmissionForm({
 
       <fieldset>
         <legend>Your story</legend>
+
+        <label>
+          Add a picture (optional)
+          <input
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            onChange={(event) => setImageFile(event.target.files?.[0] || null)}
+          />
+          <small>
+            JPG, PNG or WebP, maximum 10 MB. The picture stays private until your story is approved.
+          </small>
+        </label>
 
         {mediaType !== "written" && (
           <label>
