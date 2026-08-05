@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { ContentIntensity, MediaType, PublicStory } from "@/lib/types";
 
 type IdentityFilter = "all" | "anonymous" | "named";
@@ -25,14 +25,6 @@ export default function StoryExplorer({
   const [sort, setSort] = useState<SortMode>("recent");
   const [search, setSearch] = useState("");
   const [visible, setVisible] = useState(6);
-
-  useEffect(() => {
-    const requestedTopic = new URLSearchParams(window.location.search).get("topic");
-
-    if (requestedTopic && categories.includes(requestedTopic)) {
-      setCategory(requestedTopic);
-    }
-  }, [categories]);
 
   const backgrounds = useMemo(
     () =>
