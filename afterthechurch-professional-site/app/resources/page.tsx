@@ -22,7 +22,7 @@ export default function ResourcesPage() {
 </p>
         </div>
         <Image
-          src="/images/reading"
+          src="/images/reading.webp"
          
           width={750}
           height={460}
