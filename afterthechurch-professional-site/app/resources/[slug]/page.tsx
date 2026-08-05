@@ -44,12 +44,13 @@ export default async function ResourcePage({
           </div>
         </div>
         <Image
-          src={resource.image}
-          alt={resource.imageAlt}
-          width={760}
-          height={500}
-          priority
-        />
+  src={resource.image}
+  alt={resource.imageAlt}
+  width={940}
+  height={704}
+  className={`articleHeroImage articleHeroImage--${resource.slug}`}
+  priority
+/>
       </section>
 
       <section className="articleBody">
