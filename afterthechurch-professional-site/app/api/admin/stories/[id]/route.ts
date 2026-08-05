@@ -60,7 +60,11 @@ export async function PATCH(
         .eq("id", id);
 
       if (error) throw error;
-      return NextResponse.json({ ok: true });
+      return NextResponse.json({
+        ok: true,
+        storyId: id,
+        publicPath: `/stories/${id}`
+      });
     }
 
     if (body.decision === "reject") {
