@@ -135,7 +135,7 @@ h3 { font-size: clamp(1.55rem, 2.5vw, 2.25rem); line-height: 1.1; }
   align-items: center; gap: clamp(40px,8vw,110px);
 }
 .groundingImage, .submissionImage, .storiesHomeImage { position: relative; min-height: 620px; overflow: hidden; }
-.groundingImage { border-radius: 52% 48% 46% 54% / 39% 44% 56% 61%; }
+.groundingImage { border-radius: 0; }
 .groundingImage img, .submissionImage img, .storiesHomeImage img { object-fit: cover; }
 .groundingCopy h2 { margin: 0 0 28px; max-width: 740px; }
 .groundingCopy .textLink { margin-top: 15px; }
