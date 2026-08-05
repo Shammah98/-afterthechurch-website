@@ -330,7 +330,7 @@ export default async function HomePage() {
 
         <div className="submissionImage">
           <Image
-            src="/images/swing-sunset.jpg"
+            src="/images/submitt.jpg"
             alt="A person sitting beside an empty swing at sunset."
             fill
             sizes="(max-width: 900px) 100vw, 42vw"
