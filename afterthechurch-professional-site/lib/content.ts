@@ -286,7 +286,7 @@ export const resources: ResourceArticle[] = [
 },
   {
   slug: "faith-healing-and-medical-decisions",
-  title: "Faith-healing claims and medical decisions",
+  title: "Faith-healing claims vs medical decisions",
   deck:
     "A medically grounded, psychologically informed and theologically careful guide to evaluating healing claims without dismissing faith or risking necessary care.",
   category: "Health and safety",
