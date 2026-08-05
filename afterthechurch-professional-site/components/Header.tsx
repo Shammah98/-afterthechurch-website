@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { getBrowserSupabase } from "@/lib/supabase-browser";
+import { useState } from "react";
 
 const navigation = [
   ["Understand", "/resources"],
@@ -16,27 +15,6 @@ const navigation = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [signedIn, setSignedIn] = useState(false);
-
-  useEffect(() => {
-    const supabase = getBrowserSupabase();
-
-    supabase.auth.getSession().then(({ data }) => {
-      setSignedIn(Boolean(data.session));
-    });
-
-    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSignedIn(Boolean(session));
-    });
-
-    return () => data.subscription.unsubscribe();
-  }, []);
-
-  async function signOut() {
-    await getBrowserSupabase().auth.signOut();
-    setOpen(false);
-    window.location.href = "/";
-  }
 
   return (
     <header className="siteHeader">
@@ -75,22 +53,6 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="accountActions">
-          {signedIn ? (
-            <>
-              <Link className="textButton" href="/account" onClick={() => setOpen(false)}>
-                Account
-              </Link>
-              <button type="button" className="textButton" onClick={signOut}>
-                Sign out
-              </button>
-            </>
-          ) : (
-            <Link className="signInButton" href="/auth" onClick={() => setOpen(false)}>
-              Sign In
-            </Link>
-          )}
-        </div>
       </div>
     </header>
   );

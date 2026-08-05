@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { getBrowserSupabase } from "@/lib/supabase-browser";
 
 type ReviewStory = {
@@ -27,16 +27,25 @@ export default function AdminDashboard() {
   const [status, setStatus] = useState("Checking administrator access…");
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [approvedStoryId, setApprovedStoryId] = useState<string | null>(null);
+  const [authorised, setAuthorised] = useState<boolean | null>(null);
+  const [email, setEmail] = useState("");
+  const [busy, setBusy] = useState(false);
 
-  async function getToken() {
+  async function getAdminToken() {
     const { data } = await getBrowserSupabase().auth.getSession();
-    return data.session?.access_token || null;
+    const session = data.session;
+
+    if (!session || session.user.is_anonymous) return null;
+    return session.access_token;
   }
 
   async function load() {
-    const token = await getToken();
+    const token = await getAdminToken();
+
     if (!token) {
-      setStatus("Sign in with an authorised administrator account.");
+      setAuthorised(false);
+      setStories([]);
+      setStatus("");
       return;
     }
 
@@ -46,25 +55,90 @@ export default function AdminDashboard() {
     const result = await response.json();
 
     if (!response.ok) {
-      setStatus(
-        response.status === 403
-          ? "Administrator access was not granted. Sign in with an email listed in ADMIN_EMAILS in Vercel, then refresh the queue."
-          : result.error || "The moderation queue could not be loaded."
-      );
+      if (response.status === 403) {
+        await getBrowserSupabase().auth.signOut();
+        setAuthorised(false);
+        setStories([]);
+        setStatus("That email is not authorised for moderation.");
+      } else {
+        setAuthorised(false);
+        setStatus(result.error || "The moderation queue could not be loaded.");
+      }
       return;
     }
 
+    setAuthorised(true);
     setStories(result.stories);
-    setStatus(result.stories.length ? "" : "There are no submissions awaiting review.");
+    setStatus(
+      result.stories.length ? "" : "There are no submissions awaiting review."
+    );
   }
 
   useEffect(() => {
     load();
   }, []);
 
+  async function signIn(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setBusy(true);
+    setStatus("Checking administrator access…");
+
+    const form = new FormData(event.currentTarget);
+    const password = String(form.get("password") || "");
+    const normalisedEmail = email.trim();
+    const { error } = await getBrowserSupabase().auth.signInWithPassword({
+      email: normalisedEmail,
+      password
+    });
+
+    if (error) {
+      setAuthorised(false);
+      setStatus("The administrator email or password was not accepted.");
+      setBusy(false);
+      return;
+    }
+
+    await load();
+    setBusy(false);
+  }
+
+  async function requestReset() {
+    const normalisedEmail = email.trim();
+    if (!normalisedEmail) {
+      setStatus("Enter the administrator email address first.");
+      return;
+    }
+
+    setBusy(true);
+    const siteUrl = (
+      process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
+    ).replace(/\/+$/, "");
+    const { error } = await getBrowserSupabase().auth.resetPasswordForEmail(
+      normalisedEmail,
+      { redirectTo: `${siteUrl}/auth/reset` }
+    );
+
+    setStatus(
+      error
+        ? "A reset email could not be sent. Please try again."
+        : "If that administrator account exists, a password-reset email will arrive shortly."
+    );
+    setBusy(false);
+  }
+
+  async function signOut() {
+    await getBrowserSupabase().auth.signOut();
+    setAuthorised(false);
+    setStories([]);
+    setStatus("Administrator signed out.");
+  }
+
   async function review(id: string, decision: "approve" | "reject") {
-    const token = await getToken();
-    if (!token) return;
+    const token = await getAdminToken();
+    if (!token) {
+      setAuthorised(false);
+      return;
+    }
 
     setStatus("Saving the moderation decision…");
 
@@ -88,8 +162,63 @@ export default function AdminDashboard() {
     }
 
     await load();
-    setStatus(`Submission ${decision === "approve" ? "approved and published" : "rejected"}.`);
+    setStatus(
+      `Submission ${decision === "approve" ? "approved and published" : "rejected"}.`
+    );
     setApprovedStoryId(decision === "approve" ? id : null);
+  }
+
+  if (authorised === null) {
+    return <p className="loadingState">{status}</p>;
+  }
+
+  if (!authorised) {
+    return (
+      <div className="authPanel adminLogin">
+        <p className="eyebrow">Administrator sign in</p>
+        <h2>Moderation access only</h2>
+        <p>
+          Public visitors never need an account. This sign-in is restricted to
+          approved moderators whose email is listed in the private admin allowlist.
+        </p>
+
+        <form onSubmit={signIn}>
+          <label>
+            Administrator email
+            <input
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+            />
+          </label>
+          <button className="button primary authSubmit" type="submit" disabled={busy}>
+            {busy ? "Please wait…" : "Open Moderation"}
+          </button>
+          <button
+            className="linkButton backToSignIn"
+            type="button"
+            onClick={requestReset}
+            disabled={busy}
+          >
+            Forgotten administrator password?
+          </button>
+        </form>
+
+        <p className="formStatus" role="status" aria-live="polite">{status}</p>
+      </div>
+    );
   }
 
   return (
@@ -101,6 +230,9 @@ export default function AdminDashboard() {
         <Link className="textLink" href="/stories">
           Open Public Stories
         </Link>
+        <button className="textButton" type="button" onClick={signOut}>
+          Sign Out
+        </button>
       </div>
 
       <p className="formStatus" role="status" aria-live="polite">{status}</p>
@@ -190,10 +322,18 @@ export default function AdminDashboard() {
           </label>
 
           <div className="accountButtons">
-            <button className="button primary" type="button" onClick={() => review(story.id, "approve")}>
+            <button
+              className="button primary"
+              type="button"
+              onClick={() => review(story.id, "approve")}
+            >
               Approve for Publication
             </button>
-            <button className="dangerButton" type="button" onClick={() => review(story.id, "reject")}>
+            <button
+              className="dangerButton"
+              type="button"
+              onClick={() => review(story.id, "reject")}
+            >
               Reject and Retain for 30 Days
             </button>
           </div>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getBrowserSupabase } from "@/lib/supabase-browser";
+import { getOrCreatePublicSession } from "@/lib/supabase-browser";
 import type { AccountStory, PrivacyLevel } from "@/lib/types";
 
 function statusExplanation(status: AccountStory["status"]) {
@@ -18,28 +18,29 @@ function statusExplanation(status: AccountStory["status"]) {
   if (status === "rejected") {
     return "Not published. Review the moderator note or permanently delete the submission.";
   }
-  return "Removed from public view but still available here until you publish again or delete it.";
+  return "Removed from public view and retained privately until it is deleted or reviewed.";
 }
 
 export default function AccountDashboard() {
   const [stories, setStories] = useState<AccountStory[]>([]);
   const [status, setStatus] = useState("Loading your submissions…");
-  const [signedIn, setSignedIn] = useState<boolean | null>(null);
   const [requestText, setRequestText] = useState<Record<string, string>>({});
 
   async function token() {
-    const { data } = await getBrowserSupabase().auth.getSession();
-    return data.session?.access_token || null;
+    try {
+      return (await getOrCreatePublicSession()).access_token;
+    } catch (error) {
+      console.error("Private submission access failed:", error);
+      setStatus(
+        "Private submission controls are temporarily unavailable. Please try again later."
+      );
+      return null;
+    }
   }
 
   async function load() {
     const accessToken = await token();
-    setSignedIn(Boolean(accessToken));
-
-    if (!accessToken) {
-      setStatus("");
-      return;
-    }
+    if (!accessToken) return;
 
     const response = await fetch("/api/account/stories", {
       headers: { Authorization: `Bearer ${accessToken}` }
@@ -52,7 +53,11 @@ export default function AccountDashboard() {
     }
 
     setStories(result.stories);
-    setStatus(result.stories.length ? "" : "You have not submitted a story.");
+    setStatus(
+      result.stories.length
+        ? ""
+        : "No submissions are saved to this browser yet."
+    );
   }
 
   useEffect(() => {
@@ -109,17 +114,6 @@ export default function AccountDashboard() {
     if (response.ok) load();
   }
 
-  if (signedIn === null) return <p className="loadingState">{status}</p>;
-
-  if (!signedIn) {
-    return (
-      <div className="accountRequired">
-        <h2>Sign in to view your private account.</h2>
-        <Link className="button primary" href="/auth">Sign In</Link>
-      </div>
-    );
-  }
-
   return (
     <div className="accountDashboard">
       <div className="accountHeader">
@@ -129,6 +123,12 @@ export default function AccountDashboard() {
         </div>
         <Link className="button primary" href="/share">Submit a Story</Link>
       </div>
+
+      <p className="accountStatusHelp">
+        No account or sign-in is required. These private controls stay connected
+        to this browser, so avoid clearing this site&apos;s data until you no longer
+        need to manage a submission.
+      </p>
 
       <p className="formStatus" role="status" aria-live="polite">{status}</p>
 

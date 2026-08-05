@@ -22,7 +22,12 @@ export async function PATCH(
 ) {
   try {
     const user = await getUserFromRequest(request);
-    if (!user) return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    if (!user) {
+      return NextResponse.json(
+        { error: "Private submission access could not be verified." },
+        { status: 401 }
+      );
+    }
 
     const { id } = await context.params;
     const story = await ownedStory(id, user.id);
@@ -102,7 +107,12 @@ export async function DELETE(
 ) {
   try {
     const user = await getUserFromRequest(request);
-    if (!user) return NextResponse.json({ error: "Sign in required." }, { status: 401 });
+    if (!user) {
+      return NextResponse.json(
+        { error: "Private submission access could not be verified." },
+        { status: 401 }
+      );
+    }
 
     const { id } = await context.params;
     const story = await ownedStory(id, user.id);

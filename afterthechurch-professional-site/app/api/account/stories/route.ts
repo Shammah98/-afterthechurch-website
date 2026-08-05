@@ -6,7 +6,10 @@ export async function GET(request: NextRequest) {
   try {
     const user = await getUserFromRequest(request);
     if (!user) {
-      return NextResponse.json({ error: "Sign in to view submissions." }, { status: 401 });
+      return NextResponse.json(
+        { error: "Private submission access could not be verified." },
+        { status: 401 }
+      );
     }
 
     const supabase = createAdminClient();

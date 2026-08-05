@@ -59,7 +59,7 @@ export default function ResetPasswordForm() {
     setStatus(
       error
         ? "The password could not be updated. Request a new reset link."
-        : "Your password has been updated. You can now open your account."
+        : "Your administrator password has been updated. Return to the moderation page to sign in."
     );
     setBusy(false);
   }

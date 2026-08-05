@@ -50,3 +50,23 @@ export function setRememberSession(remember: boolean) {
   if (typeof window === "undefined") return;
   window.localStorage.setItem("atc-remember-session", String(remember));
 }
+
+export async function getOrCreatePublicSession() {
+  setRememberSession(true);
+
+  const supabase = getBrowserSupabase();
+  const { data: existing, error: sessionError } =
+    await supabase.auth.getSession();
+
+  if (sessionError) throw sessionError;
+  if (existing.session) return existing.session;
+
+  const { data, error } = await supabase.auth.signInAnonymously();
+
+  if (error) throw error;
+  if (!data.session) {
+    throw new Error("Private submission access could not be prepared.");
+  }
+
+  return data.session;
+}

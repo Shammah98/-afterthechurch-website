@@ -30,9 +30,10 @@ export default function SharePage() {
         <p className="eyebrow">Share your story</p>
         <h1>You decide what is published, anonymised or deleted.</h1>
         <p className="lead">
-          Review the process before entering any personal information. Story
-          submission requires an account so you can later check status, change
-          privacy, request corrections, unpublish or delete the material.
+          Review the process before entering any personal information. No
+          account or sign-in is required. Private controls on this device let
+          you check status, change privacy, request corrections, unpublish or
+          delete the material later.
         </p>
       </section>
 
@@ -96,8 +97,8 @@ export default function SharePage() {
           <article>
             <strong>Retention and withdrawal</strong>
             <p>
-              You can delete a submission from your account. Rejected or withdrawn
-              material is scheduled for deletion after 30 days by the cleanup job.
+              You can delete a submission through Manage Your Submissions.
+              Rejected or withdrawn material is scheduled for deletion after 30 days.
             </p>
           </article>
         </div>
@@ -108,7 +109,7 @@ export default function SharePage() {
           <p className="eyebrow">If you are not ready</p>
           <h2>Not submitting is also a valid choice.</h2>
           <p>
-            You can keep a private account for yourself, speak with an independent
+            You can keep a private draft for yourself, speak with an independent
             professional, return later or decide that this platform is not the right
             place. Your recovery does not depend on making your experience public.
           </p>
@@ -125,7 +126,7 @@ export default function SharePage() {
           </article>
           <article>
             <strong>Use your own pace</strong>
-            <p>A short summary can be enough. You can return to the longer account only when and if you choose.</p>
+            <p>A short summary can be enough. You can return to a longer version only when and if you choose.</p>
           </article>
           <article>
             <strong>Keep emergency information out of the form</strong>

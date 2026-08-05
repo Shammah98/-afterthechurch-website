@@ -313,7 +313,7 @@ export default async function HomePage() {
           <div className="reviewSteps">
             <article>
               <strong>Private submission</strong>
-              <p>Your text and media enter a private review area linked to your account.</p>
+              <p>Your text and media enter a private review area without requiring an account.</p>
             </article>
             <article>
               <strong>Identity and safety check</strong>
@@ -333,7 +333,8 @@ export default async function HomePage() {
               <strong>Manage it later</strong>
               <p>
                 Request correction, change the privacy level, unpublish temporarily
-                or permanently delete the submission and uploaded media.
+                or permanently delete the submission and uploaded media from the
+                same device.
               </p>
             </article>
           </div>

@@ -24,7 +24,10 @@ export async function POST(request: NextRequest) {
   try {
     const user = await getUserFromRequest(request);
     if (!user) {
-      return NextResponse.json({ error: "Sign in before uploading media." }, { status: 401 });
+      return NextResponse.json(
+        { error: "Private upload access could not be verified. Refresh and try again." },
+        { status: 401 }
+      );
     }
 
     const allowed = await checkRateLimit(request, "media-upload-url", 12, 60 * 60);

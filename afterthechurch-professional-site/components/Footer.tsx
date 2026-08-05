@@ -25,7 +25,7 @@ export default function Footer() {
             <Link href="/resources">Educational resources</Link>
             <Link href="/stories">Survivor stories</Link>
             <Link href="/share">Story submission</Link>
-            <Link href="/account">Your account</Link>
+            <Link href="/manage">Manage your submissions</Link>
           </div>
           <div>
             <h2>Information</h2>

@@ -4,15 +4,21 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How AfterTheChurch collects, uses, protects, publishes and deletes account and survivor-story information."
+    "How AfterTheChurch collects, uses, protects, publishes and deletes survivor-story information."
 };
 
 const dataRows = [
   {
-    data: "Account and authentication",
-    examples: "Email address, password hash, chosen display name, session tokens, account dates and optional service-update preference.",
-    purpose: "Create and secure an account, authenticate access, send verification or reset messages and provide account controls.",
-    basis: "Performance of the Terms of Use; consent for optional communications."
+    data: "Private contributor session",
+    examples: "A random technical identifier, browser session token and session dates. Public contributors are not asked to create an account or password.",
+    purpose: "Keep a submission and its private management controls connected to the browser used to submit it.",
+    basis: "Performance of the Terms of Use; legitimate interests in secure access and preventing unauthorised changes."
+  },
+  {
+    data: "Moderator authentication",
+    examples: "Administrator email address, password hash, session token and password-reset records.",
+    purpose: "Restrict the private moderation queue to specifically authorised administrators.",
+    basis: "Legitimate interests in safeguarding, confidentiality and service security."
   },
   {
     data: "Story submission and moderation",
@@ -29,7 +35,7 @@ const dataRows = [
   {
     data: "Published material",
     examples: "The approved story, selected identity fields, media, content notices, categories and publication metadata.",
-    purpose: "Make the contributor’s approved account available to readers under the selected privacy setting.",
+    purpose: "Make the contributor’s approved story available to readers under the selected privacy setting.",
     basis: "Consent and the publication licence in the Terms of Use."
   }
 ];
@@ -43,7 +49,7 @@ export default function PrivacyPage() {
         <p className="lead">
           This policy explains what AfterTheChurch processes, why it is needed,
           who can receive it and how you can exercise your rights. It applies to
-          public browsing, accounts, story submissions, uploaded media,
+          public browsing, private contributor sessions, story submissions, uploaded media,
           moderation and communications.
         </p>
         <div className="legalMeta">
@@ -77,7 +83,7 @@ export default function PrivacyPage() {
               <div><strong>No sale of personal data</strong><span>We do not sell personal information or run targeted advertising.</span></div>
               <div><strong>Private by default</strong><span>New submissions remain private until moderation is complete and publication is approved.</span></div>
               <div><strong>Choice of public identity</strong><span>Contributors choose which name and organisation details appear publicly.</span></div>
-              <div><strong>Deletion controls</strong><span>Contributors can unpublish, request changes and delete submissions from their account.</span></div>
+              <div><strong>Deletion controls</strong><span>Contributors can unpublish, request changes and delete submissions from the same browser without an account.</span></div>
             </div>
           </section>
 
@@ -104,9 +110,10 @@ export default function PrivacyPage() {
           <section id="collect">
             <h2>2. Information we process and why</h2>
             <p>
-              We aim to collect only information needed to run accounts, receive and
+              We aim to collect only information needed to receive and
               moderate stories, protect the service and honour contributors’ choices.
-              You do not need an account to read public resources or approved stories.
+              You do not need an account or sign-in to read, submit or use any
+              public feature.
             </p>
             <div className="dataUseList">
               {dataRows.map((row) => (
@@ -132,7 +139,7 @@ export default function PrivacyPage() {
               A submission can reveal religious or philosophical beliefs, health,
               sexuality, ethnic background, trauma or alleged offences. Some of this
               is “special-category” personal data under the GDPR. Do not include it
-              unless it is necessary to your account and you want us to process it
+              unless it is necessary to your story and you want us to process it
               under the privacy level you selected.
             </p>
             <p>
@@ -155,9 +162,9 @@ export default function PrivacyPage() {
             <h2>4. Who receives information</h2>
             <ul className="plainList">
               <li><strong>Authorised moderators</strong> can access private submissions only where needed for review, safety, support requests or administration.</li>
-              <li><strong>Supabase</strong> provides authentication, database and private file storage as a data processor.</li>
+              <li><strong>Supabase</strong> provides anonymous contributor sessions, administrator authentication, database services and private file storage as a data processor.</li>
               <li><strong>Vercel</strong> provides website hosting, delivery, security and operational logging as a data processor.</li>
-              <li><strong>Email infrastructure</strong> delivers account verification and password-reset messages.</li>
+              <li><strong>Email infrastructure</strong> delivers password-reset messages for authorised administrators only.</li>
               <li><strong>Authorities or advisers</strong> may receive limited information where required by law, necessary to protect life or safety, or reasonably needed for legal claims.</li>
             </ul>
             <p>
@@ -200,7 +207,8 @@ export default function PrivacyPage() {
             <h2>6. Retention and deletion</h2>
             <ul className="plainList">
               <li>Rate-limit fingerprints are automatically removed after approximately 24 hours.</li>
-              <li>Account information is retained while the account is active and for the limited period needed to complete a verified deletion request, prevent abuse or meet legal obligations.</li>
+              <li>Anonymous technical session identifiers are retained as needed to connect private submission controls, prevent abuse and meet legal obligations.</li>
+              <li>Administrator authentication records are retained while moderation access is authorised and for the limited period needed for security or legal obligations.</li>
               <li>Pending submissions are retained while review or requested changes remain active.</li>
               <li>Approved stories remain until withdrawn, deleted or removed through moderation.</li>
               <li>Rejected and withdrawn submissions are scheduled for deletion after 30 days, unless the contributor deletes them sooner or a lawful preservation need applies.</li>
@@ -217,10 +225,12 @@ export default function PrivacyPage() {
           <section id="storage">
             <h2>7. Cookies, local storage and public browsing</h2>
             <p>
-              Authentication uses browser storage for signed-in sessions. If
-              “Remember me” is selected, the session is stored on that device until
-              sign-out or expiry; otherwise session storage is used. Content-warning
-              choices may also be stored in the browser.
+              When a visitor submits or manages a story, the site stores an
+              essential anonymous session token in that browser. It contains no
+              public account email or password and exists so another visitor cannot
+              change the submission. Clearing site data or changing device may
+              remove access to those private controls. Administrator sessions and
+              content-warning choices may also be stored in the browser.
             </p>
             <p>
               The site does not currently use advertising or third-party behavioural
@@ -276,9 +286,9 @@ export default function PrivacyPage() {
           <section id="children">
             <h2>10. Children and young people</h2>
             <p>
-              Public educational material can be read without an account. Accounts
-              and story submissions are intended for people aged 18 or over. A person
-              under 18 must not create an account or submit a story unless a parent or
+              Public educational material can be read without an account. Story
+              submissions are intended for people aged 18 or over. A person
+              under 18 must not submit a story unless a parent or
               legal guardian has provided verifiable consent and the operator has
               agreed in writing beforehand.
             </p>
@@ -295,7 +305,7 @@ export default function PrivacyPage() {
             <p>
               We may update this policy when the service, providers or law changes.
               The effective date will be changed and material changes affecting
-              registered users will be communicated through a reasonable channel.
+              contributors will be communicated through a reasonable channel where possible.
               New uses requiring consent will not be applied merely by rewriting this
               policy.
             </p>
@@ -312,7 +322,7 @@ export default function PrivacyPage() {
             </p>
             <div className="pageActions">
               <Link className="button primary" href="/terms">Read the Terms of Use</Link>
-              <Link className="button secondary" href="/account">Manage Your Submissions</Link>
+              <Link className="button secondary" href="/manage">Manage Your Submissions</Link>
               <Link className="textLink" href="/safety">Safety and Urgent Help</Link>
             </div>
           </section>

@@ -36,7 +36,10 @@ export async function POST(request: NextRequest) {
   try {
     const user = await getUserFromRequest(request);
     if (!user) {
-      return NextResponse.json({ error: "Sign in before submitting a story." }, { status: 401 });
+      return NextResponse.json(
+        { error: "Private submission access could not be verified. Refresh and try again." },
+        { status: 401 }
+      );
     }
 
     const allowed = await checkRateLimit(request, "story-submit", 4, 24 * 60 * 60);

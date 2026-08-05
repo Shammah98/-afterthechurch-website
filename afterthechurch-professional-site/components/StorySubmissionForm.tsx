@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useEffect, useMemo, useState } from "react";
-import { getBrowserSupabase } from "@/lib/supabase-browser";
+import { FormEvent, useMemo, useState } from "react";
+import {
+  getBrowserSupabase,
+  getOrCreatePublicSession
+} from "@/lib/supabase-browser";
 import type { MediaType, PrivacyLevel } from "@/lib/types";
 
 const maxSizes: Record<MediaType, number> = {
@@ -56,14 +59,8 @@ export default function StorySubmissionForm({
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
-  const [signedIn, setSignedIn] = useState<boolean | null>(null);
+  const [submitted, setSubmitted] = useState(false);
   const [startedAt] = useState(Date.now());
-
-  useEffect(() => {
-    getBrowserSupabase().auth.getSession().then(({ data }) => {
-      setSignedIn(Boolean(data.session));
-    });
-  }, []);
 
   const preview = publicPreview(privacy, displayName, churchName);
 
@@ -82,17 +79,13 @@ export default function StorySubmissionForm({
     const form = new FormData(formElement);
 
     setStatus("");
+    setSubmitted(false);
     setBusy(true);
 
     try {
       const supabase = getBrowserSupabase();
-      const { data } = await supabase.auth.getSession();
-      const token = data.session?.access_token;
-
-      if (!token) {
-        setStatus("Sign in before submitting or managing a story.");
-        return;
-      }
+      const session = await getOrCreatePublicSession();
+      const token = session.access_token;
 
       const storyText = String(form.get("storyText") || "").trim();
 
@@ -240,34 +233,15 @@ export default function StorySubmissionForm({
       setPrivacy("fully_anonymous");
       setDisplayName("");
       setChurchName("");
+      setSubmitted(true);
       setStatus(
-        "Your submission was received. It remains private until the review process is complete."
+        "Your submission was received. It remains private until the review process is complete. No account was created."
       );
     } catch (error) {
       setStatus(error instanceof Error ? error.message : "Something went wrong.");
     } finally {
       setBusy(false);
     }
-  }
-
-  if (signedIn === null) {
-    return <p className="loadingState">Checking your account…</p>;
-  }
-
-  if (!signedIn) {
-    return (
-      <div className="accountRequired">
-        <h2>An account is required to submit or manage a story.</h2>
-        <p>
-          Reading stories and resources remains public. An account gives you a
-          private place to check review status, request changes, alter privacy
-          settings or delete a submission.
-        </p>
-        <Link className="button primary" href="/auth">
-          Sign In or Create Account
-        </Link>
-      </div>
-    );
   }
 
   return (
@@ -532,6 +506,12 @@ export default function StorySubmissionForm({
       </button>
 
       <p className="formStatus" role="status" aria-live="polite">{status}</p>
+
+      {submitted && (
+        <Link className="button secondary" href="/manage">
+          Manage Your Submissions
+        </Link>
+      )}
     </form>
   );
 }

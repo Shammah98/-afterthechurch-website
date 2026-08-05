@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import type { EmailOtpType } from "@supabase/supabase-js";
 import { getBrowserSupabase } from "@/lib/supabase-browser";
 
-const SUCCESS_REDIRECT = "/login?confirmed=true";
-const FAILURE_REDIRECT = "/login?confirmation=failed";
+const SUCCESS_REDIRECT = "/admin?confirmed=true";
+const FAILURE_REDIRECT = "/admin?confirmation=failed";
 
 export default function AuthCallbackPage() {
-  const [message, setMessage] = useState("Confirming your account…");
+  const [message, setMessage] = useState("Confirming administrator access…");
 
   useEffect(() => {
     let cancelled = false;
@@ -62,7 +62,7 @@ export default function AuthCallbackPage() {
           window.location.replace(SUCCESS_REDIRECT);
         }
       } catch (error) {
-        console.error("Account confirmation failed:", error);
+        console.error("Administrator confirmation failed:", error);
 
         if (!cancelled) {
           setMessage(
@@ -85,7 +85,7 @@ export default function AuthCallbackPage() {
 
   return (
     <section className="narrowPage">
-      <p className="eyebrow">Account confirmation</p>
+      <p className="eyebrow">Administrator confirmation</p>
       <h1>{message}</h1>
     </section>
   );
