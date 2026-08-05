@@ -20,6 +20,14 @@ function publicIdentity(
     };
   }
 
+if (privacyLevel === "anonymous_author") {
+  return {
+    authorDisplay: "Anonymous Author",
+    churchDisplay: churchName
+  };
+}
+
+  
   return {
     authorDisplay: displayName,
     churchDisplay: churchName
