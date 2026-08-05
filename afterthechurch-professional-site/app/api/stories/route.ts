@@ -10,7 +10,12 @@ const schema = z.object({
   title: z.unknown(),
   displayName: z.unknown(),
   churchName: z.unknown(),
-  privacyLevel: z.enum(["public", "anonymous_church", "fully_anonymous"]),
+  privacyLevel: z.enum([
+  "public",
+  "anonymous_church",
+  "anonymous_author",
+  "fully_anonymous"
+]),
   mediaType: z.enum(["written", "audio", "video"]),
   shortSummary: z.unknown(),
   storyText: z.unknown(),
