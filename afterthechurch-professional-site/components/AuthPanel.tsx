@@ -185,7 +185,8 @@ export default function AuthPanel() {
             <label className="checkboxRow">
               <input type="checkbox" name="terms" required />
               <span>
-                I agree to the <Link href="/terms">Terms of Use</Link> and{" "}
+                I confirm that I am 18 or older and agree to the{" "}
+                <Link href="/terms">Terms of Use</Link> and{" "}
                 <Link href="/privacy">Privacy Policy</Link>.
               </span>
             </label>
