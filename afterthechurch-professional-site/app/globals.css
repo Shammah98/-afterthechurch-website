@@ -653,6 +653,14 @@ legend { padding: 0 10px; font-family: var(--serif); font-size: 1.75rem; font-we
   gap: 35px; align-items: start;
 }
 .accountStoryTop h3 { margin: 10px 0 4px; }
+.accountStatusHelp {
+  max-width: 680px; margin: 12px 0 0;
+  color: var(--muted); font-size: .9rem; line-height: 1.55;
+}
+.adminToolbar {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 14px;
+}
 .statusBadge {
   padding: 5px 9px; border-radius: 999px; background: var(--cream);
   font-size: .78rem; font-weight: 800; text-transform: capitalize;
