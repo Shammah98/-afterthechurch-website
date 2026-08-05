@@ -340,16 +340,68 @@ h3 { font-size: clamp(1.55rem, 2.5vw, 2.25rem); line-height: 1.1; }
   border-radius: 14px;
 }
 
-.resourceArchive { padding-top: 20px; }
-.archiveRow {
-  border-top: 1px solid var(--line); padding: 34px 0;
-  display: grid; grid-template-columns: 70px minmax(0,1fr) auto;
-  gap: 25px; align-items: center;
+.resourceArchive { padding-top: 30px; background: var(--cream-light); }
+.resourceCardGrid {
+  display: grid; grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: clamp(18px,2.4vw,30px); align-items: stretch;
 }
-.archiveRow:last-child { border-bottom: 1px solid var(--line); }
-.archiveNumber { font-family: var(--serif); font-size: 1.45rem; color: var(--rose); }
-.archiveRow h2 { margin: 5px 0 12px; font-size: clamp(1.9rem,3.5vw,3rem); }
-.archiveLink { display: inline-flex; align-items: center; gap: 10px; color: var(--wine); font-weight: 800; }
+.resourceCard {
+  min-width: 0; overflow: hidden;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--line); border-radius: 16px;
+  background: var(--paper);
+  box-shadow: 0 10px 30px rgba(48,39,30,.045);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.resourceCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(111,39,53,.38);
+  box-shadow: 0 18px 42px rgba(48,39,30,.11);
+}
+.resourceCardImageLink {
+  display: block; overflow: hidden;
+  background: var(--cream); text-decoration: none;
+}
+.resourceCardImage {
+  position: relative; aspect-ratio: 4 / 3; overflow: hidden;
+}
+.resourceCardImage img {
+  object-fit: cover; object-position: center;
+  transition: transform .35s ease;
+}
+.resourceCard:hover .resourceCardImage img { transform: scale(1.025); }
+.resourceCardBody {
+  flex: 1; padding: clamp(22px,2.3vw,30px);
+  display: flex; flex-direction: column;
+}
+.resourceCardTopline {
+  min-height: 42px; display: grid;
+  grid-template-columns: auto minmax(0,1fr); gap: 12px;
+  color: var(--sage); font-size: .75rem; font-weight: 800;
+  line-height: 1.45; text-transform: uppercase; letter-spacing: .07em;
+}
+.resourceCardNumber {
+  color: var(--rose); font-family: var(--serif);
+  font-size: 1rem; letter-spacing: .04em;
+}
+.resourceCard h2 {
+  margin: 14px 0 12px;
+  font-size: clamp(1.75rem,2.35vw,2.45rem);
+  line-height: 1.08;
+}
+.resourceCard h2 a { text-decoration: none; }
+.resourceCard h2 a:hover { color: var(--wine); }
+.resourceCardBody > p {
+  margin: 0 0 24px; color: var(--muted); line-height: 1.65;
+}
+.resourceCardAction {
+  margin-top: auto; padding-top: 18px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  color: var(--wine); font-weight: 800; text-decoration: none;
+}
+.resourceCardAction svg { transition: transform .2s ease; }
+.resourceCard:hover .resourceCardAction svg { transform: translateX(4px); }
 
 .contentGate, .contentSummary {
   max-width: 970px; margin: 0 auto; min-height: 60vh;
@@ -602,6 +654,7 @@ legend { padding: 0 10px; font-family: var(--serif); font-size: 1.75rem; font-we
   nav, .accountActions { display: grid; gap: 8px; }
   nav a, .textButton, .signInButton { padding: 12px 0; }
   .signInButton { border: 0; }
+  .resourceCardGrid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .storyExplorer { grid-template-columns: 1fr; }
   .filterPanel { position: static; }
   .filterColumns { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 16px; }
@@ -635,7 +688,7 @@ legend { padding: 0 10px; font-family: var(--serif); font-size: 1.75rem; font-we
   .heroShade { background: linear-gradient(0deg,rgba(28,22,18,.9) 0%,rgba(30,24,20,.55) 75%,rgba(25,20,17,.12)); }
   .homeHeroInner { padding-top: 180px; }
   .reviewSteps, .reviewDetailGrid, .twoColumns, .formatChoices, .checkGrid,
-  .filterColumns, .accountStoryTop { grid-template-columns: 1fr; }
+  .filterColumns, .accountStoryTop, .resourceCardGrid { grid-template-columns: 1fr; }
   .reviewDetailGrid article:nth-child(odd) { border-right: 0; }
   .needsSection .sectionIntro { padding: 24px; }
   .needRow { grid-template-columns: 35px minmax(0,1fr); padding: 18px; }
