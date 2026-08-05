@@ -284,6 +284,7 @@ export const resources: ResourceArticle[] = [
     }
   ]
 },
+  {
     slug: "faith-healing-and-medical-decisions",
     title: "Faith-healing claims and medical decisions",
     deck:
