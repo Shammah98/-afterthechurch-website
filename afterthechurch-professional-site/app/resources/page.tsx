@@ -23,7 +23,7 @@ export default function ResourcesPage() {
         </div>
         <Image
           src="/images/reading"
-          alt="A person making a heart shape with their hands at sunset."
+         
           width={750}
           height={460}
         />
