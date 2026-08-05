@@ -540,54 +540,316 @@ export const resources: ResourceArticle[] = [
     }
   ]
 },
-  {
-    slug: "financial-pressure-and-giving",
-    title: "When giving stops feeling voluntary",
-    deck:
-      "A grounded look at fundraising, tithing, pledges, debt and spiritual pressure around money.",
-    category: "Money and independence",
-    readingTime: 6,
-    intensity: "moderate",
-    warnings: ["Financial exploitation", "Threats of punishment or damnation"],
-    image: "/images/group-field.jpg",
-    imageAlt: "A group walking along a path through a quiet field.",
-    overview:
-      "Generosity can be meaningful. It becomes unsafe when refusal brings threats, humiliation, loss of status, promises of guaranteed wealth or pressure to borrow money.",
-    keyPoints: [
-      "A donation is not freely given when the cost of refusal is fear, shame or exclusion.",
-      "Guaranteed financial or healing outcomes deserve careful scrutiny.",
-      "You may pause giving without first winning a theological argument.",
-      "Independent financial advice can help separate urgent needs from spiritual pressure."
-    ],
-    fullSections: [
-      {
-        heading: "Notice the consequence of saying no",
-        paragraphs: [
-          "A request may be described as voluntary while leaders track who gave, publicly praise donors, connect giving to spiritual protection or imply that hardship follows reluctance. The label matters less than the actual consequences.",
-          "Some survivors choose to create a temporary pause before making any large donation. Waiting twenty-four or forty-eight hours can reduce pressure and create space to consult someone independent."
-        ]
-      },
-      {
-        heading: "Debt changes the risk",
-        paragraphs: [
-          "Pressure to borrow, use credit, sell essential property or give money needed for food, housing or healthcare can create long-term harm. A spiritual promise does not remove the practical consequences of debt.",
-          "A financial adviser or debt counsellor who is not connected to the organisation may help review options without debating your beliefs."
-        ]
-      }
-    ],
-    practicalOptions: [
-      "Set a private cooling-off period before any donation above an amount you choose.",
-      "Do not share banking passwords, verification codes or unrestricted account access.",
-      "Ask for written information about how funds are used.",
-      "Review debts and essential expenses with an independent adviser."
-    ],
-    furtherReading: [
-      {
-        label: "Documenting financial requests",
-        note: "What records may be useful when you need advice later."
-      }
-    ]
-  },
+
+
+{
+  slug: "financial-pressure-and-giving",
+  title: "When giving stops feeling voluntary",
+  deck:
+    "A research-informed guide to distinguishing generosity from financial pressure, coercion and exploitation in religious communities.",
+  category: "Money and independence",
+  readingTime: 24,
+  intensity: "moderate",
+  warnings: [
+    "Financial exploitation",
+    "Coercive control",
+    "Threats of punishment or damnation",
+    "Spiritual abuse"
+  ],
+  image: "/images/group-field.jpg",
+  imageAlt: "A group walking along a path through a quiet field.",
+  overview:
+    "Generosity can be meaningful, joyful and central to a person’s faith. It becomes unsafe when leaders or communities make refusal spiritually frightening, socially costly or financially dangerous. A donation is not fully voluntary when someone is told that giving will guarantee healing, protection, promotion or wealth; when reluctance is treated as rebellion; when amounts are publicly compared; when people are pushed to borrow; or when essential needs are sacrificed to protect a ministry’s reputation. The most useful question is not simply whether a church teaches tithing or asks for money. It is whether people receive clear information, have time to decide, can protect food, housing, healthcare and dependants, and can say no without humiliation, threats or exclusion.",
+  keyPoints: [
+    "Religious giving can be sincere and freely chosen while particular fundraising methods are coercive.",
+    "The central issue is not whether a church asks for money, but whether meaningful refusal remains possible.",
+    "Social pressure, public recognition and information about what others give can increase donations even when the donor would prefer not to give.",
+    "A promise of guaranteed wealth, healing or protection in exchange for money should be treated as a high-risk claim rather than normal fundraising.",
+    "Pressure to borrow, use credit, sell essential property or give money needed for food, housing, education or healthcare creates a serious risk of harm.",
+    "Economic abuse research shows that restricting, exploiting or sabotaging access to resources can damage mental health, independence and long-term financial security.",
+    "A donor should be able to ask how money is governed, audited and spent without being treated as disloyal or spiritually immature.",
+    "Financial transparency is not a lack of faith. It is part of responsible stewardship and accountability.",
+    "Christian traditions disagree about tithing, but New Testament teaching repeatedly connects giving with willingness, proportion, care for others and freedom from compulsion.",
+    "Recovery may involve pausing donations, reviewing debt, restoring access to accounts and separating personal faith from pressure imposed by an institution."
+  ],
+  fullSections: [
+    {
+      heading: "Generosity and coercion are not the same thing",
+      paragraphs: [
+        "Religious communities often fund worship, pastoral care, education, relief work, buildings and salaries through voluntary donations. Many people give because generosity expresses gratitude, solidarity, worship or responsibility toward others. The existence of fundraising is therefore not evidence of abuse.",
+        "The problem begins when the method used to secure money substantially narrows the donor’s freedom. A request may become coercive when refusal is followed by threats, humiliation, loss of status, public exposure, spiritual fear or damage to important relationships. The words “voluntary offering” do not settle the question if the practical consequences of saying no are severe.",
+        "It is also important to assess patterns rather than one uncomfortable moment. An awkward appeal, a sermon someone disagrees with or a strong recommendation is not automatically financial abuse. Concern increases when pressure is repeated, escalates over time, targets vulnerability, requires secrecy or is supported by a wider system of control."
+      ]
+    },
+    {
+      heading: "What economic abuse research can contribute",
+      paragraphs: [
+        "Most formal research on economic abuse concerns intimate partner violence rather than churches. That literature describes behaviours that interfere with another person’s ability to acquire, use or maintain economic resources. Examples include controlling access to money, creating debt, sabotaging employment, exploiting labour and preventing financial independence.",
+        "Reviews by Stylianou, Postmus and colleagues, and later researchers consistently describe economic abuse as a distinct form of harm that can produce financial hardship, reduce autonomy and worsen psychological wellbeing. It often occurs alongside other controlling behaviours rather than as an isolated financial disagreement.",
+        "This literature cannot simply be transferred from family violence to every religious setting. A church does not have the same relationship to a member as an intimate partner. However, the underlying questions remain useful: who controls the resources, who benefits, what happens when the person refuses, and does the pattern increase dependence while reducing realistic alternatives?"
+      ]
+    },
+    {
+      heading: "Religious authority can make an ordinary request feel absolute",
+      paragraphs: [
+        "A request from a fundraiser is different from a request presented as the will of God. If a leader claims unique spiritual authority, the donor may experience refusal as disobedience not merely to another person but to God. That changes the emotional weight of the decision.",
+        "Religious coercive-control research describes how doctrine and sacred authority can be used to manipulate, isolate and silence. The same structure can appear in financial demands when leaders claim that they know the amount God requires, that hesitation reveals rebellion or that questioning the appeal places a person outside divine protection.",
+        "A safe community distinguishes pastoral interpretation from divine certainty. Leaders may teach their beliefs about generosity, but they should not claim private access to God’s instructions for another person’s bank account."
+      ]
+    },
+    {
+      heading: "Social pressure can increase giving without increasing freedom",
+      paragraphs: [
+        "Behavioural-economics research shows that some donations are motivated not only by altruism but by the discomfort of saying no. In a major field experiment, DellaVigna, List and Malmendier found that giving fell when households were given an easy way to avoid a face-to-face request. This suggests that social pressure can produce donations that the person would not otherwise choose.",
+        "Other experiments show that public recognition and information about what others have donated can increase contributions. Shang and Croson found that mentioning a high previous donation increased giving in a public-radio campaign. Karlan and McConnell found that the promise of public recognition increased giving largely through social-image concerns.",
+        "These findings do not mean that public offerings or donor acknowledgements are always wrong. They show why methods such as calling people forward, reading out amounts, displaying names, comparing groups or asking who will “match” a large gift can alter behaviour through reputation and conformity. A responsible fundraiser should make it genuinely easy to decline."
+      ]
+    },
+    {
+      heading: "Public giving can turn generosity into a loyalty test",
+      paragraphs: [
+        "In some communities, donors receive visible honour, leadership access, titles, seating, invitations or public praise. Recognition may be intended as gratitude, but it can create a hierarchy in which money becomes evidence of spirituality and belonging.",
+        "The reverse can also occur. People who give less may be described as fearful, selfish, immature or uncommitted. If attendance records, giving histories or pledge levels are used to decide who receives pastoral attention or ministry opportunities, a donation becomes more than support for a cause. It becomes a condition of full membership.",
+        "Healthy recognition does not expose amounts without consent, shame non-donors or imply that wealth proves spiritual superiority. The community should be able to honour service and generosity without turning financial capacity into moral status."
+      ]
+    },
+    {
+      heading: "Suggested amounts and public examples can become anchors",
+      paragraphs: [
+        "People often use the first number presented to them as a reference point. In fundraising, suggested amounts can be helpful because they reduce uncertainty. They can also create pressure when the amount is framed as the minimum acceptable proof of faith.",
+        "A leader may announce that “everyone should give at least” a certain sum, describe a previous donor’s amount, or invite progressively larger pledges while the audience is watching. Research on social information shows that people adjust giving toward the amounts they believe others give.",
+        "The ethical question is whether the number is guidance or a disguised command. A safe appeal makes clear that zero is an acceptable choice, avoids using unusually large gifts as a standard and does not equate the size of a donation with the size of someone’s faith."
+      ]
+    },
+    {
+      heading: "Urgency can prevent considered consent",
+      paragraphs: [
+        "Some appeals are genuinely urgent. A sudden disaster, a person facing eviction or an immediate community need may require rapid action. Urgency becomes manipulative when it is manufactured to stop people from checking facts, discussing the decision with family or reviewing their finances.",
+        "Common tactics include insisting that the opportunity will disappear before the service ends, asking people to transfer money while emotions are high, discouraging them from leaving the room, or presenting delay as disobedience. Music, repetition, public expectation and fear may further reduce reflective decision-making.",
+        "A cooling-off period is a simple safeguard. Large or unusual gifts should normally be considered outside the emotional setting in which they were requested. A legitimate need can survive reasonable questions."
+      ]
+    },
+    {
+      heading: "Prosperity promises turn giving into a financial transaction",
+      paragraphs: [
+        "Prosperity theology takes several forms, but some versions teach that giving money activates a predictable return of wealth, health, employment, protection or promotion. The donor is encouraged to treat an offering as a seed that God is obligated to multiply.",
+        "Ethnographic research in African Pentecostal settings shows that this teaching can create intense pressure on people with limited income. A 2024 study of young Pentecostals in Harare described congregants hustling, gambling or seeking additional money so they could tithe and remain visible within a prosperity-oriented religious economy. Other scholarship connects prosperity preaching with transactional understandings of salvation and personal responsibility for financial outcomes.",
+        "The problem is not hope or prayer for provision. It is presenting a spiritual claim as a reliable investment product. A ministry cannot responsibly promise a measurable financial return that it cannot verify, control or refund."
+      ]
+    },
+    {
+      heading: "When the promised return fails, blame often moves to the donor",
+      paragraphs: [
+        "A guaranteed-return message is protected from failure when every outcome is reinterpreted. If money arrives, the teaching is confirmed. If it does not, the donor may be told to wait, give again, confess differently, remove doubt or examine hidden sin.",
+        "This structure places credit for success with the leader or doctrine while placing responsibility for failure on the person who sacrificed. It can encourage repeated giving because the donor fears that stopping before the breakthrough would waste everything already given.",
+        "Failure may therefore produce more than financial loss. It can produce shame, anxiety, spiritual confusion and distrust of one’s own judgement. The person may believe that poverty proves moral or religious inadequacy rather than recognising that the promise itself was unreliable."
+      ]
+    },
+    {
+      heading: "Debt changes the ethical seriousness",
+      paragraphs: [
+        "Giving from available income is different from borrowing. Credit cards, payday loans, personal loans and money borrowed from relatives carry future obligations that remain even when the expected blessing does not arrive.",
+        "Research on coerced debt in abusive relationships demonstrates how manipulation can create long-term financial entrapment. Although a religious appeal is a different context, pressure to open credit, sign a loan, guarantee another person’s debt or donate borrowed money should be treated as a major warning sign.",
+        "A spiritual promise does not remove interest, default fees, damaged credit, repossession or family conflict. No leader should tell a person to ignore these consequences as evidence of faith."
+      ]
+    },
+    {
+      heading: "Essential needs should not be treated as spiritual competition",
+      paragraphs: [
+        "People may be encouraged to give money reserved for rent, food, medication, school fees, transport, utilities or support for dependants. The sacrifice may be praised as extraordinary faith, especially when the donor is poor.",
+        "Sacrifice is meaningful only when it is truly chosen and when the person understands the consequences. An institution with greater resources should not romanticise deprivation imposed on people who already lack security.",
+        "A useful boundary is that donations should not predictably endanger housing, healthcare, nutrition, childcare or another person’s basic welfare. A community that receives from someone in crisis should also be prepared to help meet that person’s needs."
+      ]
+    },
+    {
+      heading: "Unpaid labour also has economic value",
+      paragraphs: [
+        "Financial exploitation is not limited to cash. Members may provide extensive unpaid labour, professional services, transport, food, accommodation, childcare or equipment. Volunteering can be freely chosen and deeply valuable, but it can also become compulsory.",
+        "Concern increases when leaders expect constant availability, punish people who reduce hours, demand professional work without agreement or use volunteers to support private businesses and personal lifestyles. Exhaustion can also undermine paid employment, education and family care.",
+        "A healthy organisation defines roles, expenses, supervision, safeguarding and the difference between charitable service and work that should be paid. A spiritual title should not erase ordinary labour rights or ethical obligations."
+      ]
+    },
+    {
+      heading: "Transparency determines whether trust can be tested",
+      paragraphs: [
+        "Donors cannot make an informed decision when they do not know who controls the money, which entity receives it or how it will be used. Appeals should identify the legal organisation, purpose of the collection and whether the money is restricted to that purpose.",
+        "Financial statements, governance structures, conflicts of interest, senior compensation and related-party transactions should be available at an appropriate level of detail. Transparency does not require publishing every confidential record, but it should allow meaningful accountability.",
+        "Warning signs include one leader controlling collection, spending and reporting; large cash movements without records; family members occupying all oversight roles; unexplained transfers between ministries and private businesses; or repeated refusal to answer basic questions."
+      ]
+    },
+    {
+      heading: "A testimony is not an audit",
+      paragraphs: [
+        "Stories about lives changed by a ministry may show real social value. They do not establish that all donations are managed properly. A powerful testimony can draw attention away from governance questions that remain necessary.",
+        "Similarly, visible buildings, large events and expensive media prove that money was spent, not that it was spent lawfully, efficiently or for the purpose donors understood. Financial stewardship requires records and independent review, not only evidence of activity.",
+        "Donors should be able to distinguish between impact reporting, financial reporting and promotional storytelling. Each answers a different question."
+      ]
+    },
+    {
+      heading: "Vulnerability requires more care, not more pressure",
+      paragraphs: [
+        "Illness, bereavement, migration stress, unemployment, disability, loneliness and crisis can increase reliance on trusted spiritual leaders. These conditions do not remove a person’s capacity, but they may make high-pressure appeals especially harmful.",
+        "Current fundraising standards in the United Kingdom, for example, state that fundraisers should not put undue pressure on people, should stop when asked and should take additional care with donors in vulnerable circumstances. The legal details differ by country, but the ethical principle is broader: vulnerability should lead to protection rather than intensified solicitation.",
+        "A leader who knows that someone is frightened, cognitively impaired, recently bereaved or desperate for healing should not use that knowledge to secure a larger gift."
+      ]
+    },
+    {
+      heading: "Why capable people may continue giving",
+      paragraphs: [
+        "People do not give under pressure because they are unintelligent. They may trust the leader, love the community, believe the cause is good or have previously received genuine support. The harmful request is often embedded in a relationship containing many positive experiences.",
+        "Leaving or refusing may threaten friendships, identity, family harmony, employment or access to spiritual care. A donor may also fear admitting that earlier sacrifices did not produce the promised outcome.",
+        "Previous commitment can make another donation feel easier than revising the entire story. This is sometimes described through sunk-cost reasoning or cognitive dissonance: the mind tries to preserve meaning after a costly decision. Understanding this process should reduce shame, not create another accusation."
+      ]
+    },
+    {
+      heading: "Questions that help assess whether giving is voluntary",
+      paragraphs: [
+        "Begin with observable facts. Who made the request? What amount was suggested? What reason was given? How much time was allowed? Was the appeal made privately or in front of others? What happened when someone declined?",
+        "Then examine the consequences. Was the person threatened with poverty, illness, divine punishment, demonic attack, loss of status or exclusion? Were donors promised a specific return? Were non-donors identified, contacted repeatedly or denied opportunities?",
+        "Finally, examine the organisation. Are accounts independently reviewed? Can members see how funds are used? Are leaders subject to conflict-of-interest rules? Can a donor ask questions or withdraw a pledge without retaliation?"
+      ]
+    },
+    {
+      heading: "Documentation can restore clarity",
+      paragraphs: [
+        "A private record can help separate memory from repeated institutional explanations. Useful details include dates, exact wording, requested amounts, payment methods, witnesses, screenshots, receipts and any consequences after hesitation.",
+        "Keep bank statements, loan agreements and messages somewhere the organisation cannot access. Do not obtain records illegally or put yourself at risk. Recording laws and privacy rules differ between countries.",
+        "Documentation may support conversations with a debt adviser, lawyer, regulator, safeguarding professional or therapist. It may also simply help the person see the pattern clearly without committing to any formal complaint."
+      ]
+    },
+    {
+      heading: "Pausing can be a responsible first step",
+      paragraphs: [
+        "A person does not have to resolve every theological question before pausing donations. A temporary pause can create space to review essential expenses, debts, subscriptions, standing orders and previous commitments.",
+        "The pause can be private. Direct confrontation may not be wise when housing, employment, immigration status, family relationships or safety depend on the organisation.",
+        "A financial adviser or debt counsellor independent of the church can help establish what is affordable. A therapist familiar with spiritual abuse may help with guilt, fear and decision-making without telling the person what to believe."
+      ]
+    },
+    {
+      heading: "Christian giving is not meant to erase consent",
+      paragraphs: [
+        "Christian traditions differ over whether the Old Testament tithe remains a binding percentage for Christians. That disagreement should be acknowledged rather than hidden behind claims that only one interpretation is faithful.",
+        "The New Testament repeatedly describes giving in language of willingness and proportion. In 2 Corinthians 9:7, Paul says giving should not be reluctant or under compulsion. In 2 Corinthians 8:12, acceptability is connected to what a person has rather than what they do not have. First Corinthians 16:2 describes setting aside an amount in keeping with income.",
+        "Acts 5 also assumes that property and its proceeds remained under the owner’s control; the moral issue in the story is deception, not refusal to donate everything. First Timothy places serious weight on providing for one’s household. These texts make it difficult to defend a system that treats every available resource as automatically owed to a leader."
+      ]
+    },
+    {
+      heading: "The widow’s offering should not be used as a weapon",
+      paragraphs: [
+        "The story of the widow who gives two small coins is often used to praise sacrificial generosity. Christians interpret the passage in different ways. Some emphasise the widow’s devotion; others place it beside Jesus’ condemnation of religious leaders who “devour widows’ houses” and read it as exposure of an exploitative system.",
+        "Because the passage is debated, it should not be used as a simple command that poor people must surrender their last resources to institutions with greater wealth. Whatever interpretation is preferred, the surrounding warning against exploitation must remain visible.",
+        "A sermon that praises the widow while ignoring leaders’ duty to protect widows reverses the moral direction of the text."
+      ]
+    },
+    {
+      heading: "Prosperity theology should be tested by its treatment of the poor",
+      paragraphs: [
+        "Academic critiques of prosperity theology argue that some forms turn faith into a transaction and interpret wealth as evidence of spiritual success. This can shift attention away from structural inequality, honest work, mutual care and the church’s duty toward people in need.",
+        "Theological research on 2 Corinthians 8 notes that Paul honours the agency of poor donors while also adjusting expectations to each person’s capacity. The collection is directed toward relieving need and creating a form of equality, not enriching the collector.",
+        "A responsible theology of generosity can encourage courage and sacrifice without guaranteeing profit. It should judge success not by the wealth of leaders but by truthfulness, justice, care for vulnerable people and freedom from compulsion."
+      ]
+    },
+    {
+      heading: "What ethical fundraising in a church can look like",
+      paragraphs: [
+        "The purpose, recipient and legal entity are clearly identified. Donors receive enough information to understand how funds will be used. Restricted appeals explain what happens if more money is raised than needed.",
+        "People can give privately, decline, change a pledge or ask questions without being shamed. Suggested amounts are optional. Large gifts receive a cooling-off period, especially when the donor is vulnerable or the gift could affect essential needs.",
+        "Leaders do not promise guaranteed financial or medical returns. Accounts are reviewed by people independent of those spending the money. Conflicts of interest, compensation and related-party payments are disclosed.",
+        "Pastoral care does not depend on giving history. The organisation has a complaints process, protects whistleblowers and reports suspected fraud or safeguarding concerns to appropriate external authorities."
+      ]
+    },
+    {
+      heading: "Research and legal limits",
+      paragraphs: [
+        "Direct empirical research on financial coercion inside religious organisations remains smaller than the literature on economic abuse in intimate relationships and charitable giving generally. The available evidence supports careful pattern-based assessment, not automatic conclusions about every church or doctrine.",
+        "The legal status of a donation, pledge, fundraising statement or religious organisation varies by country. Conduct may involve charity law, consumer protection, fraud, undue influence, safeguarding, tax, employment, privacy or debt law, but this article cannot determine whether a particular case is unlawful.",
+        "A person does not need to prove a criminal offence before taking financial harm seriously. At the same time, public allegations should be based on evidence and framed accurately. Qualified local advice is necessary when legal action, debt liability or regulatory reporting is being considered."
+      ]
+    }
+  ],
+  practicalOptions: [
+    "Create a private cooling-off rule, such as waiting forty-eight hours before any unusual donation or pledge.",
+    "List essential expenses first: housing, food, healthcare, transport, education, taxes, debt payments and dependants.",
+    "Do not borrow, use credit or guarantee another person’s debt to meet a spiritual expectation.",
+    "Pause standing orders or recurring payments while reviewing what you can afford.",
+    "Ask for the organisation’s legal name, registration number, financial statements and purpose of the appeal.",
+    "Ask whether the donation is restricted to a specific project and what happens if the target is exceeded.",
+    "Do not share banking passwords, verification codes, payment cards or unrestricted account access.",
+    "Keep receipts, pledge forms, messages, recordings where lawful and copies of fundraising materials.",
+    "Review large gifts with a person who is independent of the organisation and unaffected by its leadership.",
+    "Use a qualified debt adviser, accountant or financial counsellor when donations have contributed to arrears or borrowing.",
+    "If a leader contacts you repeatedly, state your boundary in writing and keep the response.",
+    "Protect access to identification, bank accounts, employment income and important financial documents.",
+    "When reducing giving may trigger retaliation, plan around housing, work, family contact, immigration and digital safety before announcing the decision.",
+    "Request correction or removal if your name, amount or testimony was published without informed consent.",
+    "Report suspected fraud or misuse to the appropriate bank, police, charity regulator or professional authority in your country.",
+    "Allow your theology to remain unresolved while you stabilise your finances. Pausing a payment does not require an immediate decision about faith."
+  ],
+  furtherReading: [
+    {
+      label: "Stylianou (2018) — Economic Abuse Within Intimate Partner Violence",
+      note:
+        "A review of definitions, measurement, consequences and interventions concerning economic abuse. Violence and Victims 33(1):3–22. DOI: 10.1891/0886-6708.VV-D-16-00112."
+    },
+    {
+      label: "Postmus, Hoge, Breckenridge, Sharp-Jeffs and Chung (2020)",
+      note:
+        "A multicountry review of economic abuse definitions and measures across 46 peer-reviewed studies. Trauma, Violence, & Abuse 21(2):261–283. DOI: 10.1177/1524838018764160."
+    },
+    {
+      label: "DellaVigna, List and Malmendier (2012) — Social Pressure in Charitable Giving",
+      note:
+        "A field experiment showing that easier avoidance of face-to-face solicitation reduced giving, supporting the role of social pressure. Quarterly Journal of Economics 127(1):1–56. DOI: 10.1093/qje/qjr050."
+    },
+    {
+      label: "Shang and Croson (2009) — Social Information and Charitable Contributions",
+      note:
+        "A field experiment finding that information about previous high donations increased contributions. Economic Journal 119(540):1422–1439. DOI: 10.1111/j.1468-0297.2009.02267.x."
+    },
+    {
+      label: "Karlan and McConnell (2014) — Public Recognition and Giving",
+      note:
+        "Experimental evidence that public recognition can increase gifts through social-image motives. Journal of Economic Behavior & Organization 106:402–412. DOI: 10.1016/j.jebo.2014.06.013."
+    },
+    {
+      label: "Mulvihill, Aghtaie, Matolcsi and Hester (2023)",
+      note:
+        "Research on spiritual abuse and religious coercive control, including the use of doctrine and sacred authority to manipulate and isolate. Criminology & Criminal Justice. DOI: 10.1177/17488958221112057."
+    },
+    {
+      label: "Lazarus, Tickner and Button (2025) — Pulpit, Power, and Predation",
+      note:
+        "A qualitative analysis of public discourse about unethical financial exploitation by charismatic faith leaders and the use of spiritual trust for personal gain. DOI: 10.1177/20503032251381309."
+    },
+    {
+      label: "Taru and McNeill (2024) — “Faith it, till you make it”",
+      note:
+        "An ethnographic study of prosperity gospel and financial pressure among young Pentecostal Christians in Harare. African Studies Review. Open access through Cambridge University Press."
+    },
+    {
+      label: "Wrenn (2019) — Consecrating Capitalism",
+      note:
+        "An economic and cultural critique of the United States prosperity gospel and its promise that faith and giving guarantee health and wealth. Journal of Economic Issues 53(2):425–432. DOI: 10.1080/00213624.2019.1594528."
+    },
+    {
+      label: "Barclay (2023) — Rich Poverty: 2 Corinthians 8.1–15",
+      note:
+        "A New Testament study of poverty, generosity, agency and giving according to capacity in Paul’s Jerusalem collection. New Testament Studies 69(3):243–257. DOI: 10.1017/S002868852200039X."
+    },
+    {
+      label: "Fundraising Regulator — Code of Fundraising Practice",
+      note:
+        "Current UK standards stating that fundraising should not place undue pressure on people, should respect requests to end contact and should take additional care with donors in vulnerable circumstances."
+    },
+    {
+      label: "Charity Commission — Fundraising guidance",
+      note:
+        "Official guidance on lawful, ethical and transparent fundraising, trustee responsibility and the need to protect public trust. Legal application is jurisdiction-specific."
+    }
+  ]
+},
+
+  
   {
     slug: "supporting-someone-still-inside",
     title: "Supporting someone who is still involved",
