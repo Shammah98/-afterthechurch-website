@@ -284,6 +284,28 @@ export default function StorySubmissionForm({
             />
             <span>
               <strong>Anonymous Church</strong>
+<label
+  className={
+    privacy === "anonymous_author"
+      ? "privacyChoice active"
+      : "privacyChoice"
+  }
+>
+  <input
+    type="radio"
+    name="privacyLevel"
+    value="anonymous_author"
+    checked={privacy === "anonymous_author"}
+    onChange={() => setPrivacy("anonymous_author")}
+  />
+
+  <span>
+    <strong>Anonymous Author</strong>
+    Your name is hidden as “Anonymous Author.” The church or organisation
+    name is displayed.
+  </span>
+</label>
+              
               Your chosen name is displayed. The organisation appears as “Church Name Withheld.”
             </span>
           </label>
