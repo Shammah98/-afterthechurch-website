@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import AdminCommentModeration from "@/components/AdminCommentModeration";
 import AdminDashboard from "@/components/AdminDashboard";
 
 export const metadata: Metadata = {
-  title: "Story Moderation",
+  title: "Story and Comment Moderation",
   robots: { index: false, follow: false }
 };
 
@@ -11,13 +12,14 @@ export default function AdminPage() {
     <section className="adminPage">
       <div className="pageIntro">
         <p className="eyebrow">Restricted moderation</p>
-        <h1>Review without rewriting a survivor’s meaning.</h1>
+        <h1>Review submissions and comments without rewriting a survivor’s meaning.</h1>
         <p className="lead">
-          Check privacy exposure, consent, safeguarding and publication risk.
-          Always record changes for the author instead of silently altering central claims.
+          Check privacy exposure, consent, safeguarding, professional claims and
+          publication risk. Comments remain private until an administrator approves them.
         </p>
       </div>
       <AdminDashboard />
+      <AdminCommentModeration />
     </section>
   );
 }
