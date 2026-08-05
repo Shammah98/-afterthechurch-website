@@ -298,7 +298,7 @@ export const resources: ResourceArticle[] = [
     "Threats of punishment or damnation",
     "Spiritual abuse"
   ],
-  image: "/images/faith-healing-service.jpg",
+  image: "/images/laid.jpg",
   imageAlt:
     "A public faith-healing service in which a minister places a hand on a participant’s forehead while other people observe.",
   overview:
