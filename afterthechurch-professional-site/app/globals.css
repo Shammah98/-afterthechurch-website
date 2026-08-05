@@ -788,3 +788,301 @@ legend { padding: 0 10px; font-family: var(--serif); font-size: 1.75rem; font-we
   margin-top: 18px;
   line-height: 1.75;
 }
+
+
+/* Verified survivor-support directory */
+.safetyPage {
+  max-width: 1240px;
+}
+.safetyPage > h1,
+.safetyPage > .lead {
+  max-width: 980px;
+}
+.urgentContactNotice {
+  margin: 38px 0 26px;
+  padding: clamp(24px, 4vw, 42px);
+  border-left-color: var(--danger);
+  background: #f4e1de;
+}
+.urgentContactNotice h2 {
+  margin: 4px 0 22px;
+  max-width: 860px;
+}
+.urgentContactNotice > p:last-child {
+  max-width: 940px;
+  margin-bottom: 0;
+}
+.emergencyNumbers {
+  margin: 0 0 22px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+.emergencyNumbers a {
+  min-height: 92px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(111, 39, 53, .24);
+  border-radius: 10px;
+  background: rgba(255, 253, 248, .75);
+  text-decoration: none;
+}
+.emergencyNumbers a:hover {
+  border-color: var(--wine);
+  background: var(--paper);
+}
+.emergencyNumbers strong {
+  color: var(--muted);
+  font-size: .72rem;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.emergencyNumbers span {
+  color: var(--wine-dark);
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.contactJumpNav {
+  position: sticky;
+  top: 82px;
+  z-index: 20;
+  margin: 0 0 58px;
+  padding: 11px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 253, 248, .95);
+  box-shadow: 0 10px 28px rgba(48, 39, 30, .07);
+  backdrop-filter: blur(10px);
+}
+.contactJumpNav a {
+  padding: 8px 13px;
+  border-radius: 999px;
+  color: var(--wine);
+  font-size: .85rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+.contactJumpNav a:hover {
+  background: var(--rose-soft);
+}
+.contactPreparation {
+  margin: 0 0 70px;
+  padding: clamp(26px, 4vw, 44px);
+  display: grid;
+  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.28fr);
+  gap: clamp(28px, 5vw, 70px);
+  align-items: start;
+  border-top: 5px solid var(--sage);
+  background: var(--sage-soft);
+}
+.contactPreparation h2 {
+  margin: 0;
+}
+.contactPreparation .plainList {
+  margin: 0;
+}
+.contactPreparation .plainList li:first-child {
+  padding-top: 0;
+}
+.contactPreparation .plainList li:first-child::before {
+  top: 10px;
+}
+.supportRegion {
+  scroll-margin-top: 170px;
+  margin: 0 0 82px;
+}
+.supportRegionHeader {
+  max-width: 900px;
+  margin-bottom: 28px;
+}
+.supportRegionHeader h2 {
+  margin: 0 0 12px;
+}
+.supportRegionHeader > p:last-child {
+  margin: 0;
+  color: var(--muted);
+}
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.contactCard {
+  min-width: 0;
+  min-height: 290px;
+  padding: clamp(23px, 3vw, 32px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--wine);
+  border-radius: 12px;
+  background: var(--paper);
+  box-shadow: 0 10px 28px rgba(48, 39, 30, .045);
+}
+.contactCard h3 {
+  margin: 0 0 12px;
+  font-size: clamp(1.45rem, 2.2vw, 1.85rem);
+}
+.contactCard > p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+.contactNumber,
+.contactText {
+  width: fit-content;
+  color: var(--wine-dark);
+  font-weight: 850;
+  line-height: 1.35;
+  text-underline-offset: 4px;
+}
+.contactNumber {
+  font-family: var(--serif);
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+}
+.contactText {
+  margin-top: 6px;
+  font-size: .96rem;
+}
+.contactCard .contactAvailability {
+  margin: 12px 0 0;
+  color: var(--sage);
+  font-size: .82rem;
+  font-weight: 750;
+}
+.contactLink {
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: .9rem;
+}
+.directoryNote,
+.serviceAccuracyNote {
+  margin-top: 20px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--sage);
+  background: var(--cream);
+  color: var(--muted);
+  font-size: .92rem;
+}
+.directoryNote a,
+.serviceAccuracyNote a {
+  color: var(--wine);
+  font-weight: 750;
+  text-underline-offset: 4px;
+}
+.internationalRegion {
+  padding: clamp(28px, 5vw, 50px);
+  border-radius: 16px;
+  background: var(--wine-dark);
+  color: white;
+}
+.internationalRegion .eyebrow {
+  color: #e5b9ae;
+}
+.internationalRegion .supportRegionHeader > p:last-child {
+  color: #eadfd8;
+}
+.internationalLinks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.internationalLinks a {
+  min-height: 150px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .06);
+  color: white;
+  text-decoration: none;
+}
+.internationalLinks a:hover {
+  background: rgba(255, 255, 255, .12);
+}
+.internationalLinks strong {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+}
+.internationalLinks span {
+  margin-top: 18px;
+  color: #eadfd8;
+  font-size: .9rem;
+}
+.contactScript {
+  scroll-margin-top: 170px;
+  margin: 0 0 75px;
+  padding: clamp(28px, 5vw, 50px);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--wine);
+  background: var(--cream);
+}
+.contactScript h2 {
+  margin: 0 0 25px;
+  max-width: 920px;
+}
+.contactScript blockquote {
+  margin: 0;
+  padding: clamp(22px, 4vw, 36px);
+  border: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: clamp(1.28rem, 2.2vw, 1.65rem);
+  line-height: 1.55;
+}
+.contactScript > p:last-child {
+  max-width: 860px;
+  margin-bottom: 0;
+}
+.serviceAccuracyNote {
+  margin-top: 50px;
+}
+
+@media (max-width: 900px) {
+  .emergencyNumbers {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .contactPreparation,
+  .contactGrid,
+  .internationalLinks {
+    grid-template-columns: 1fr;
+  }
+  .contactCard {
+    min-height: 0;
+  }
+}
+@media (max-width: 680px) {
+  .contactJumpNav {
+    top: 72px;
+    margin-bottom: 42px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    border-radius: 0;
+  }
+  .contactJumpNav a {
+    flex: 0 0 auto;
+  }
+  .emergencyNumbers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .emergencyNumbers a {
+    min-height: 82px;
+  }
+  .supportRegion {
+    margin-bottom: 60px;
+  }
+  .internationalRegion {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
