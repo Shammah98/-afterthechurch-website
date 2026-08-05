@@ -127,30 +127,55 @@ export async function getStoryLibraryCounts() {
   };
 }
 
-export async function getApprovedStories(limit?: number) {
-  const supabase = createAdminClient();
-  let query = supabase
+function approvedStoriesQuery(select: string) {
+  return createAdminClient()
     .from("stories")
-    .select(publicSelect)
+    .select(select)
     .eq("status", "approved")
     .order("created_at", { ascending: false });
+}
 
+export async function getApprovedStories(limit?: number) {
+  let query = approvedStoriesQuery(publicSelect);
   if (limit) query = query.limit(limit);
 
-  const { data, error } = await query;
-  if (error) throw new Error(error.message);
+  let { data, error } = await query;
 
+  if (error) {
+    console.error("Full public story query failed; retrying with live table schema:", error);
+    let fallbackQuery = approvedStoriesQuery("*");
+    if (limit) fallbackQuery = fallbackQuery.limit(limit);
+
+    const fallback = await fallbackQuery;
+    data = fallback.data;
+    error = fallback.error;
+  }
+
+  if (error) throw new Error(error.message);
   return Promise.all((data || []).map((row) => mapStory(row)));
 }
 
 export async function getApprovedStory(id: string) {
   const supabase = createAdminClient();
-  const { data, error } = await supabase
+  let { data, error } = await supabase
     .from("stories")
     .select(publicSelect)
     .eq("status", "approved")
     .eq("id", id)
     .maybeSingle();
+
+  if (error) {
+    console.error("Full public story detail query failed; retrying with live table schema:", error);
+    const fallback = await supabase
+      .from("stories")
+      .select("*")
+      .eq("status", "approved")
+      .eq("id", id)
+      .maybeSingle();
+
+    data = fallback.data;
+    error = fallback.error;
+  }
 
   if (error) throw new Error(error.message);
   if (!data) return null;
