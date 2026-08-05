@@ -142,8 +142,17 @@ export default function AccountDashboard() {
                   }
                 >
                   <option value="public">Fully Public</option>
-                  <option value="anonymous_church">Anonymous Church</option>
-                  <option value="fully_anonymous">Fully Anonymous</option>
+                 <option value="anonymous_church">
+  Anonymous Church
+</option>
+
+<option value="anonymous_author">
+  Anonymous Author
+</option>
+
+<option value="fully_anonymous">
+  Fully Anonymous
+</option>
                 </select>
               </label>
             </div>
