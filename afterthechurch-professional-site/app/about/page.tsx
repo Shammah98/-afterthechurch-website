@@ -9,9 +9,11 @@ export default function AboutPage() {
       <section className="pageHero splitHero">
         <div>
           <p className="eyebrow">Who is behind AfterTheChurch?</p>
-          <h1>A survivors innitiative that aims to earn trust through transparency.</h1>
+          <h1> This is a survivors innitiative that aims to help other survivors of religious harm.</h1>
           <p className="lead">
-            AfterTheChurch was created by survivors of church harm and advocates who understood that it is not always safe in religious communities.
+            AfterTheChurch was created by survivors of church harm and advocates who understood that it is not always safe in religious communities. 
+            This innitiative is not exclusive to only people who have left the church but also to people who might still be in religious institution but
+            fell like they are not being heard or that they are going through spiritual harm alone.
           </p>
         </div>
         <Image
@@ -42,7 +44,7 @@ export default function AboutPage() {
         <div>
           <h2>Independence and funding</h2>
           <p>
-            The project is not controlled by a church, denomination, political
+           We are not controlled by a church, denomination, political
             organisation or religious ministry. Before making stronger claims
             about funding independence, the organisation should publish its
             actual funding sources, donor safeguards and conflict-of-interest rules.
@@ -64,7 +66,7 @@ export default function AboutPage() {
         </div>
 
         <div>
-          <h2>What remains to be published</h2>
+          <h2>What remains to be published?</h2>
           <ul className="plainList">
             <li>Named leadership and governance information.</li>
             <li>Safeguarding policy and escalation route.</li>
