@@ -556,8 +556,8 @@ export const resources: ResourceArticle[] = [
     "Threats of punishment or damnation",
     "Spiritual abuse"
   ],
-  image: "/images/group-field.jpg",
-  imageAlt: "A group walking along a path through a quiet field.",
+  image: "/images/rosperity.jpg",
+  imageAlt: "A money being exchanged.",
   overview:
     "Generosity can be meaningful, joyful and central to a person’s faith. It becomes unsafe when leaders or communities make refusal spiritually frightening, socially costly or financially dangerous. A donation is not fully voluntary when someone is told that giving will guarantee healing, protection, promotion or wealth; when reluctance is treated as rebellion; when amounts are publicly compared; when people are pushed to borrow; or when essential needs are sacrificed to protect a ministry’s reputation. The most useful question is not simply whether a church teaches tithing or asks for money. It is whether people receive clear information, have time to decide, can protect food, housing, healthcare and dependants, and can say no without humiliation, threats or exclusion.",
   keyPoints: [
