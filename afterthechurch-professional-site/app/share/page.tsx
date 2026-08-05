@@ -4,6 +4,13 @@ import { contentWarningOptions, storyCategories } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Share Your Story" };
 
+const expandedSubmissionCategories = [
+  ...storyCategories,
+  "Health practitioner offering support",
+  "Pastor or faith leader offering support",
+  "Volunteer or community member offering support"
+] as const;
+
 const preparationSteps = [
   {
     title: "Draft without identifying details",
@@ -27,13 +34,13 @@ export default function SharePage() {
   return (
     <>
       <section className="pageIntro narrowIntro">
-        <p className="eyebrow">Share your story</p>
+        <p className="eyebrow">Share or offer support</p>
         <h1>You decide what is published, anonymised or deleted.</h1>
         <p className="lead">
-          Review the process before entering any personal information. No
-          account or sign-in is required. Private controls on this device let
-          you check status, change privacy, request corrections, unpublish or
-          delete the material later.
+          Survivors can share experiences, while qualified health practitioners,
+          pastors, faith leaders and other support providers can submit practical
+          guidance or offers of support. Every submission is privately moderated
+          before publication. No public account or sign-in is required.
         </p>
       </section>
 
@@ -42,9 +49,10 @@ export default function SharePage() {
           <p className="eyebrow">Before you enter the form</p>
           <h2 id="prepare-heading">You can prepare privately without committing to publication.</h2>
           <p>
-            Nothing is sent until you use the final submit button. You can first
-            write in a private place, remove identifying details and decide what
-            purpose sharing would serve for you.
+            Nothing is sent until you use the final submit button. Support providers
+            should clearly state their role, limits, location and whether they are
+            offering general information or direct services. Do not present pastoral
+            support as medical, psychological or legal treatment.
           </p>
         </div>
 
@@ -61,83 +69,26 @@ export default function SharePage() {
       <section className="reviewProcess">
         <div className="sectionIntro">
           <p className="eyebrow">What happens after you submit</p>
-          <h2>Review is for privacy and safety, not to judge your experience.</h2>
+          <h2>Review is for privacy, safety and credibility.</h2>
           <p>
             A trained member of the AfterTheChurch team reads each submission
-            before publication. Reviewers should be trained to identify
-            accidental identification, immediate safeguarding concerns,
-            defamation risk, graphic material and information belonging to
-            another survivor.
+            before publication. Offers of professional or pastoral support may
+            require verification of identity, qualifications, safeguarding practice
+            and any claims about services.
           </p>
         </div>
 
         <div className="reviewDetailGrid">
-          <article>
-            <strong>What may be removed automatically</strong>
-            <p>
-              Obvious passwords, verification codes, private addresses, phone
-              numbers and hidden file metadata may be removed or blocked.
-            </p>
-          </article>
-          <article>
-            <strong>What requires your approval</strong>
-            <p>
-              A change that alters meaning, softens criticism, removes a central
-              allegation or changes how you describe your beliefs should not be
-              made silently.
-            </p>
-          </article>
-          <article>
-            <strong>Identifiable allegations</strong>
-            <p>
-              Naming individuals or organisations may require additional factual,
-              legal and safety review. Publication is not guaranteed.
-            </p>
-          </article>
-          <article>
-            <strong>Retention and withdrawal</strong>
-            <p>
-              You can delete a submission through Manage Your Submissions.
-              Rejected or withdrawn material is scheduled for deletion after 30 days.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section className="submissionChoice editorialSection">
-        <div className="sectionIntro">
-          <p className="eyebrow">If you are not ready</p>
-          <h2>Not submitting is also a valid choice.</h2>
-          <p>
-            You can keep a private draft for yourself, speak with an independent
-            professional, return later or decide that this platform is not the right
-            place. Your recovery does not depend on making your experience public.
-          </p>
-        </div>
-
-        <div className="reviewSteps">
-          <article>
-            <strong>Pause before naming people</strong>
-            <p>Consider safety, evidence, privacy and independent legal advice before publishing identifiable allegations.</p>
-          </article>
-          <article>
-            <strong>Choose what remains unwritten</strong>
-            <p>You do not owe the public graphic details, theology, forgiveness, certainty or a complete ending.</p>
-          </article>
-          <article>
-            <strong>Use your own pace</strong>
-            <p>A short summary can be enough. You can return to a longer version only when and if you choose.</p>
-          </article>
-          <article>
-            <strong>Keep emergency information out of the form</strong>
-            <p>This form is not monitored as a crisis service. Use appropriate local emergency or safeguarding support for immediate danger.</p>
-          </article>
+          <article><strong>What may be removed automatically</strong><p>Obvious passwords, verification codes, private addresses, phone numbers and hidden file metadata may be removed or blocked.</p></article>
+          <article><strong>What requires your approval</strong><p>A change that alters meaning, softens criticism, removes a central allegation or changes how you describe your beliefs should not be made silently.</p></article>
+          <article><strong>Professional and pastoral claims</strong><p>Credentials, service descriptions and contact details may be checked before publication. Approval does not constitute endorsement by AfterTheChurch.</p></article>
+          <article><strong>Retention and withdrawal</strong><p>You can delete a submission through Manage Your Submissions. Rejected or withdrawn material is scheduled for deletion after 30 days.</p></article>
         </div>
       </section>
 
       <section className="formSection">
         <StorySubmissionForm
-          categories={storyCategories}
+          categories={expandedSubmissionCategories}
           warnings={contentWarningOptions}
         />
       </section>
