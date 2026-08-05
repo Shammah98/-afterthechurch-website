@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <main className="legalPage">
+    <section className="legalPage">
       <header className="legalHero">
         <p className="eyebrow">Terms of use and legal notice</p>
         <h1>Clear rules for using and contributing to AfterTheChurch.</h1>
@@ -375,6 +375,6 @@ export default function TermsPage() {
           </section>
         </article>
       </div>
-    </main>
+    </section>
   );
 }
