@@ -201,7 +201,7 @@ h3 { font-size: clamp(1.55rem, 2.5vw, 2.25rem); line-height: 1.1; }
 }
 .reviewSteps article { padding: 24px 0; border-bottom: 1px solid var(--line); }
 .reviewSteps strong { font-family: var(--serif); font-size: 1.3rem; }
-.submissionImage { min-height: 650px; border-radius: 180px 180px 20px 20px; }
+.submissionImage { min-height: 650px; border-radius: 0; }
 
 .aboutHome, .urgentHome {
   padding: clamp(65px,8vw,105px) clamp(22px,7vw,110px);
