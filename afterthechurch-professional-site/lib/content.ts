@@ -854,40 +854,213 @@ export const resources: ResourceArticle[] = [
     slug: "supporting-someone-still-inside",
     title: "Supporting someone who is still involved",
     deck:
-      "Options for staying connected without escalating fear, demanding an immediate exit or turning every conversation into a debate.",
+      "An evidence-informed guide to preserving connection, supporting independent judgement and planning safely without taking control away from the person.",
     category: "Helping someone else",
-    readingTime: 5,
-    intensity: "gentle",
-    warnings: [],
+    readingTime: 20,
+    intensity: "moderate",
+    warnings: [
+      "Spiritual abuse",
+      "Coercive control",
+      "Threats of punishment or damnation",
+      "Medical neglect",
+      "Family rejection",
+      "Shunning",
+      "Suicide or self-harm"
+    ],
     image: "/images/friends-sunset.jpg",
     imageAlt: "Friends standing with their arms around one another at sunset.",
     overview:
-      "Direct attacks on a group or leader can sometimes increase defensiveness and isolation. Consistent, non-controlling contact may preserve an important route to outside support.",
+      "When someone remains in a high-control religious environment, the task of a friend or family member is not to win an argument or manufacture an immediate exit. It is to preserve a trustworthy relationship, support the person’s capacity to observe and choose, reduce practical isolation and respond proportionately to risk. Research specific to helping current members of high-control religious groups remains limited, so this guide does not pretend that one protocol has been proven for every setting. It integrates findings from studies of religious exit and ostracism, coercive control, informal social support, survivor-centred care, motivational interviewing and psychological reactance. The common ethical principle is restoration of agency: support should widen the person’s real options rather than replace one controlling authority with another.",
     keyPoints: [
-      "Ask about their experience rather than trying to win a debate.",
-      "Keep invitations open even when they decline.",
-      "Avoid making your support conditional on leaving.",
-      "Take threats, stalking, medical danger and violence seriously."
+      "Treat continued contact as part of the safety infrastructure. Isolation can increase dependence on the group and make later help-seeking more difficult.",
+      "Do not require the person to accept labels such as cult, abuse or trauma before you take their observations seriously.",
+      "Ask about concrete patterns: what happens after disagreement, whether private information remains private, and whether refusal or outside advice is genuinely allowed.",
+      "Use autonomy-supportive language. Forceful demands can evoke anger and counter-argument, especially when identity, family and belonging are already under threat.",
+      "Listen for ambivalence instead of treating it as dishonesty. A person can value faith, relationships or purpose while also recognising fear, exploitation or harm.",
+      "Offer practical options in small, reversible steps: a ride, a meal, secure document storage, an independent appointment or a place to make a private call.",
+      "Do not create a surprise confrontation, expose doubts to leaders or contact the group on the person’s behalf without consent unless an immediate safeguarding duty requires action.",
+      "Leaving can involve heightened retaliation, shunning, financial loss or medical risk. A safe plan is more useful than a deadline.",
+      "Use safer communication practices when monitoring is possible. A message that looks supportive to you may create danger if another person reads it.",
+      "Take immediate danger, stalking, violence, child abuse, forced sexual activity, serious medical neglect and credible suicide or homicide threats seriously and seek appropriate specialist or emergency help.",
+      "Remain steady if the person changes their mind, returns or defends the group. Non-linear change does not prove that the concern was invented.",
+      "Know your limits. A supporter can be reliable without becoming the person’s investigator, therapist, lawyer or sole emergency service."
     ],
     fullSections: [
       {
-        heading: "Protect the relationship where possible",
+        heading: "Begin with the evidence—and its limits",
         paragraphs: [
-          "You might say, “You do not have to agree with me. I care about you, and I am available.” This can reduce the sense that every outside relationship requires choosing sides.",
-          "Questions about specific experiences are often easier to answer than broad labels. For example: “What happens when someone disagrees?” or “Can members speak with former members without consequences?”"
+          "There is no large clinical trial showing a single best method for helping a person who remains in a high-control religious group. The literature is distributed across several neighbouring fields. Studies of people leaving high-cost religious communities describe fear, guilt, grief, identity disruption and the loss of an entire social world. Research on religious shunning shows that exit can threaten belonging, self-esteem, family relationships and practical stability. Research on coercive control demonstrates why a pattern of surveillance, isolation, dependency and punishment can restrict choice even when physical force is absent.",
+          "Evidence from intimate partner violence cannot simply be copied into a religious context. A congregation is not the same as an intimate relationship, and not every demanding religion is coercive. The comparison is useful only where mechanisms overlap: dependency, monitoring, retaliation, restricted information, economic pressure, threats and the systematic narrowing of realistic alternatives. This guide therefore uses mechanism-based reasoning rather than diagnosing a group from its doctrine or intensity.",
+          "The evidence base also has sampling limits. Research on religious exit often relies on particular communities, online recruitment, retrospective accounts and cross-sectional designs. Informal-support research is stronger in domestic-abuse settings but remains uneven across cultures, genders and minority groups. Responsible practice means using the findings as provisional guidance, checking them against the person’s circumstances and avoiding promises that a particular conversation will cause change."
+        ]
+      },
+      {
+        heading: "Why belonging can be both meaningful and constraining",
+        paragraphs: [
+          "A religious community may provide faith, friendship, family continuity, childcare, housing, employment, education, identity, status, purpose and a language for interpreting the world. These benefits can be real even when serious harm is also present. Asking someone to leave may therefore sound less like an invitation to safety and more like a demand to surrender their entire social and moral world.",
+          "Studies of former Jehovah’s Witnesses and other high-cost religious groups describe exit as an identity transition rather than a single decision. Ransom and colleagues found associations among ostracism, prior commitment, post-exit identification, self-esteem and well-being. Björkmark and colleagues’ qualitative research similarly describes living between two worlds, with fear, sorrow, relational loss and existential disruption. These findings do not predict what one individual will do, but they explain why apparent hesitation may be rational under conditions of high social cost.",
+          "A useful question is not, “Why will they not leave?” but, “What would leaving currently cost, what risks would it create, and which alternatives are actually available?” That shift prevents the supporter from mistaking constraint for consent or ambivalence for weakness."
+        ]
+      },
+      {
+        heading: "Preserve the relationship as a bridge to the outside world",
+        paragraphs: [
+          "Informal social support is repeatedly associated with better mental-health and safety outcomes in abuse research, although intervention studies vary in quality. Reviews by Sylaska and Edwards and by Ogbe and colleagues show that responses from friends, family and community networks can influence disclosure, help-seeking and well-being. The practical implication is not that a friend can solve coercion. It is that a reliable relationship can keep information, emotional validation and material help within reach.",
+          "Ordinary contact matters. Continue talking about food, work, children, music, sport, study and shared memories rather than making every exchange an assessment of the group. This communicates that the relationship is not conditional on adopting your interpretation. It also gives the person a social identity outside the organisation without requiring them to renounce the identity they still hold.",
+          "Reliability is more useful than intensity. Keep manageable promises, avoid dramatic declarations you cannot sustain, and do not disappear after a difficult conversation. A simple message such as, “We do not have to agree about everything. I care about you, and the invitation remains open,” can preserve access without pretending that your concerns have vanished."
+        ]
+      },
+      {
+        heading: "Understand why forceful persuasion may fail",
+        paragraphs: [
+          "Psychological reactance theory predicts that people may resist messages perceived as threats to freedom. Recent meta-analytic evidence across persuasion studies finds that high freedom-threatening language increases anger, negative thoughts and reactance compared with less controlling language. This does not mean that every direct statement backfires or that dangerous conduct should be described vaguely. It means that commands such as “You must leave now” can become part of the person’s struggle to defend autonomy, identity or belonging.",
+          "A direct attack on the person’s beliefs may also activate identity protection. If the group has already taught that outsiders are hostile, deceived or persecutory, ridicule can appear to confirm the warning. The supporter then becomes evidence for the group’s narrative rather than a source of independent information.",
+          "Use clear but choice-preserving language: “I am concerned by what happened after you said no. Would you be willing to tell me how you understood it?” or “I see this differently, but you decide what you do next. If you want options, I will help you examine them.” Autonomy support is not neutrality about harm; it is a way of separating honest concern from control."
+        ]
+      },
+      {
+        heading: "Use a structured listening method",
+        paragraphs: [
+          "The World Health Organization teaches the LIVES framework for first-line support after violence: Listen, Inquire about needs and concerns, Validate, Enhance safety and connect with Support. It was designed for health workers and intimate partner violence, not religious exit, but its sequence offers a disciplined alternative to interrogation. Listen before interpreting. Ask what the person needs. Validate the experience without claiming facts you cannot know. Consider safety. Offer support that the person can choose.",
+          "Motivational interviewing provides another useful discipline: ask open questions, affirm effort and values, reflect what you hear and summarise without turning the summary into a verdict. Evidence for motivational interviewing with survivors of intimate partner violence is promising but not definitive; for example, Saftlas and colleagues’ randomised trial did not produce conventionally significant effects on its main change outcomes. Use the conversational principles modestly, not as a technique for covertly engineering a decision.",
+          "A practical sequence is: ask permission, explore, reflect, clarify options and agree on one next step. For example: “Would it be all right if I ask about the meeting?” “What happened when you disagreed?” “It sounds as though you value the community and also felt afraid of the consequences.” “Would information, transport or simply more time be useful?” “What, if anything, would you like me to do before we speak again?”"
+        ]
+      },
+      {
+        heading: "Ask questions that make patterns observable",
+        paragraphs: [
+          "Broad labels invite broad defences. Specific questions help the person examine how power operates. Ask: “Can you say no without losing status, relationships or access to necessities?” “Who can challenge a leader’s decision, and what happened the last time someone tried?” “Are you allowed to seek independent medical, legal or psychological advice?” “What information must members disclose, who can see it and can consent be withdrawn?”",
+          "Other useful questions concern alternatives and proportionality: “What would happen if you attended less often?” “Can you keep relationships with former members?” “Are financial requests transparent, voluntary and reversible?” “Does correction apply to leaders as well as ordinary members?” “Are accusations investigated independently?” “Can you leave without being threatened, publicly exposed or cut off from family?”",
+          "Do not fire these questions in a single session. Choose one or two that arise naturally from what the person has already described. After asking, tolerate silence. The aim is not to obtain a confession but to support observation. If they defend the group, reflect the value beneath the defence—loyalty, faith, gratitude, fear of unfair judgement—before returning to the concrete event."
+        ]
+      },
+      {
+        heading: "Validate experience without forcing an interpretation",
+        paragraphs: [
+          "Validation means recognising the person’s experience and the logic of their response. It does not require agreement with every conclusion. You might say, “Being publicly corrected after sharing something private sounds frightening,” or “It makes sense that you feel torn when your family and faith are both involved.”",
+          "Avoid premature certainty: “You have been brainwashed,” “Everyone there is evil,” or “Nothing good you experienced was real.” Such statements can erase the person’s agency and positive memories, and they may be factually broader than the evidence permits. They also create a false choice between acknowledging harm and preserving meaningful parts of the person’s history.",
+          "Use the person’s language where possible. If they say pressure, fear, punishment or loss of choice, begin there. Labels can be introduced as optional tools: “Some researchers call repeated patterns like monitoring, isolation and punishment coercive control. Does that concept help describe any part of your experience, or not?”"
+        ]
+      },
+      {
+        heading: "Build practical independence before demanding a decision",
+        paragraphs: [
+          "Autonomy requires more than confidence. It depends on real resources: private information, money, transport, documents, healthcare, housing, communication and relationships. A person may understand the harm clearly and still lack a safe alternative. Practical support should therefore expand options in small, reversible steps.",
+          "Possible offers include storing copies of identification or important records with consent, paying directly for an independent professional appointment, providing transport without requiring a full disclosure, identifying a neutral place to meet, helping the person open an account only they can access, or keeping a spare set of essential items. Do not take possession of documents, money or devices in a way that makes the person dependent on you.",
+          "Ask before acting and define the boundary of the offer. “I can keep a sealed copy of these documents until you ask for them,” is clearer than, “I will handle everything.” Whenever legal, immigration, child-protection, medical or financial issues are involved, encourage advice from an appropriately qualified professional who is independent of both the group and the supporter."
+        ]
+      },
+      {
+        heading: "Plan for safety without imposing a deadline",
+        paragraphs: [
+          "Safety planning is useful even when a person does not intend to leave. Research on survivor-centred safety planning emphasises context, culture, available resources and the person’s own risk assessment. A plan may cover a safe contact, transport, medication, emergency money, documents, children or dependants, a temporary place to stay and instructions about whom to contact under defined conditions.",
+          "Agree on a code word or ordinary-looking phrase that has one specific meaning, such as “call me,” “come and get me,” or “contact emergency services.” Confirm how long the agreement remains active and what to do if the person cannot answer. Do not invent a secret plan that they have not accepted.",
+          "Avoid surprise interventions, group confrontations or contact with leaders. Disclosure of doubt can lead to intensified monitoring, confession demands, discipline, shunning or loss of practical support. If immediate danger is absent, the person should usually control when and how information is shared. Where a child or vulnerable adult may be at risk, or where professional reporting duties apply, obtain specialist safeguarding advice and explain any limits to confidentiality."
+        ]
+      },
+      {
+        heading: "Treat digital safety as part of the plan",
+        paragraphs: [
+          "Assume that phones, email, cloud accounts, vehicles, shared calendars and social media may be visible to other people until you know otherwise. Technology-safety guidance warns that abrupt changes to passwords, settings or devices can alert a controller and may escalate risk. A safer device or account is helpful only if using it does not itself create suspicion.",
+          "Ask which channel is safe and what language is safe to send. Do not text labels such as abuse, cult, escape plan or police unless the person has confirmed that the device and previews are private. Disable unnecessary message previews only with their agreement. Consider whether location sharing, family accounts, browser synchronisation, shared phone plans, connected cars or recovery email addresses expose activity.",
+          "Documentation can reveal patterns and support later professional action, but it must be the person’s choice and stored safely. Record dates, exact words, witnessed conduct, financial requests, injuries or medical consequences without embellishment. Never obtain evidence by illegal access, impersonation or covert methods that create additional danger. Specialist technology-safety or legal advice is preferable when monitoring or stalking is suspected."
+        ]
+      },
+      {
+        heading: "Know when the response must become urgent",
+        paragraphs: [
+          "A calm, autonomy-supportive approach does not mean minimising danger. Seek urgent local help when there is immediate risk of serious violence, forced sexual activity, abduction, stalking with escalation, access to weapons combined with threats, credible homicide or suicide plans, serious medical neglect, abuse of a child, or a person who cannot protect themselves. The exact legal duties and emergency pathways depend on location.",
+          "Ask direct questions when risk is disclosed: “Are you in immediate danger?” “Has anyone threatened to kill you, themselves or another person?” “Are weapons accessible?” “Is a child or dependent person unsafe?” “Do you need urgent medical care?” Asking clearly does not create the danger; it helps determine the appropriate response.",
+          "Whenever possible, involve the person in the call and explain what information will be shared. If immediate action is required without consent, disclose only what responders need, avoid broadcasting the concern to the religious community and document why the situation met the emergency threshold."
+        ]
+      },
+      {
+        heading: "Respond steadily if they remain, return or change their account",
+        paragraphs: [
+          "Change under coercive conditions is often non-linear. People may disclose concern, retract it, defend the group, leave, return or maintain selected relationships after departure. This can reflect fear, dependency, grief, new information, continuing belief or a realistic assessment of costs. It does not automatically mean manipulation or bad faith.",
+          "Avoid punishment disguised as a boundary: “Do not contact me unless you leave.” A genuine boundary names what you can or cannot do without controlling their decision: “I cannot give money to the organisation, but I can buy groceries,” or “I cannot participate in meetings with that leader, but I can meet you elsewhere.”",
+          "After departure, do not expect immediate relief or ideological agreement. Former members may need help with housing, employment, healthcare, education, parenting, grief, identity and ordinary routines. Respect whether they retain faith, change tradition, become uncertain or leave belief entirely. Recovery should not be measured by convergence with the supporter’s worldview."
+        ]
+      },
+      {
+        heading: "Protect the supporter’s judgement and capacity",
+        paragraphs: [
+          "Supporting someone through prolonged uncertainty can produce anger, fear, exhaustion and an urge to take over. Those reactions are understandable, but unexamined urgency can recreate the controlling pattern. Use your own confidential support, professional consultation or counselling without exposing identifying information unnecessarily.",
+          "Decide what you can offer sustainably. You may provide one weekly call, emergency transport within defined hours or help finding independent services. You may decline secrecy that places a child at risk, financial involvement with the group, direct confrontation or responsibility for monitoring the person around the clock.",
+          "Keep the support network wider than one relationship when the person agrees. A resilient plan may include trusted relatives, friends, healthcare professionals, advocates, legal advisers, safeguarding services and practical community resources. No single supporter should become the new gatekeeper through whom every decision must pass."
+        ]
+      },
+      {
+        heading: "A cautious synthesis of what the research supports",
+        paragraphs: [
+          "Across these literatures, the most defensible approach is relational, autonomy-supportive and safety-aware. Preserve access to trustworthy relationships. Ask about observable patterns rather than demanding a label. Validate experience without claiming certainty. Expand concrete options. Plan for risk collaboratively. Use specialist help where the consequences exceed your competence.",
+          "The research does not justify a guarantee that gentle language will produce insight, that continued contact will prevent harm or that leaving is always safer at a particular moment. Nor does it justify silence when danger is immediate. Evidence-informed support is not passive: it is disciplined action calibrated to agency, dependency, context and risk.",
+          "The standard is not whether the person follows your advice. The standard is whether your involvement increases truthful information, realistic options, safety and freedom of conscience while reducing isolation and unnecessary coercion."
         ]
       }
     ],
     practicalOptions: [
-      "Maintain ordinary contact about work, food, music or daily life.",
-      "Offer practical help without demanding disclosure.",
-      "Keep a record of concerning incidents when safety may later need to be assessed.",
-      "Contact appropriate safeguarding or emergency services when there is immediate danger."
+      "Send one low-pressure message that preserves connection: “No reply is required. I care about you, and the invitation remains open.”",
+      "Ask permission before discussing the group: “Would you rather talk about this now, another time or not today?”",
+      "Use one concrete question about behaviour instead of a global label: “What happened after you said no?”",
+      "Reflect ambivalence accurately: “Part of you values the community, and part of you is worried about how disagreement is treated.”",
+      "Offer a small, reversible form of help such as transport, food, a private place to call or an independent appointment.",
+      "Agree on a safe communication channel, message wording and code phrase; do not assume a device is private.",
+      "With consent, prepare copies of identification, medication information, key contacts and essential records in a secure location.",
+      "Write down only what you directly witnessed or were told, with dates and exact wording; store it where it will not create risk.",
+      "Map possible losses before any exit: housing, income, education, childcare, family contact, immigration status, healthcare and community.",
+      "Identify independent professional options without booking, reporting or contacting anyone on the person’s behalf unless authorised.",
+      "Set clear supporter boundaries that describe your actions rather than dictate theirs.",
+      "If danger may be immediate, ask directly about violence, weapons, stalking, medical risk, child safety and suicide or homicide threats, then use appropriate local emergency or safeguarding services."
     ],
     furtherReading: [
       {
-        label: "Conversation prompts",
-        note: "Non-accusatory questions that leave room for the person’s own observations."
+        label: "Ransom, Monk, Qureshi and Heim (2020), Life After Social Death",
+        note: "A quantitative social-identity study of 554 former Jehovah’s Witnesses examining ostracism, exit type, commitment, identity transition, self-esteem and well-being. Pastoral Psychology, 70, 53–69. DOI: 10.1007/s11089-020-00935-0."
+      },
+      {
+        label: "Ransom, Monk and Heim (2021), Grieving the Living",
+        note: "A qualitative social-identity analysis of post-Jehovah’s Witness life and the relational consequences of ostracism. PLOS ONE, 16(7), e0254848. DOI: 10.1371/journal.pone.0254848."
+      },
+      {
+        label: "Björkmark, Koskinen and Koirikivi (2021), Living Between Two Different Worlds",
+        note: "A qualitative study of leaving a high-cost religious group, including fear, guilt, sorrow, relational loss and existential disruption. Journal of Religion and Health, 61, 4721–4737. DOI: 10.1007/s10943-021-01397-1."
+      },
+      {
+        label: "Sylaska and Edwards (2014), Disclosure of Intimate Partner Violence to Informal Social Support Network Members",
+        note: "A major review of disclosure and help-seeking through friends, family and other informal relationships. Trauma, Violence, & Abuse, 15(1), 3–21. DOI: 10.1177/1524838013496335."
+      },
+      {
+        label: "Ogbe and colleagues (2020), Social-support interventions for survivors of intimate partner violence",
+        note: "A systematic review of interventions intended to improve social support or mental-health outcomes. PLOS ONE, 15(6), e0235177. DOI: 10.1371/journal.pone.0235177."
+      },
+      {
+        label: "McKenzie, Hegarty, Palmer and Tarzia (2022), Walking on Eggshells",
+        note: "A qualitative study of how friends understand and navigate their role when supporting young women experiencing intimate partner violence. Journal of Interpersonal Violence, 37(9–10), NP7502–NP7527. DOI: 10.1177/0886260520967745."
+      },
+      {
+        label: "Sorrentino and colleagues (2020), Mental Health Care in the Context of Intimate Partner Violence",
+        note: "A qualitative study supporting flexible, validating and client-centred care that respects survivors’ right to determine their own interests. Psychiatric Services, 71(11), 1155–1161. DOI: 10.1176/appi.ps.202000041."
+      },
+      {
+        label: "Saftlas and colleagues (2014), Motivational Interviewing and Intimate Partner Violence",
+        note: "A randomised trial that illustrates both the promise and the uncertainty of motivational interviewing with survivors; the main between-group findings were not statistically significant. Journal of Women’s Health, 23(2), 101–109. DOI: 10.1089/jwh.2013.4456."
+      },
+      {
+        label: "Li and colleagues (2026), Message Effects on Psychological Reactance",
+        note: "Meta-analyses of 33 studies found that highly freedom-threatening language increased anger, negative cognition and reactance compared with less controlling language. Human Communication Research, 52(1), 38–62."
+      },
+      {
+        label: "World Health Organization (2019), Caring for Women Subjected to Violence",
+        note: "The LIVES framework—Listen, Inquire, Validate, Enhance safety and Support—provides a structured model for first-line, survivor-centred response. ISBN: 978-92-4-151710-2."
+      },
+      {
+        label: "Safety Net Project, Documentation Tips for Survivors of Technology Abuse",
+        note: "Practical guidance on documenting patterns of monitoring and technology-facilitated abuse without overlooking the risks created by evidence collection."
+      },
+      {
+        label: "Evidence boundary",
+        note: "Most intervention evidence comes from intimate partner violence and specific high-cost religious communities. It should inform careful judgement, not be treated as proof that every religious setting or every person follows the same pattern."
       }
     ]
   }
