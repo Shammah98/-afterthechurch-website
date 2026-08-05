@@ -104,6 +104,29 @@ const publicSelect = [
   "view_count"
 ].join(",");
 
+export async function getStoryLibraryCounts() {
+  const supabase = createAdminClient();
+
+  const [approvedResult, reviewResult] = await Promise.all([
+    supabase
+      .from("stories")
+      .select("id", { count: "exact", head: true })
+      .eq("status", "approved"),
+    supabase
+      .from("stories")
+      .select("id", { count: "exact", head: true })
+      .in("status", ["pending", "changes_requested"])
+  ]);
+
+  if (approvedResult.error) throw new Error(approvedResult.error.message);
+  if (reviewResult.error) throw new Error(reviewResult.error.message);
+
+  return {
+    approved: approvedResult.count || 0,
+    awaitingReview: reviewResult.count || 0
+  };
+}
+
 export async function getApprovedStories(limit?: number) {
   const supabase = createAdminClient();
   let query = supabase

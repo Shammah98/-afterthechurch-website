@@ -194,6 +194,22 @@ h3 { font-size: clamp(1.55rem, 2.5vw, 2.25rem); line-height: 1.1; }
   margin-top: 7px; color: var(--muted);
   font-size: .96rem; line-height: 1.5;
 }
+.needContent { min-width: 0; }
+.needHighlights {
+  margin: 14px 0 0; padding: 0; list-style: none;
+  display: flex; flex-wrap: wrap; gap: 7px;
+}
+.needHighlights li {
+  padding: 5px 9px; border: 1px solid var(--line);
+  border-radius: 999px; color: var(--muted);
+  background: rgba(255,255,255,.5); font-size: .75rem; line-height: 1.25;
+}
+.needAction {
+  display: inline-block; margin-top: 14px;
+  color: var(--wine); font-size: .82rem; font-weight: 850;
+  letter-spacing: .02em; text-decoration: underline;
+  text-underline-offset: 4px;
+}
 
 .resourcesPreview { background: var(--paper); }
 .resourceEditorialGrid {
@@ -450,6 +466,43 @@ h3 { font-size: clamp(1.55rem, 2.5vw, 2.25rem); line-height: 1.1; }
 .storiesPage, .accountPage, .adminPage { max-width: 1500px; margin: 0 auto; }
 .pageIntro { max-width: 1020px; }
 .pageIntro .lead { max-width: 780px; }
+.storyOrientation {
+  padding: 0 clamp(22px,7vw,110px) clamp(55px,7vw,90px);
+}
+.storyOrientation .sectionIntro { max-width: 850px; }
+.storyOrientation .reviewDetailGrid { margin-top: 32px; }
+.storyFallback {
+  margin: 0 clamp(22px,7vw,110px) clamp(75px,9vw,120px);
+  padding: clamp(28px,5vw,48px);
+  border-left: 5px solid var(--sage);
+  background: var(--cream);
+}
+.storyFallback h2 { margin: 0 0 16px; }
+.storyFallback > p:not(.eyebrow) { max-width: 820px; }
+.storyFallback .buttonRow { margin-top: 26px; }
+.safetyActionGrid {
+  margin: 28px 0 48px; display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  border-top: 1px solid var(--line);
+}
+.safetyActionGrid article {
+  padding: 25px 24px 25px 0;
+  border-bottom: 1px solid var(--line);
+}
+.safetyActionGrid article:nth-child(odd) { border-right: 1px solid var(--line); }
+.safetyActionGrid article:nth-child(even) { padding-left: 24px; }
+.safetyActionGrid strong {
+  font-family: var(--serif); font-size: 1.35rem;
+}
+.safetyActionGrid p { margin-bottom: 0; color: var(--muted); }
+.pageActions {
+  margin-top: 42px; display: flex; flex-wrap: wrap;
+  align-items: center; gap: 14px;
+}
+.submissionPreparation { background: var(--cream); }
+.submissionPreparation .reviewDetailGrid,
+.submissionChoice .reviewSteps { margin-top: 38px; }
+
 .storyExplorer {
   margin-top: 40px; display: grid;
   grid-template-columns: 330px minmax(0,1fr); align-items: start; gap: 42px;
@@ -600,6 +653,14 @@ legend { padding: 0 10px; font-family: var(--serif); font-size: 1.75rem; font-we
   gap: 35px; align-items: start;
 }
 .accountStoryTop h3 { margin: 10px 0 4px; }
+.accountStatusHelp {
+  max-width: 680px; margin: 12px 0 0;
+  color: var(--muted); font-size: .9rem; line-height: 1.55;
+}
+.adminToolbar {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 14px;
+}
 .statusBadge {
   padding: 5px 9px; border-radius: 999px; background: var(--cream);
   font-size: .78rem; font-weight: 800; text-transform: capitalize;
@@ -688,7 +749,9 @@ legend { padding: 0 10px; font-family: var(--serif); font-size: 1.75rem; font-we
   .heroShade { background: linear-gradient(0deg,rgba(28,22,18,.9) 0%,rgba(30,24,20,.55) 75%,rgba(25,20,17,.12)); }
   .homeHeroInner { padding-top: 180px; }
   .reviewSteps, .reviewDetailGrid, .twoColumns, .formatChoices, .checkGrid,
-  .filterColumns, .accountStoryTop, .resourceCardGrid { grid-template-columns: 1fr; }
+  .filterColumns, .accountStoryTop, .resourceCardGrid, .safetyActionGrid { grid-template-columns: 1fr; }
+  .safetyActionGrid article:nth-child(odd) { border-right: 0; }
+  .safetyActionGrid article:nth-child(even) { padding-left: 0; }
   .reviewDetailGrid article:nth-child(odd) { border-right: 0; }
   .needsSection .sectionIntro { padding: 24px; }
   .needRow { grid-template-columns: 35px minmax(0,1fr); padding: 18px; }

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getBrowserSupabase } from "@/lib/supabase-browser";
 
@@ -25,6 +26,7 @@ export default function AdminDashboard() {
   const [stories, setStories] = useState<ReviewStory[]>([]);
   const [status, setStatus] = useState("Checking administrator access…");
   const [notes, setNotes] = useState<Record<string, string>>({});
+  const [approvedStoryId, setApprovedStoryId] = useState<string | null>(null);
 
   async function getToken() {
     const { data } = await getBrowserSupabase().auth.getSession();
@@ -44,7 +46,11 @@ export default function AdminDashboard() {
     const result = await response.json();
 
     if (!response.ok) {
-      setStatus(result.error || "Administrator access was not granted.");
+      setStatus(
+        response.status === 403
+          ? "Administrator access was not granted. Sign in with an email listed in ADMIN_EMAILS in Vercel, then refresh the queue."
+          : result.error || "The moderation queue could not be loaded."
+      );
       return;
     }
 
@@ -75,17 +81,40 @@ export default function AdminDashboard() {
     });
 
     const result = await response.json();
-    setStatus(
-      response.ok
-        ? `Submission ${decision === "approve" ? "approved" : "rejected"}.`
-        : result.error || "The decision was not saved."
-    );
-    if (response.ok) load();
+
+    if (!response.ok) {
+      setStatus(result.error || "The decision was not saved.");
+      return;
+    }
+
+    await load();
+    setStatus(`Submission ${decision === "approve" ? "approved and published" : "rejected"}.`);
+    setApprovedStoryId(decision === "approve" ? id : null);
   }
 
   return (
     <div className="adminDashboard">
+      <div className="adminToolbar">
+        <button className="button secondary" type="button" onClick={load}>
+          Refresh Moderation Queue
+        </button>
+        <Link className="textLink" href="/stories">
+          Open Public Stories
+        </Link>
+      </div>
+
       <p className="formStatus" role="status" aria-live="polite">{status}</p>
+
+      {approvedStoryId && (
+        <div className="moderatorNote">
+          <strong>The story is now public.</strong>
+          <p>
+            <Link className="textLink" href={`/stories/${approvedStoryId}`}>
+              Open the published story
+            </Link>
+          </p>
+        </div>
+      )}
 
       {stories.map((story) => (
         <article key={story.id}>

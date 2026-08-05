@@ -5,6 +5,22 @@ import { useEffect, useState } from "react";
 import { getBrowserSupabase } from "@/lib/supabase-browser";
 import type { AccountStory, PrivacyLevel } from "@/lib/types";
 
+function statusExplanation(status: AccountStory["status"]) {
+  if (status === "pending") {
+    return "Private and awaiting moderation. It will not appear in Survivor Stories until approved.";
+  }
+  if (status === "changes_requested") {
+    return "Private while a requested change or clarification is being reviewed.";
+  }
+  if (status === "approved") {
+    return "Published in Survivor Stories using the privacy level shown here.";
+  }
+  if (status === "rejected") {
+    return "Not published. Review the moderator note or permanently delete the submission.";
+  }
+  return "Removed from public view but still available here until you publish again or delete it.";
+}
+
 export default function AccountDashboard() {
   const [stories, setStories] = useState<AccountStory[]>([]);
   const [status, setStatus] = useState("Loading your submissions…");
@@ -124,6 +140,7 @@ export default function AccountDashboard() {
                 <span className={`statusBadge ${story.status}`}>{story.status.replace("_", " ")}</span>
                 <h3>{story.title}</h3>
                 <p>{story.mediaType} · submitted {new Date(story.createdAt).toLocaleDateString()}</p>
+                <p className="accountStatusHelp">{statusExplanation(story.status)}</p>
               </div>
 
               <label>
