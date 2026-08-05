@@ -11,31 +11,43 @@ const needs = [
   {
     title: "I am trying to understand what happened",
     text: "Learn how control, fear, bullying and spiritual pressure can slowly become normal to you.",
+    includes: ["Coercive control", "Faith healing", "Financial pressure", "Research guides"],
+    action: "Open the guides",
     href: "/resources"
   },
   {
     title: "I want to hear from people who understand",
-    text: "Read survivors stories at your own pace, without being forced into the most difficult details.",
+    text: "Read survivor stories at your own pace, without being forced into the most difficult details.",
+    includes: ["Topic filters", "Content warnings", "Short summaries", "Privacy choices"],
+    action: "Browse survivor stories",
     href: "/stories"
   },
   {
     title: "I need to think about my safety",
     text: "Consider practical steps concerning records, healthcare, finances, housing and independent advice.",
+    includes: ["Immediate risk", "Personal safety plan", "Digital privacy", "Independent support"],
+    action: "Review safety steps",
     href: "/safety"
   },
   {
     title: "Someone I care about is still inside",
     text: "Explore ways to remain present without turning every conversation into an argument about leaving.",
+    includes: ["Conversation scripts", "Safety planning", "Digital risk", "Academic research"],
+    action: "Read the practical guide",
     href: "/resources/supporting-someone-still-inside"
   },
   {
     title: "I may want to tell my story",
     text: "Understand the privacy choices before deciding whether you want to share anything.",
+    includes: ["Prepare privately", "Choose your identity", "Add optional media", "Withdraw or delete"],
+    action: "Review the submission process",
     href: "/share"
   },
   {
     title: "I need to leave this page quickly",
-    text: "The Quick Exit button opens a neutral website, although it cannot remove your browser history.",
+    text: "Understand what Quick Exit can and cannot hide before relying on it.",
+    includes: ["What opens", "History limits", "Safer devices", "Monitoring risks"],
+    action: "Understand Quick Exit",
     href: "/safety#quick-exit"
   }
 ];
@@ -171,10 +183,14 @@ export default async function HomePage() {
           {needs.map((item, index) => (
             <Link href={item.href} key={item.title} className="needRow">
               <span className="needNumber">{String(index + 1).padStart(2, "0")}</span>
-              <span>
+              <div className="needContent">
                 <strong>{item.title}</strong>
                 <small>{item.text}</small>
-              </span>
+                <ul className="needHighlights" aria-label="What you will find">
+                  {item.includes.map((detail) => <li key={detail}>{detail}</li>)}
+                </ul>
+                <span className="needAction">{item.action}</span>
+              </div>
               <ArrowRight aria-hidden="true" />
             </Link>
           ))}
