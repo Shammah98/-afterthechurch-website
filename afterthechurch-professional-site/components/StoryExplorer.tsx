@@ -233,6 +233,13 @@ export default function StoryExplorer({
             <div className="storyList">
               {filtered.slice(0, visible).map((story) => (
                 <article className="storyCard" key={story.id}>
+                  {story.imageUrl && (
+                    <img
+                      className="storyCardImage"
+                      src={story.imageUrl}
+                      alt=""
+                    />
+                  )}
                   <div className="storyCardTopline">
                     <span className={`intensity ${story.contentIntensity}`}>
                       {story.contentIntensity} intensity

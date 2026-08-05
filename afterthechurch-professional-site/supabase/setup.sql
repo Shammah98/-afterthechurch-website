@@ -52,6 +52,7 @@ create table if not exists public.stories (
   media_type text not null
     check (media_type in ('written', 'audio', 'video')),
   media_path text,
+  image_path text,
   short_summary text not null check (char_length(short_summary) between 1 and 650),
   story_text text,
   categories text[] not null default '{}',
@@ -72,6 +73,9 @@ create table if not exists public.stories (
   reviewed_at timestamptz,
   retention_expires_at timestamptz
 );
+
+alter table public.stories
+  add column if not exists image_path text;
 
 create index if not exists stories_status_created_idx
   on public.stories (status, created_at desc);
@@ -102,6 +106,9 @@ values (
     'audio/mp4',
     'audio/wav',
     'audio/x-m4a',
+    'image/jpeg',
+    'image/png',
+    'image/webp',
     'video/mp4',
     'video/quicktime',
     'video/webm'

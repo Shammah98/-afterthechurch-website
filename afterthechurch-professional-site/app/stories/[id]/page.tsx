@@ -49,6 +49,14 @@ export default async function StoryPage({
         </div>
       </header>
 
+      {story.imageUrl && (
+        <img
+          className="storyImage"
+          src={story.imageUrl}
+          alt={`Picture accompanying ${story.title}`}
+        />
+      )}
+
       {story.mediaType === "video" && story.mediaUrl && (
         <video controls preload="metadata" className="storyMedia">
           <source src={story.mediaUrl} />

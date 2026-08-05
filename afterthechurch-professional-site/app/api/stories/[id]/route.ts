@@ -7,7 +7,7 @@ async function ownedStory(id: string, userId: string) {
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("stories")
-    .select("id,user_id,media_path,status")
+    .select("id,user_id,media_path,image_path,status")
     .eq("id", id)
     .eq("user_id", userId)
     .maybeSingle();
@@ -110,10 +110,14 @@ export async function DELETE(
 
     const supabase = createAdminClient();
 
-    if (story.media_path) {
+    const storedPaths = [story.media_path, story.image_path].filter(
+      (path): path is string => Boolean(path)
+    );
+
+    if (storedPaths.length) {
       const { error: storageError } = await supabase.storage
         .from("story-media")
-        .remove([story.media_path]);
+        .remove(storedPaths);
 
       if (storageError) throw storageError;
     }

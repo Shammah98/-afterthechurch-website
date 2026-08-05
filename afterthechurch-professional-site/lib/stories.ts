@@ -37,6 +37,7 @@ if (privacyLevel === "anonymous_author") {
 async function mapStory(row: Record<string, any>): Promise<PublicStory> {
   const supabase = createAdminClient();
   let mediaUrl: string | null = null;
+  let imageUrl: string | null = null;
 
   if (row.media_path) {
     const { data } = await supabase.storage
@@ -44,6 +45,14 @@ async function mapStory(row: Record<string, any>): Promise<PublicStory> {
       .createSignedUrl(row.media_path, 60 * 60);
 
     mediaUrl = data?.signedUrl || null;
+  }
+
+  if (row.image_path) {
+    const { data } = await supabase.storage
+      .from("story-media")
+      .createSignedUrl(row.image_path, 60 * 60);
+
+    imageUrl = data?.signedUrl || null;
   }
 
   const identity = publicIdentity(
@@ -62,6 +71,7 @@ async function mapStory(row: Record<string, any>): Promise<PublicStory> {
     readingMinutes: row.reading_minutes,
     mediaType: row.media_type,
     mediaUrl,
+    imageUrl,
     shortSummary: row.short_summary,
     storyText: row.story_text,
     contentWarnings: row.content_warnings || [],
@@ -84,6 +94,7 @@ const publicSelect = [
   "reading_minutes",
   "media_type",
   "media_path",
+  "image_path",
   "short_summary",
   "story_text",
   "content_warnings",

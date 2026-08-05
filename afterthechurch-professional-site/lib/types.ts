@@ -18,6 +18,7 @@ export interface PublicStory {
   readingMinutes: number;
   mediaType: MediaType;
   mediaUrl: string | null;
+  imageUrl: string | null;
   shortSummary: string;
   storyText: string | null;
   contentWarnings: string[];

@@ -20,6 +20,7 @@ const schema = z.object({
   shortSummary: z.unknown(),
   storyText: z.unknown(),
   mediaPath: z.unknown().nullable(),
+  imagePath: z.unknown().nullable(),
   categories: z.unknown(),
   contentWarnings: z.unknown(),
   contentIntensity: z.enum(["gentle", "moderate", "high"]),
@@ -70,6 +71,7 @@ export async function POST(request: NextRequest) {
     const religiousBackground = cleanText(input.religiousBackground, 100);
     const countryRegion = cleanText(input.countryRegion, 100);
     const mediaPath = input.mediaPath ? cleanText(input.mediaPath, 500) : null;
+    const imagePath = input.imagePath ? cleanText(input.imagePath, 500) : null;
     const categories = cleanStringArray(input.categories, storyCategories, 6);
     const contentWarnings = cleanStringArray(
       input.contentWarnings,
@@ -94,6 +96,10 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    if (imagePath && !imagePath.startsWith(`pending/${user.id}/`)) {
+      return NextResponse.json({ error: "The uploaded picture path is invalid." }, { status: 400 });
+    }
+
     const supabase = createAdminClient();
     const { error } = await supabase.from("stories").insert({
       user_id: user.id,
@@ -103,6 +109,7 @@ export async function POST(request: NextRequest) {
       privacy_level: input.privacyLevel,
       media_type: input.mediaType,
       media_path: mediaPath,
+      image_path: imagePath,
       short_summary: shortSummary,
       story_text: storyText || null,
       categories,

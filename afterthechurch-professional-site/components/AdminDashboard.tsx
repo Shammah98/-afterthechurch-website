@@ -11,6 +11,7 @@ type ReviewStory = {
   privacyLevel: string;
   mediaType: string;
   mediaUrl: string | null;
+  imageUrl: string | null;
   storyText: string | null;
   shortSummary: string;
   categories: string[];
@@ -106,6 +107,14 @@ export default function AdminDashboard() {
             <p className="reviewWarning">
               Content notices: {story.contentWarnings.join(", ")}
             </p>
+          )}
+
+          {story.imageUrl && (
+            <img
+              className="storyImage"
+              src={story.imageUrl}
+              alt={`Submitted picture for ${story.title}`}
+            />
           )}
 
           {story.mediaType === "video" && story.mediaUrl && (

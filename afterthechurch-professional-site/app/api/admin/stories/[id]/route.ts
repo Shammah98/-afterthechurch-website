@@ -20,7 +20,7 @@ export async function PATCH(
 
     const { data: story, error: fetchError } = await supabase
       .from("stories")
-      .select("id,media_path")
+      .select("id,media_path,image_path")
       .eq("id", id)
       .maybeSingle();
 
@@ -29,22 +29,29 @@ export async function PATCH(
 
     if (body.decision === "approve") {
       let mediaPath = story.media_path;
+      let imagePath = story.image_path;
 
-      if (mediaPath?.startsWith("pending/")) {
-        const publishedPath = mediaPath.replace(/^pending\//, "published/");
+      async function publishPath(path: string | null) {
+        if (!path?.startsWith("pending/")) return path;
+
+        const publishedPath = path.replace(/^pending\//, "published/");
         const { error: moveError } = await supabase.storage
           .from("story-media")
-          .move(mediaPath, publishedPath);
+          .move(path, publishedPath);
 
         if (moveError) throw moveError;
-        mediaPath = publishedPath;
+        return publishedPath;
       }
+
+      mediaPath = await publishPath(mediaPath);
+      imagePath = await publishPath(imagePath);
 
       const { error } = await supabase
         .from("stories")
         .update({
           status: "approved",
           media_path: mediaPath,
+          image_path: imagePath,
           moderator_notes: notes || null,
           author_change_request: null,
           reviewed_at: new Date().toISOString(),
