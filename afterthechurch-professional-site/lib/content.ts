@@ -293,8 +293,9 @@ export const resources: ResourceArticle[] = [
     readingTime: 7,
     intensity: "high",
     warnings: ["Faith-healing claims", "Medical neglect", "Threats of punishment or damnation"],
-    image: "/images/friends-sunset.jpg",
-    imageAlt: "A group of friends standing together in warm evening light.",
+    image: "/images/laid.jpg",
+imageAlt:
+  "A public faith-healing service in which a minister places a hand on a participant’s forehead while other people observe.",
     overview:
       "Spiritual practices and medical treatment do not have to be treated as enemies. Harm can occur when someone is pressured to stop medication, conceal symptoms, reject follow-up care or interpret ongoing illness as personal failure.",
     keyPoints: [
