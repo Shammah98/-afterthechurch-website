@@ -41,7 +41,14 @@ create table if not exists public.stories (
   display_name text not null check (char_length(display_name) between 1 and 80),
   church_name text not null check (char_length(church_name) between 1 and 160),
   privacy_level text not null
-    check (privacy_level in ('public', 'anonymous_church', 'fully_anonymous')),
+    check (
+  privacy_level in (
+    'public',
+    'anonymous_church',
+    'anonymous_author',
+    'fully_anonymous'
+  )
+),
   media_type text not null
     check (media_type in ('written', 'audio', 'video')),
   media_path text,
