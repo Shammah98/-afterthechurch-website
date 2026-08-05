@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import type { EmailOtpType } from "@supabase/supabase-js";
 import { getBrowserSupabase } from "@/lib/supabase-browser";
 
-const SUCCESS_REDIRECT = "/login?confirmed=true";
-const FAILURE_REDIRECT = "/login?confirmation=failed";
+const SUCCESS_REDIRECT = "/auth?confirmed=true";
+const FAILURE_REDIRECT = "/auth?confirmation=failed";
 
 export default function AuthCallbackPage() {
   const [message, setMessage] = useState("Confirming your account…");
