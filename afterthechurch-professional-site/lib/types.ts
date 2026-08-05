@@ -1,5 +1,9 @@
 export type MediaType = "written" | "audio" | "video";
-export type PrivacyLevel = "public" | "anonymous_church" | "fully_anonymous";
+export type PrivacyLevel =
+  | "public"
+  | "anonymous_church"
+  | "anonymous_author"
+  | "fully_anonymous";
 export type ContentIntensity = "gentle" | "moderate" | "high";
 export type StoryStatus = "pending" | "approved" | "rejected" | "withdrawn" | "changes_requested";
 
