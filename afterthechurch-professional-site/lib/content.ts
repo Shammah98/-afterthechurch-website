@@ -285,54 +285,261 @@ export const resources: ResourceArticle[] = [
   ]
 },
   {
-    slug: "faith-healing-and-medical-decisions",
-    title: "Faith-healing claims and medical decisions",
-    deck:
-      "Ways to assess healing claims while protecting access to medical care and avoiding pressure to prove faith.",
-    category: "Health and safety",
-    readingTime: 7,
-    intensity: "high",
-    warnings: ["Faith-healing claims", "Medical neglect", "Threats of punishment or damnation"],
-    image: "/images/laid.jpg",
-imageAlt:
-  "A public faith-healing service in which a minister places a hand on a participant’s forehead while other people observe.",
-    overview:
-      "Spiritual practices and medical treatment do not have to be treated as enemies. Harm can occur when someone is pressured to stop medication, conceal symptoms, reject follow-up care or interpret ongoing illness as personal failure.",
-    keyPoints: [
-      "A testimony is not the same as a medical diagnosis or verified outcome.",
-      "Symptoms returning or continuing should not be hidden to protect a ministry’s reputation.",
-      "Seeking medical care does not require anyone to abandon their spiritual beliefs.",
-      "No person should be blamed for illness because they lacked faith, confessed incorrectly or felt afraid."
-    ],
-    fullSections: [
-      {
-        heading: "Claims should not replace clinical evidence",
-        paragraphs: [
-          "A person may sincerely report feeling better during a service while still needing examination, testing or follow-up care. Temporary changes in pain, stress or emotion do not establish that an underlying condition has resolved.",
-          "A cautious option is to keep appointments and ask qualified clinicians what evidence would confirm improvement. This can be done without publicly challenging anyone or making an immediate statement about faith."
-        ]
-      },
-      {
-        heading: "Pressure after a claimed healing",
-        paragraphs: [
-          "Some people are told not to speak about symptoms, not to use medication, or to repeat positive statements whenever doubt appears. These demands can make it difficult to report deterioration and may create shame when recovery is incomplete.",
-          "You may keep private records of symptoms, medication and medical advice. A trusted person outside the ministry can help preserve information when the environment discourages questions."
-        ]
-      }
-    ],
-    practicalOptions: [
-      "Continue prescribed treatment unless a qualified clinician advises a change.",
-      "Ask what objective test or follow-up would confirm the claimed improvement.",
-      "Keep copies of medical records outside any church-controlled device or account.",
-      "Seek urgent medical help when symptoms are severe, worsening or life-threatening."
-    ],
-    furtherReading: [
-      {
-        label: "Preparing for a medical appointment",
-        note: "A private list of questions and records you may choose to bring."
-      }
-    ]
-  },
+  slug: "faith-healing-and-medical-decisions",
+  title: "Faith-healing claims and medical decisions",
+  deck:
+    "A medically grounded, psychologically informed and theologically careful guide to evaluating healing claims without dismissing faith or risking necessary care.",
+  category: "Health and safety",
+  readingTime: 24,
+  intensity: "high",
+  warnings: [
+    "Faith-healing claims",
+    "Medical neglect",
+    "Threats of punishment or damnation",
+    "Spiritual abuse"
+  ],
+  image: "/images/faith-healing-service.jpg",
+  imageAlt:
+    "A public faith-healing service in which a minister places a hand on a participant’s forehead while other people observe.",
+  overview:
+    "Prayer, hope and medical care do not have to be treated as enemies. A person may experience comfort, reduced pain, renewed hope or an unexpected improvement during a religious service, and that experience can be meaningful. But a testimony is not the same as a diagnosis, and feeling better is not always the same as an underlying disease being cured. Safe discernment asks what condition was originally diagnosed, what evidence confirmed it, what changed, how long the change lasted, whether treatment continued, and whether independent clinicians verified the result. The greatest danger arises when a healing claim is used to pressure someone to stop medication, conceal symptoms, refuse follow-up care or blame themselves when illness continues.",
+  keyPoints: [
+    "A sincere testimony may describe a real experience without proving that a disease was medically cured.",
+    "Pain, fatigue, movement, breathlessness and other symptoms can change through expectation, attention, stress, natural fluctuation and the social context of a healing service.",
+    "Symptom relief is valuable, but it should not be confused with objective change in infection, cancer, organ damage, diabetes, epilepsy or another underlying condition.",
+    "Reliable verification requires a clear diagnosis before the claimed healing, appropriate objective testing afterwards, sufficient follow-up and independent clinical review.",
+    "Continuing symptoms do not prove weak faith, hidden sin, fear, negative confession or spiritual failure.",
+    "Prayer can be used alongside evidence-based treatment, rehabilitation, medication and medical follow-up.",
+    "Stopping treatment abruptly can be dangerous. Medication changes should be made with a qualified clinician who understands the condition and the specific drug.",
+    "A ministry should not suppress unsuccessful outcomes, pressure people to testify or use selected stories as proof that everyone can expect the same result.",
+    "Children and dependent adults require particular protection because another person’s belief must not remove access to necessary medical care.",
+    "A Christian theology of healing can affirm prayer while also recognising medicine, human limitation, unanswered prayer, suffering and the future hope of complete restoration."
+  ],
+  fullSections: [
+    {
+      heading: "Faith and medicine are not natural enemies",
+      paragraphs: [
+        "Many people experience illness through medical, relational, cultural and spiritual meanings at the same time. Research on patient preferences shows that a substantial proportion of patients would welcome respectful discussion of spirituality in some clinical situations, although preferences differ and no patient should be pressured into religious conversation. Good care can therefore take faith seriously without allowing spiritual claims to replace diagnosis, informed consent or evidence-based treatment.",
+        "The useful distinction is not between a religious person and a scientific person. It is between care that respects reality and care that asks someone to deny it. Prayer may offer comfort, meaning, courage, community and hope. Medicine may offer diagnosis, monitoring, symptom relief, rehabilitation and treatments shown to improve outcomes. These functions can support one another.",
+        "A conflict emerges when a leader claims that seeking treatment shows unbelief, that medication blocks divine healing or that ongoing symptoms must be hidden to preserve a testimony. At that point, faith is no longer simply supporting the patient; it is being used to control access to information and care."
+      ]
+    },
+    {
+      heading: "Begin by separating experience, symptom and diagnosis",
+      paragraphs: [
+        "A healing testimony usually begins with an experience: pain reduced, movement became easier, fear lifted, strength returned or a person felt different during prayer. The experience may be completely sincere. The next question is what the experience can reasonably establish.",
+        "A symptom is what a person feels or notices, such as pain, dizziness, fatigue, weakness, nausea, tremor or shortness of breath. A diagnosis is a clinical explanation supported by history, examination, testing and professional judgement. Symptoms can improve while the underlying disease remains. A person with asthma may feel less breathless while inflammation persists; someone with cancer may experience reduced pain without tumour regression; a person with diabetes may feel energetic while blood glucose remains unsafe.",
+        "This distinction is not intended to belittle symptom improvement. Relief from pain or fear matters. It simply prevents one kind of improvement from being used as proof of another. A medically responsible testimony should state clearly what changed and what has not yet been tested."
+      ]
+    },
+    {
+      heading: "Why immediate improvement can feel dramatic",
+      paragraphs: [
+        "Healing services often combine expectation, music, focused attention, touch, public encouragement, emotional arousal and the authority of a trusted leader. These conditions can alter how the brain processes pain, effort, movement and bodily threat. Placebo research shows that context and expectation can produce genuine changes in patient-reported symptoms, particularly pain and nausea, although placebo interventions do not generally produce large objective changes across diseases.",
+        "This does not mean that the person is pretending. Pain and many functional symptoms are shaped by complex interactions among nerves, attention, expectation, learning, stress and the brain’s interpretation of bodily signals. A reduction in symptoms can be biologically real even when it does not mean that tissue damage, infection or another underlying pathology has disappeared.",
+        "Adrenaline and emotional activation can also temporarily increase strength, reduce pain awareness and change motor performance. A person may stand, bend or walk differently in the moment and later experience a return of symptoms. The return does not show that they lost faith; it may show that the immediate context changed or that the underlying condition was never resolved."
+      ]
+    },
+    {
+      heading: "Placebo effects are real, but they have limits",
+      paragraphs: [
+        "The word placebo is often used as an insult, as though an improvement must be either supernatural or imaginary. That is a false choice. Placebo effects refer to changes associated with the meaning, expectation and context surrounding care rather than the specific biological action of a treatment. They can involve measurable brain and neurochemical processes, especially in pain.",
+        "At the same time, systematic reviews have not found important clinical effects of placebo interventions in general. Effects are more consistent for subjective outcomes than for objective disease markers. A person may therefore report real relief while scans, blood tests, pathology or long-term outcomes remain unchanged.",
+        "The ethical lesson is not to dismiss the person. It is to be precise. A ministry may say that someone reported less pain after prayer. It should not convert that report into a claim that cancer, paralysis, infection or organ disease was cured without appropriate evidence."
+      ]
+    },
+    {
+      heading: "Natural history and regression to the mean can be mistaken for a miracle",
+      paragraphs: [
+        "Many illnesses fluctuate. Symptoms become worse, then improve; relapses are followed by quieter periods; viral illnesses resolve; inflammation varies; and some conditions respond gradually to treatment. People are most likely to seek dramatic help when symptoms are at their worst. Even without a new intervention, the next measurement may be closer to the person’s usual level. This is called regression to the mean.",
+        "If prayer occurs at the worst point and improvement follows, the timing can make the prayer appear to be the sole cause. The same problem affects testimonials for medicines, supplements, diets and alternative treatments. Without comparison groups, reliable diagnosis and follow-up, timing alone cannot establish causation.",
+        "Rare spontaneous remissions are also documented in medicine, including some cancers. Their rarity makes them scientifically interesting, but an unusual recovery does not by itself identify its cause. A credible investigation asks whether treatment, immune processes, an incorrect initial diagnosis, incomplete records or natural disease variation could also explain the outcome."
+      ]
+    },
+    {
+      heading: "What responsible verification actually requires",
+      paragraphs: [
+        "A strong healing claim begins with clear evidence that the condition existed. A statement such as “the doctor said I might have cancer” is not equivalent to pathology confirming a specific cancer. A report of paralysis may refer to several very different neurological, musculoskeletal or functional conditions. Accurate verification needs the original diagnosis, the tests used, the date, the severity and the expected course.",
+        "The outcome must then be tested with methods appropriate to that condition. A tumour claim may require imaging, pathology and oncology review. Diabetes requires glucose measurements over time rather than a temporary sense of wellbeing. Epilepsy requires careful clinical follow-up because the absence of a seizure during a short period does not establish cure. Hearing and vision claims require standardised testing, not only a response on a stage.",
+        "Follow-up matters. Some symptoms improve for minutes, days or months and then return. A responsible report distinguishes immediate, short-term and sustained outcomes. It also records whether medication, surgery, physiotherapy or another treatment continued, because improvement cannot automatically be attributed to prayer alone when several interventions occurred together.",
+        "Independent review is essential. Verification should not be performed only by clinicians employed by, financially connected to or publicly committed to the ministry making the claim. Consent and privacy must also be protected. Medical records should not be displayed publicly without informed permission, and people should not be pressured to reveal diagnoses in order to validate a leader."
+      ]
+    },
+    {
+      heading: "Why selected testimonies can mislead even when they are true",
+      paragraphs: [
+        "Public ministries usually present successes, not the full number of people prayed for. If ten people improve and hundreds do not, showing only the ten creates a distorted impression of effectiveness. This is selection bias. The audience cannot estimate the true rate of improvement without knowing how many people were treated, how outcomes were defined and how unsuccessful cases were followed.",
+        "Confirmation bias can then strengthen the story. Improvements are attributed to prayer, while non-improvements are explained by timing, hidden sin, lack of faith or the claim that healing has occurred spiritually but is not yet visible. A system that treats every possible outcome as confirmation cannot be meaningfully tested.",
+        "Testimonies can still have pastoral value when they are presented honestly. The ethical problem begins when stories are used as medical evidence, fundraising tools or pressure on sick people to reproduce the same outcome."
+      ]
+    },
+    {
+      heading: "Pressure to testify can change what people report",
+      paragraphs: [
+        "A person in a highly emotional service may be asked repeatedly whether pain has reduced, whether they can move further or whether they believe they are healed. The safest answer may be the one the room expects. Social approval, fear of disappointing the leader and relief at being publicly recognised can influence the response without deliberate lying.",
+        "Memory is also reconstructive. After repeated retelling, a gradual improvement may become an instant cure, an uncertain diagnosis may become a confirmed disease and a temporary change may be remembered as permanent. Video editing can remove hesitation, later relapse or the parts of the conversation that make the case less dramatic.",
+        "A trauma-informed approach gives the person time, privacy and permission to say “I do not know yet.” It does not demand immediate certainty. It also makes room for someone to revise a testimony later without shame."
+      ]
+    },
+    {
+      heading: "When symptoms return, shame can become a second injury",
+      paragraphs: [
+        "Some people are taught that they must maintain healing through faith, positive confession or refusal to acknowledge symptoms. When pain or illness returns, they may hide it, delay care and interpret the recurrence as evidence that they failed spiritually.",
+        "Psychological research distinguishes positive religious coping, such as seeking meaning, support and connection, from negative religious coping, such as feeling punished or abandoned by God, viewing illness as demonic condemnation or experiencing conflict with a religious community. Negative religious coping and spiritual struggle are associated with greater psychological distress in multiple studies.",
+        "The person needs accurate care rather than blame. A recurrence may reflect the natural course of disease, an incomplete response, an incorrect diagnosis or a temporary change in symptoms. It does not establish moral failure. A ministry that cannot tolerate honest follow-up places its reputation above the patient."
+      ]
+    },
+    {
+      heading: "Stopping medication can create risks that are not immediately visible",
+      paragraphs: [
+        "Some medicines can be stopped safely; others require gradual reduction or close monitoring. Abrupt withdrawal from corticosteroids, anti-seizure medicines, insulin, psychiatric medication, anticoagulants or certain heart medicines can lead to serious harm. The risk depends on the drug, dose, duration, condition and individual patient.",
+        "Feeling well is not sufficient evidence that treatment is no longer needed. Many treatments work precisely by keeping symptoms and disease markers controlled. Stopping them may allow the illness to return before the person feels warning signs.",
+        "The safe rule is simple: do not change or stop prescribed treatment because of a public declaration of healing. Take the claim to the clinician responsible for the condition, explain what happened and ask what testing and monitoring would be needed before any change. A good clinician should listen respectfully even if they do not share the patient’s theology."
+      ]
+    },
+    {
+      heading: "Mental illness and functional symptoms require particular care",
+      paragraphs: [
+        "Depression, psychosis, bipolar disorder, trauma-related conditions, epilepsy and functional neurological disorder can all be mislabelled as demonic activity or insufficient faith. This may delay assessment and expose people to frightening or physically forceful practices.",
+        "Functional neurological symptoms are genuine disorders of nervous-system functioning. Symptoms such as weakness, non-epileptic attacks, tremor or altered movement can be strongly influenced by attention, expectation and context, but they are not simply invented. A dramatic response during prayer does not prove deception, possession or permanent cure. Proper neurological and psychological assessment remains important.",
+        "Faith communities can support recovery through companionship, practical help and hope. They should not replace qualified mental-health care, restrain people, shame them for symptoms or promise that prayer alone will prevent relapse."
+      ]
+    },
+    {
+      heading: "Children and dependent adults require stronger safeguards",
+      paragraphs: [
+        "Adults with decision-making capacity may refuse treatment, even when others consider the decision unwise. Children and dependent adults are different because they may not be able to understand the risk or resist the authority of caregivers and religious leaders.",
+        "A widely cited retrospective study reviewed 172 child deaths associated with religion-motivated withholding of medical care between 1975 and 1995. The authors judged that most involved conditions with a high expected survival rate if treated. The study has limitations and does not establish the current frequency of such deaths, but it demonstrates the potential consequences when prayer is used in place of available care.",
+        "Belief should never be used to deny a child urgent assessment, antibiotics, insulin, surgery, seizure treatment or other necessary care. Safeguarding duties and legal rules differ by country, but immediate risk to a child should be taken to local medical, emergency or child-protection services."
+      ]
+    },
+    {
+      heading: "What controlled research on prayer can and cannot answer",
+      paragraphs: [
+        "Researchers have attempted randomised trials of distant intercessory prayer. The large STEP trial in coronary-bypass patients did not find that receiving intercessory prayer improved uncomplicated recovery. A Cochrane review of ten trials involving 7,646 participants found no clear overall difference in death, general clinical state, readmission or rehospitalisation.",
+        "These studies do not prove or disprove God. They test whether a defined prayer intervention produces outcomes measurable under trial conditions. Theology may hold that prayer is relational, not a technique that human beings can control or test on demand. Scientific restraint and theological restraint therefore point in the same direction: clinical trials should not be overstated, and neither should stage testimonies.",
+        "The most defensible conclusion is that prayer may remain meaningful to believers, but it should not be presented as a reliably demonstrated substitute for medical care."
+      ]
+    },
+    {
+      heading: "A Christian theological framework does not require denial of medicine",
+      paragraphs: [
+        "The New Testament presents healing as a sign of compassion and the kingdom of God, but it does not teach that every faithful person will be immediately cured in this life. Paul describes an affliction that was not removed despite prayer, Epaphroditus became seriously ill, and Trophimus was left sick. These passages resist the claim that persistent illness automatically reveals unbelief.",
+        "Christian scripture also contains ordinary forms of care. Luke is called a physician. The Good Samaritan treats wounds and arranges continuing care. First Timothy refers to using wine for a stomach complaint, while James combines prayer, communal care and anointing with oil. Christians interpret these texts differently, but they do not support a simple opposition between trusting God and receiving treatment.",
+        "John 9 rejects the assumption that disability must be traced to an individual’s sin. The book of Job also warns against confident explanations that blame a sufferer. A healing theology becomes harmful when it turns illness into a verdict on character.",
+        "Classical Christian hope is ultimately eschatological: complete restoration is connected with resurrection and the renewal of creation, not a promise that every disease will disappear before death. This allows Christians to pray boldly while speaking honestly about uncertainty, mortality and unanswered prayer."
+      ]
+    },
+    {
+      heading: "Theological problems with guaranteed healing",
+      paragraphs: [
+        "A guarantee changes prayer into a transaction: correct belief, words, giving or submission are presented as conditions that force a particular outcome. When the outcome fails, responsibility is transferred from the claimant to the sick person.",
+        "This can make the doctrine impossible to falsify and pastorally cruel. The minister receives credit for every improvement, while the patient receives blame for every failure. Such a structure protects authority rather than truth.",
+        "A more responsible theology can affirm that God may heal, that medicine may be one means of care, that suffering is not proof of divine rejection and that the community’s duty continues whether healing occurs or not. The person who remains ill should receive more support, not less."
+      ]
+    },
+    {
+      heading: "Ethical standards for churches and healing ministries",
+      paragraphs: [
+        "A ministry that prays for healing should state clearly that prayer is not a medical diagnosis or a direction to stop treatment. Leaders should never advise medication changes unless they are appropriately licensed and acting within professional competence.",
+        "Claims should be described accurately: reported symptom improvement, preliminary test result, confirmed remission or sustained recovery are not interchangeable. Unsuccessful and uncertain outcomes should not be erased. Any verification process should be independent, consent-based and open about its limitations.",
+        "People should not be touched without permission, pushed, restrained, exposed publicly or asked to perform movements that could worsen injury. Interpreters, disability access and the right to stop participation should be available.",
+        "Fundraising should be separated from promises of healing. No one should be told that a donation, seed, pledge or purchase will secure recovery. Complaints and adverse events should be recorded and reviewed through a safeguarding process independent of the public leader."
+      ]
+    },
+    {
+      heading: "How clinicians can respond without ridiculing belief",
+      paragraphs: [
+        "Patients may avoid clinicians when they expect mockery. A respectful clinician can ask what the healing experience meant, what the patient believes changed and whether anyone advised them to alter treatment. This provides important safety information without beginning a theological argument.",
+        "Many patients want spirituality to be acknowledged in care, but preferences vary. Clinicians can ask permission before discussing it and offer chaplaincy or another spiritual-care referral when appropriate. Their role is to explain medical evidence, risks and options while respecting the patient’s values.",
+        "Respect does not require agreement with an unverified claim. It means taking the person seriously, checking the condition carefully and helping them make decisions without humiliation or coercion."
+      ]
+    },
+    {
+      heading: "A practical verification checklist",
+      paragraphs: [
+        "Before accepting or publishing a healing claim, ask: What exact condition was diagnosed? Who diagnosed it? Which tests confirmed it? Are the original records available? What treatment was already being used? What changed immediately after prayer? Which objective tests changed afterwards? How long has the improvement lasted?",
+        "Then ask: Did medication or rehabilitation continue? Could the condition naturally fluctuate? Was the initial diagnosis uncertain? Has an independent specialist reviewed the records? Has the patient consented to publication? Are unsuccessful follow-ups also recorded?",
+        "The purpose is not to eliminate mystery or demand certainty before anyone can be grateful. It is to protect sick people from decisions based on evidence that is weaker than it appears."
+      ]
+    },
+    {
+      heading: "Recovery after a harmful healing experience",
+      paragraphs: [
+        "A person may grieve several things at once: health, trust in leaders, confidence in prayer, lost money, delayed treatment and the public identity created by a testimony. They may also feel embarrassed for having believed or for encouraging others. Shame is understandable, but responsibility belongs most heavily to those who claimed authority and suppressed uncertainty.",
+        "Helpful recovery may include medical reassessment, obtaining records, trauma-informed therapy, financial advice, speaking with trusted people outside the ministry and deciding whether the person wants spiritual support from a safer community. No single theological conclusion should be required.",
+        "The goal is not to turn every survivor into a sceptic or every believer into a defender. It is to restore the person’s ability to observe reality, ask questions, receive care and make choices without fear."
+      ]
+    }
+  ],
+  practicalOptions: [
+    "Continue prescribed treatment unless the clinician responsible for that treatment advises a change.",
+    "Ask the clinician what objective evidence would be needed to confirm improvement in your specific condition.",
+    "Request copies of the original diagnosis, test results, medication list and follow-up plan.",
+    "Keep a private symptom record including dates, severity, treatment and changes after the healing event.",
+    "Do not perform painful or risky movements on stage to prove that healing occurred.",
+    "Tell a clinician promptly if symptoms return, worsen or change, even if you previously gave a public testimony.",
+    "Seek urgent medical care for severe breathing difficulty, chest pain, stroke symptoms, major bleeding, loss of consciousness, a prolonged seizure, suicidal intent or another emergency.",
+    "Ask whether the ministry records unsuccessful outcomes and long-term follow-up, not only immediate testimonies.",
+    "Do not sign broad consent forms or release private medical records under emotional pressure.",
+    "For medication questions, speak with a doctor or pharmacist rather than relying on a minister’s general instruction.",
+    "For children, obtain qualified medical assessment promptly and do not delay necessary treatment while waiting for a spiritual outcome.",
+    "Choose spiritual support that permits honest reporting of symptoms and does not blame illness on fear, sin or insufficient faith.",
+    "When a claim may become public, ask for time to verify it before your name, image or medical information is shared."
+  ],
+  furtherReading: [
+    {
+      label: "Hróbjartsson and Gøtzsche — Placebo interventions for all clinical conditions",
+      note:
+        "Cochrane review examining placebo effects across clinical conditions. It found no important clinical effect in general, while noting possible effects on patient-reported outcomes such as pain and nausea. DOI: 10.1002/14651858.CD003974.pub3."
+    },
+    {
+      label: "Benson et al. — STEP trial of intercessory prayer",
+      note:
+        "Multicentre randomised trial in coronary-artery bypass patients. Receiving intercessory prayer did not improve uncomplicated recovery. American Heart Journal 2006;151:934–942. DOI: 10.1016/j.ahj.2005.05.028."
+    },
+    {
+      label: "Roberts, Ahmed and Davison — Intercessory prayer for ill health",
+      note:
+        "Cochrane review of ten randomised trials involving 7,646 participants. It found no clear overall benefit for death, general clinical state or readmission. DOI: 10.1002/14651858.CD000368.pub3."
+    },
+    {
+      label: "Asser and Swan — Child fatalities from religion-motivated medical neglect",
+      note:
+        "Retrospective review of 172 child deaths from 1975–1995 in which medical care was withheld because of reliance on faith healing. Pediatrics 1998;101:625–629. DOI: 10.1542/peds.101.4.625."
+    },
+    {
+      label: "Kaptchuk, Hemond and Miller — Placebos in chronic pain",
+      note:
+        "Review of evidence, mechanisms and ethics of placebo effects in chronic pain, including predictive-processing explanations and the role of therapeutic context. BMJ 2020;370:m1668. DOI: 10.1136/bmj.m1668."
+    },
+    {
+      label: "Cowden et al. — Religious and spiritual struggles in chronic illness",
+      note:
+        "Longitudinal study finding reciprocal associations between religious or spiritual struggle and psychological distress among adults with chronic health conditions. Journal of Clinical Psychology 2022;78:544–558. DOI: 10.1002/jclp.23232."
+    },
+    {
+      label: "Ano and Vasconcelles — Religious coping and psychological adjustment",
+      note:
+        "Meta-analysis distinguishing forms of religious coping and their associations with adjustment to stress. Journal of Clinical Psychology 2005;61:461–480. DOI: 10.1002/jclp.20049."
+    },
+    {
+      label: "Best, Butow and Olver — Patient preferences for spiritual discussion",
+      note:
+        "Systematic review of 54 studies involving 12,327 patients. Many welcomed spiritual discussion in some circumstances, but preferences were varied and patient consent remained important. Patient Education and Counseling 2015;98:1320–1328."
+    },
+    {
+      label: "Tangen — Healing in the Pentecostal tradition: a Scandinavian perspective",
+      note:
+        "Theological and historical analysis of Pentecostal healing in Norway and Sweden, including classical Pentecostalism, Word of Faith teaching and later charismatic movements. Journal of Pentecostal and Charismatic Christianity 2021;41:124–140."
+    },
+    {
+      label: "Thomas — Christ the Physician",
+      note:
+        "A Christian theological account of bodily and spiritual healing that treats medicine and sacramental care as compatible while locating complete healing in the resurrection. The Linacre Quarterly 2024;91:243–253. DOI: 10.1177/00243639231189328."
+    }
+  ]
+},
   {
     slug: "financial-pressure-and-giving",
     title: "When giving stops feeling voluntary",
