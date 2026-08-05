@@ -33,14 +33,19 @@ export default async function StoriesPage() {
   let error = "";
 
   try {
-    const [approvedStories, counts] = await Promise.all([
-      getApprovedStories(),
-      getStoryLibraryCounts()
-    ]);
-    stories = approvedStories;
-    awaitingReview = counts.awaitingReview;
-  } catch {
-    error = "The story library cannot connect right now.";
+    stories = await getApprovedStories();
+  } catch (storyError) {
+    console.error("Approved stories could not be loaded:", storyError);
+    error = "We could not load the published stories just now.";
+  }
+
+  if (!error) {
+    try {
+      const counts = await getStoryLibraryCounts();
+      awaitingReview = counts.awaitingReview;
+    } catch (countError) {
+      console.error("Story review count could not be loaded:", countError);
+    }
   }
 
   return (
