@@ -22,10 +22,11 @@ export default function ResourcesPage() {
 </p>
         </div>
         <Image
-          src="/images/reading.webp"
-         
-          width={750}
-          height={460}
+         src="/images/reading.jpg"
+  alt="A person trading quietly ."
+  width={750}
+  height={460}
+  priority
         />
       </section>
 
