@@ -477,7 +477,11 @@ h3 { font-size: clamp(1.55rem, 2.5vw, 2.25rem); line-height: 1.1; }
   border-left: 5px solid var(--sage);
   background: var(--cream);
 }
-.storyFallback h2 { margin: 0 0 16px; }
+.storyFallback h2 {
+  max-width: 980px; margin: 0 0 16px;
+  font-size: clamp(2rem,4.6vw,3.6rem);
+  line-height: 1.08; text-wrap: balance;
+}
 .storyFallback > p:not(.eyebrow) { max-width: 820px; }
 .storyFallback .buttonRow { margin-top: 26px; }
 .safetyActionGrid {
