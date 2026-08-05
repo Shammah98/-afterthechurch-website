@@ -32,7 +32,14 @@ export async function PATCH(
     const supabase = createAdminClient();
 
     if (body.action === "privacy") {
-      if (!["public", "anonymous_church", "fully_anonymous"].includes(body.privacyLevel)) {
+      if (
+  ![
+    "public",
+    "anonymous_church",
+    "anonymous_author",
+    "fully_anonymous"
+  ].includes(body.privacyLevel)
+) {
         return NextResponse.json({ error: "Invalid privacy level." }, { status: 400 });
       }
 
