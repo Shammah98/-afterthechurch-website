@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ContentNotice from "@/components/ContentNotice";
+import StoryComments from "@/components/StoryComments";
 import ViewTracker from "@/components/ViewTracker";
 import { getApprovedStory } from "@/lib/stories";
 
@@ -86,6 +87,8 @@ export default async function StoryPage({
           <p>No written transcript was provided.</p>
         )}
       </section>
+
+      <StoryComments storyId={story.id} />
 
       <footer className="storyDetailFooter">
         <p>
