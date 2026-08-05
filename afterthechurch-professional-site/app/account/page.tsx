@@ -11,7 +11,7 @@ export default function AccountPage() {
         <h1>Your submissions remain manageable.</h1>
         <p className="lead">
           Review moderation status, change public privacy settings, request a
-          correction, temporarily unpublish or permanently delete your material.
+          correction, temporarily unpublish or permanently delete your story.
         </p>
       </div>
       <AccountDashboard />
