@@ -237,6 +237,52 @@ h3 { font-size: clamp(1.55rem, 2.5vw, 2.25rem); line-height: 1.1; }
 }
 .reviewSteps article { padding: 24px 0; border-bottom: 1px solid var(--line); }
 .reviewSteps strong { font-family: var(--serif); font-size: 1.3rem; }
+
+.reflectionsSection .sectionIntro {
+  max-width: none; display: grid;
+  grid-template-columns: minmax(0,1.35fr) minmax(280px,.65fr);
+  column-gap: clamp(42px,7vw,100px); align-items: end;
+}
+.reflectionsSection .sectionIntro .eyebrow {
+  grid-column: 1; grid-row: 1;
+}
+.reflectionsSection .sectionIntro h2 {
+  grid-column: 1; grid-row: 2;
+  max-width: 1000px; margin: 0;
+  font-size: clamp(3rem,5vw,4.8rem);
+  line-height: 1.02; text-wrap: pretty;
+}
+.reflectionsSection .sectionIntro > p:last-child {
+  grid-column: 2; grid-row: 2;
+  max-width: 44ch; margin: 0 0 8px;
+  padding-left: 24px; border-left: 3px solid var(--sage);
+  color: var(--muted); font-size: 1.06rem; line-height: 1.7;
+}
+.reflectionsSection .reviewSteps {
+  counter-reset: reflection;
+  margin: 55px 0 0; border: 0;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 18px;
+}
+.reflectionsSection .reviewSteps article {
+  counter-increment: reflection;
+  min-height: 220px; padding: 28px;
+  border: 1px solid var(--line); border-top: 4px solid var(--wine);
+  background: var(--cream);
+}
+.reflectionsSection .reviewSteps article::before {
+  content: "0" counter(reflection);
+  display: block; margin-bottom: 24px;
+  color: var(--rose); font-family: var(--serif);
+  font-size: .95rem; font-weight: 700; letter-spacing: .08em;
+}
+.reflectionsSection .reviewSteps strong {
+  font-size: 1.38rem; line-height: 1.3;
+}
+.reflectionsSection .reviewSteps p {
+  margin: 14px 0 0; color: var(--muted);
+}
+
 .submissionImage { min-height: 650px; border-radius: 0; }
 
 .aboutHome, .urgentHome {
@@ -565,6 +611,10 @@ legend { padding: 0 10px; font-family: var(--serif); font-size: 1.75rem; font-we
   .aboutHome, .urgentHome, .splitHero, .articleHero, .authPage { grid-template-columns: 1fr; }
   .groundingImage, .submissionImage, .storiesHomeImage { min-height: 480px; }
   .needsSection .sectionIntro { position: static; max-width: 700px; }
+  .reflectionsSection .sectionIntro { grid-template-columns: 1fr; }
+  .reflectionsSection .sectionIntro > * { grid-column: 1; grid-row: auto; }
+  .reflectionsSection .sectionIntro > p:last-child { margin-top: 22px; }
+  .reflectionsSection .reviewSteps { grid-template-columns: 1fr; margin-top: 35px; }
   .resourceEditorialGrid { grid-template-columns: 1fr; }
   .resourceFeature { grid-row: auto; }
   .resourceFeature img, .resourceEditorialGrid img { height: 360px; }

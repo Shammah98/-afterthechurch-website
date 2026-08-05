@@ -183,17 +183,16 @@ export default async function HomePage() {
 
 
 
-      <section className="resourcesPreview editorialSection">
+      <section className="reflectionsSection resourcesPreview editorialSection">
   <div className="sectionIntro">
     <p className="eyebrow">Quiet thoughts for difficult days</p>
 
     <h2>Not everything is within your control, but that does not make you powerless.</h2>
 
     <p>
-     It does not help to pretend that pain does not exist.
-      Its more useful to ask ourselves: now that this has happened, what
-      still belongs to me? These reflections are invitations to consider, not
-      rules you must accept...
+      It does not help to pretend that pain does not exist. It can be more
+      useful to ask: now that this has happened, what still belongs to me?
+      These reflections are invitations to consider, not rules you must accept.
     </p>
   </div>
 
