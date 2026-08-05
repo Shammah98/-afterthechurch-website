@@ -12,15 +12,17 @@ export default function ResourcesPage() {
       <section className="pageHero splitHero">
         <div>
           <p className="eyebrow">Educational resources</p>
-          <h1>Read an overview. Stop there, or choose more detail.</h1>
-          <p className="lead">
-            These resources explain specific behaviours without requiring you to
-            accept a label, leave a community, reject a faith or follow a recovery
-            programme.
-          </p>
+
+<h1>Understand more, at your own pace.</h1>
+
+<p className="lead">
+  These resources explain harmful religious behaviours in a clear and
+  grounded way. Start with a brief overview, and continue into more detail
+  when you feel ready.
+</p>
         </div>
         <Image
-          src="/images/woman-heart-sunset.jpg"
+          src="/images/reading"
           alt="A person making a heart shape with their hands at sunset."
           width={750}
           height={460}
