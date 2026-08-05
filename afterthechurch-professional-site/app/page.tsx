@@ -9,37 +9,51 @@ export const dynamic = "force-dynamic";
 
 const needs = [
   {
-    title: "I want to understand what happened",
-    text: "Read clear explanations of coercion, shunning, financial pressure and unsafe leadership.",
+    title: "I am trying to understand what happened",
+    text: "Learn how control, fear, bullying and spiritual pressure can slowly become normal to you.",
     href: "/resources"
   },
   {
-    title: "I want to read carefully selected stories",
-    text: "Choose topics, intensity, reading time and whether the author is anonymous.",
+    title: "I want to hear from people who understand",
+    text: "Read survivors stories at your own pace, without being forced into the most difficult details.",
     href: "/stories"
   },
   {
-    title: "I need practical support",
-    text: "Review options for safety, records, healthcare, legal advice and independent support.",
+    title: "I need to think about my safety",
+    text: "Consider practical steps concerning records, healthcare, finances, housing and independent advice.",
     href: "/safety"
   },
   {
-    title: "I am worried about someone else",
-    text: "Consider ways to stay connected without demanding an immediate exit or argument.",
+    title: "Someone I care about is still inside",
+    text: "Explore ways to remain present without turning every conversation into an argument about leaving.",
     href: "/resources/supporting-someone-still-inside"
   },
   {
-    title: "I am considering sharing my experience",
-    text: "See the privacy choices and review process before any information is requested.",
+    title: "I may want to tell my story",
+    text: "Understand the privacy choices before deciding whether you want to share anything.",
     href: "/share"
   },
   {
     title: "I need to leave this page quickly",
-    text: "Use the Quick Exit button. It opens a neutral website but does not erase browser history.",
+    text: "The Quick Exit button opens a neutral website, although it cannot remove your browser history.",
     href: "/safety#quick-exit"
   }
 ];
 
+const stoicReflections = [
+  {
+    title: "The pace at which you heal is still in your hands",
+    text: "You cannot control how other people explain the past. You can decide how close you stand to that past today."
+  },
+  {
+    title: "Your judgement belongs to you",
+    text: "A title, a pulpit or a congregation does not remove your right to observe what happened and name it honestly."
+  },
+  {
+    title: "Begin with the next action",
+    text: "Healing does not mean never feeling anger or fear. It can begin with refusing to let one passing emotion choose every action for you."
+  }
+];
 export default async function HomePage() {
   let stories: PublicStory[] = [];
   try {
@@ -50,80 +64,108 @@ export default async function HomePage() {
 
   return (
     <>
-      <section className="homeHero">
-        <Image
-          src="/images/group-field.jpg"
-          alt="A diverse group walking together along a path through a field."
-          fill
-          priority
-          sizes="100vw"
-          className="heroBackground"
-        />
-        <div className="heroShade" />
-        <div className="homeHeroInner">
-          <p className="eyebrow lightEyebrow">You are most welcome</p>
-          <h1>You do not have to share unless you are ready to...</h1>
-          <p>
-            If you have been hurt by a religious community, your pacing is
-            entirely up to you. This is a quiet, religiously neutral space where
-            you can understand what happened without being pressured to believe,
-            disbelieve, forgive, reconcile, or prove your experience to anyone.
-          </p>
-          <div className="buttonRow">
-            <Link className="button light" href="/resources">
-              Explore Gentle Resources
-            </Link>
-            <Link className="button outlineLight" href="/stories">
-              Read Anonymous Stories
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="groundingSection editorialSection">
-       
-<div className="groundingImage">
+     <section className="homeHero">
   <Image
-    src="/images/Traumatic-Brain-Injury-X-Ray.webp"
-    alt="Medical illustration showing the brain and nervous system."
+    src="/images/group-field.jpg"
+    alt="A group walking together along a quiet path."
     fill
-    sizes="(max-width: 900px) 100vw, 55vw"
-    className="groundingImagePhoto"
+    priority
+    sizes="100vw"
+    className="heroBackground"
   />
 
-  <div className="groundingImageFade" />
-</div>
-       
-        <div className="groundingCopy">
-          <p className="eyebrow">Understanding toxic control</p>
-          <h2>Harm does not always arrive looking dramatic.</h2>
-          <p className="largeCopy">
-            It may look like being required to disclose private information,
-            receiving repeated warnings about what will happen if you leave,
-            losing friendships after asking a question, or being pressured to
-            give money you cannot afford.
-          </p>
-          <p>
-            You do not have to decide whether your beliefs were true or false
-            you need to examine how people treated you. One option is to begin with
-            observable behaviour: what was demanded, How did it make you feel, what happened when you
-            hesitated, and whether saying no remained possible.
-          </p>
-          <Link className="textLink" href="/resources/recognising-coercive-control">
-            Read a brief explanation <ArrowRight size={17} aria-hidden="true" />
-          </Link>
-        </div>
-      </section>
+  <div className="heroShade" />
+
+  <div className="homeHeroInner">
+    <p className="eyebrow lightEyebrow">A quiet place to begin</p>
+
+    <h1>
+      You do not have to explain everything before you are allowed to heal.
+    </h1>
+
+    <p>
+      Religious harm can leave you questioning your memory, your judgement and
+      even your right to feel hurt. You have been probably told that you are not the first one to experience what you went through, 
+      but that doesnt mean you should ignore it.
+      You are not required to settle every question
+      today. You do not have to forgive, reconcile, defend your beliefs or abandon
+      them before you are ready. Begin with what you know: something affected you,
+      and you deserve the space to understand it.
+    </p>
+
+    <div className="buttonRow">
+      <Link className="button light" href="/resources">
+        Begin with the Resources
+      </Link>
+
+      <Link className="button outlineLight" href="/stories">
+        Read Survivor Stories
+      </Link>
+    </div>
+  </div>
+</section>
+
+     <section className="groundingSection editorialSection">
+  <div className="groundingImage">
+    <Image
+      src="/images/Traumatic-Brain-Injury-X-Ray.webp"
+      alt="An illustration representing the brain and nervous system."
+      fill
+      sizes="(max-width: 900px) 100vw, 55vw"
+      className="groundingImagePhoto"
+    />
+
+    <div className="groundingImageFade" />
+  </div>
+
+  <div className="groundingCopy">
+    <p className="eyebrow">Understanding harmful control</p>
+
+    <h2>
+      What happened does not have to look dramatic to have changed you.
+    </h2>
+
+    <p className="largeCopy">
+      Sometimes harm hides inside beautiful religious words: love, loyalty,
+      honour, sacrifice, family, unity, submission or faith. The words may sound harmless or even good while
+      the reality beneath them slowly takes away your ability to say no.
+    </p>
+
+    <p>
+      You may have been expected to disclose private information, give money you
+      could not afford, ignore your health, remain silent about misconduct or fear
+      what would happen if you left. You do not have to solve every theological
+      question before examining that behaviour. Begin with what you observed:
+      what was demanded, how refusal was treated and whether your choices were
+      truly allowed to remain your own.
+    </p>
+
+    <Link
+      className="textLink"
+      href="/resources/recognising-coercive-control"
+    >
+      Understand coercive control
+      <ArrowRight size={17} aria-hidden="true" />
+    </Link>
+  </div>
+</section>
+
+
+      
 
       <section className="needsSection">
         <div className="sectionIntro">
-          <p className="eyebrow">Choose what you need today...</p>
-          <h2>No fixed programme. No required order.</h2>
-          <p>
-            Open one section, save it for later, or leave. Each route is an
-            option rather than a stage you must complete.
-          </p>
-        </div>
+  <p className="eyebrow">Choose what you need today</p>
+
+  <h2>There is no correct order in which to recover.</h2>
+
+  <p>
+    Some days you may want answers. On another day, you may only want to know
+    that somebody else understands. Open what helps, leave what does not and
+    return when you have more space. Nothing here is a test of whether you are
+    healing properly.
+  </p>
+</div>
 
         <div className="needList">
           {needs.map((item, index) => (
@@ -139,6 +181,34 @@ export default async function HomePage() {
         </div>
       </section>
 
+
+
+      <section className="resourcesPreview editorialSection">
+  <div className="sectionIntro">
+    <p className="eyebrow">Quiet thoughts for difficult days</p>
+
+    <h2>Not everything is within your control, but that does not make you powerless.</h2>
+
+    <p>
+     It does not help to pretend that pain does not exist.
+      Its more useful to ask ourselves: now that this has happened, what
+      still belongs to me? These reflections are invitations to consider, not
+      rules you must accept...
+    </p>
+  </div>
+
+  <div className="reviewSteps">
+    {stoicReflections.map((reflection) => (
+      <article key={reflection.title}>
+        <strong>{reflection.title}</strong>
+        <p>{reflection.text}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+
+      
       <section className="resourcesPreview editorialSection">
         <div className="sectionIntro">
           <p className="eyebrow">Educational resources</p>
