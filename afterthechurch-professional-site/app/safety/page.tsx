@@ -216,7 +216,7 @@ export default function SafetyPage() {
   return (
     <section className="narrowPage prosePage safetyPage">
       <p className="eyebrow">Safety and urgent help</p>
-      <h1>Real contacts. Practical next steps. Your choice.</h1>
+      <h1>Get help and plan safely.</h1>
       <p className="lead">
         AfterTheChurch is not an emergency, medical, legal, safeguarding or crisis-response
         service. The independent services below can help you assess risk, find urgent care
