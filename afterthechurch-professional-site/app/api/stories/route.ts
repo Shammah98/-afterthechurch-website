@@ -6,65 +6,35 @@ import { checkRateLimit } from "@/lib/rate-limit";
 import { cleanStringArray, cleanText, readingMinutes } from "@/lib/sanitize";
 import { createAdminClient } from "@/lib/supabase-admin";
 
+const submissionCategories = [
+  ...storyCategories,
+  "Health practitioner offering support",
+  "Pastor or faith leader offering support",
+  "Volunteer or community member offering support"
+] as const;
+
 const schema = z.object({
-  title: z.unknown(),
-  displayName: z.unknown(),
-  churchName: z.unknown(),
-  privacyLevel: z.enum([
-  "public",
-  "anonymous_church",
-  "anonymous_author",
-  "fully_anonymous"
-]),
-  mediaType: z.enum(["written", "audio", "video"]),
-  shortSummary: z.unknown(),
-  storyText: z.unknown(),
-  mediaPath: z.unknown().nullable(),
-  imagePath: z.unknown().nullable(),
-  categories: z.unknown(),
-  contentWarnings: z.unknown(),
-  contentIntensity: z.enum(["gentle", "moderate", "high"]),
-  religiousBackground: z.unknown(),
-  countryRegion: z.unknown(),
-  consent: z.boolean(),
-  rights: z.boolean(),
-  website: z.unknown(),
-  startedAt: z.number()
+  title: z.unknown(), displayName: z.unknown(), churchName: z.unknown(),
+  privacyLevel: z.enum(["public", "anonymous_church", "anonymous_author", "fully_anonymous"]),
+  mediaType: z.enum(["written", "audio", "video"]), shortSummary: z.unknown(), storyText: z.unknown(),
+  mediaPath: z.unknown().nullable(), imagePath: z.unknown().nullable(), categories: z.unknown(),
+  contentWarnings: z.unknown(), contentIntensity: z.enum(["gentle", "moderate", "high"]),
+  religiousBackground: z.unknown(), countryRegion: z.unknown(), consent: z.boolean(), rights: z.boolean(),
+  website: z.unknown(), startedAt: z.number()
 });
 
 export async function POST(request: NextRequest) {
   try {
     const user = await getUserFromRequest(request);
-    if (!user) {
-      return NextResponse.json(
-        { error: "Private submission access could not be verified. Refresh and try again." },
-        { status: 401 }
-      );
-    }
-
+    if (!user) return NextResponse.json({ error: "Private submission access could not be verified. Refresh and try again." }, { status: 401 });
     const allowed = await checkRateLimit(request, "story-submit", 4, 24 * 60 * 60);
-    if (!allowed) {
-      return NextResponse.json(
-        { error: "The daily submission limit has been reached." },
-        { status: 429 }
-      );
-    }
-
+    if (!allowed) return NextResponse.json({ error: "The daily submission limit has been reached." }, { status: 429 });
     const parsed = schema.safeParse(await request.json());
-    if (!parsed.success) {
-      return NextResponse.json({ error: "Some required information is invalid." }, { status: 400 });
-    }
-
+    if (!parsed.success) return NextResponse.json({ error: "Some required information is invalid." }, { status: 400 });
     const input = parsed.data;
     const honeypot = cleanText(input.website, 100);
-
-    if (honeypot || Date.now() - input.startedAt < 4000) {
-      return NextResponse.json({ error: "The submission could not be accepted." }, { status: 400 });
-    }
-
-    if (!input.consent || !input.rights) {
-      return NextResponse.json({ error: "Both consent confirmations are required." }, { status: 400 });
-    }
+    if (honeypot || Date.now() - input.startedAt < 4000) return NextResponse.json({ error: "The submission could not be accepted." }, { status: 400 });
+    if (!input.consent || !input.rights) return NextResponse.json({ error: "Both consent confirmations are required." }, { status: 400 });
 
     const title = cleanText(input.title, 120);
     const displayName = cleanText(input.displayName, 80);
@@ -75,64 +45,27 @@ export async function POST(request: NextRequest) {
     const countryRegion = cleanText(input.countryRegion, 100);
     const mediaPath = input.mediaPath ? cleanText(input.mediaPath, 500) : null;
     const imagePath = input.imagePath ? cleanText(input.imagePath, 500) : null;
-    const categories = cleanStringArray(input.categories, storyCategories, 6);
-    const contentWarnings = cleanStringArray(
-      input.contentWarnings,
-      contentWarningOptions,
-      10
-    );
+    const categories = cleanStringArray(input.categories, submissionCategories, 6);
+    const contentWarnings = cleanStringArray(input.contentWarnings, contentWarningOptions, 10);
 
-    if (!title || !displayName || !churchName || !shortSummary) {
-      return NextResponse.json({ error: "Complete all required text fields." }, { status: 400 });
-    }
-
-    if (input.mediaType === "written" && storyText.length < 150) {
-      return NextResponse.json(
-        { error: "Written stories require at least 150 characters." },
-        { status: 400 }
-      );
-    }
-
-    if (input.mediaType !== "written") {
-      if (!mediaPath || !mediaPath.startsWith(`pending/${user.id}/`)) {
-        return NextResponse.json({ error: "The uploaded media path is invalid." }, { status: 400 });
-      }
-    }
-
-    if (imagePath && !imagePath.startsWith(`pending/${user.id}/`)) {
-      return NextResponse.json({ error: "The uploaded picture path is invalid." }, { status: 400 });
-    }
+    if (!title || !displayName || !churchName || !shortSummary) return NextResponse.json({ error: "Complete all required text fields." }, { status: 400 });
+    if (input.mediaType === "written" && storyText.length < 150) return NextResponse.json({ error: "Written stories require at least 150 characters." }, { status: 400 });
+    if (input.mediaType !== "written" && (!mediaPath || !mediaPath.startsWith(`pending/${user.id}/`))) return NextResponse.json({ error: "The uploaded media path is invalid." }, { status: 400 });
+    if (imagePath && !imagePath.startsWith(`pending/${user.id}/`)) return NextResponse.json({ error: "The uploaded picture path is invalid." }, { status: 400 });
 
     const supabase = createAdminClient();
     const { error } = await supabase.from("stories").insert({
-      user_id: user.id,
-      title,
-      display_name: displayName,
-      church_name: churchName,
-      privacy_level: input.privacyLevel,
-      media_type: input.mediaType,
-      media_path: mediaPath,
-      image_path: imagePath,
-      short_summary: shortSummary,
-      story_text: storyText || null,
-      categories,
-      content_warnings: contentWarnings,
-      content_intensity: input.contentIntensity,
-      reading_minutes: readingMinutes(storyText || shortSummary),
-      religious_background: religiousBackground || null,
-      country_region: countryRegion || null,
-      consent_confirmed: true,
-      rights_confirmed: true,
-      status: "pending"
+      user_id: user.id, title, display_name: displayName, church_name: churchName,
+      privacy_level: input.privacyLevel, media_type: input.mediaType, media_path: mediaPath,
+      image_path: imagePath, short_summary: shortSummary, story_text: storyText || null,
+      categories, content_warnings: contentWarnings, content_intensity: input.contentIntensity,
+      reading_minutes: readingMinutes(storyText || shortSummary), religious_background: religiousBackground || null,
+      country_region: countryRegion || null, consent_confirmed: true, rights_confirmed: true, status: "pending"
     });
-
     if (error) throw error;
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch (error) {
     console.error("Story submission failed:", error);
-    return NextResponse.json(
-      { error: "The submission could not be saved. Please try again." },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "The submission could not be saved. Please try again." }, { status: 500 });
   }
 }
