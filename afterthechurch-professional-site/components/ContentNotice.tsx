@@ -55,7 +55,7 @@ export default function ContentNotice({
   return (
     <section className="contentGate" aria-labelledby="content-notice-title">
       <p className="eyebrow">Before you continue</p>
-      <h1 id="content-notice-title">Choose how much detail feels manageable.</h1>
+      <h1 id="content-notice-title">Choose what feels manageable.</h1>
       <p>
         This content discusses {warnings.length ? warnings.join(", ").toLowerCase() : "potentially distressing experiences"}.
         You can open the full content, read a shorter summary, or return without continuing.
