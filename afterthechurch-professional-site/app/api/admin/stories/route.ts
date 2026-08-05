@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     const { data, error } = await supabase
       .from("stories")
       .select(
-        "id,title,display_name,church_name,privacy_level,media_type,media_path,story_text,short_summary,categories,content_warnings,content_intensity,created_at,author_change_request"
+        "id,title,display_name,church_name,privacy_level,media_type,media_path,image_path,story_text,short_summary,categories,content_warnings,content_intensity,created_at,author_change_request"
       )
       .in("status", ["pending", "changes_requested"])
       .order("created_at", { ascending: true });
@@ -23,11 +23,19 @@ export async function GET(request: NextRequest) {
     const stories = await Promise.all(
       (data || []).map(async (story) => {
         let mediaUrl: string | null = null;
+        let imageUrl: string | null = null;
         if (story.media_path) {
           const { data: signed } = await supabase.storage
             .from("story-media")
             .createSignedUrl(story.media_path, 30 * 60);
           mediaUrl = signed?.signedUrl || null;
+        }
+
+        if (story.image_path) {
+          const { data: signed } = await supabase.storage
+            .from("story-media")
+            .createSignedUrl(story.image_path, 30 * 60);
+          imageUrl = signed?.signedUrl || null;
         }
 
         return {
@@ -38,6 +46,7 @@ export async function GET(request: NextRequest) {
           privacyLevel: story.privacy_level,
           mediaType: story.media_type,
           mediaUrl,
+          imageUrl,
           storyText: story.story_text,
           shortSummary: story.short_summary,
           categories: story.categories || [],
