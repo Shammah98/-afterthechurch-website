@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { getBrowserSupabase, setRememberSession } from "@/lib/supabase-browser";
 
 type Mode = "signin" | "signup" | "forgot";
@@ -12,6 +12,16 @@ export default function AuthPanel() {
   const [showPassword, setShowPassword] = useState(false);
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    const parameters = new URLSearchParams(window.location.search);
+
+    if (parameters.get("confirmed") === "true") {
+      setStatus("Your email address has been confirmed. You can now sign in.");
+    } else if (parameters.get("confirmation") === "failed") {
+      setStatus("That confirmation link is invalid or has expired. Request a new confirmation email and try again.");
+    }
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -53,12 +63,14 @@ export default function AuthPanel() {
           return;
         }
 
-        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
+        const siteUrl = (
+          process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
+        ).replace(/\/+$/, "");
         const { error } = await supabase.auth.signUp({
           email,
           password,
           options: {
-            emailRedirectTo: `${siteUrl}/auth/callback?next=/account`,
+            emailRedirectTo: `${siteUrl}/auth/callback`,
             data: {
               display_name: displayName,
               communications: form.get("communications") === "on"
@@ -77,7 +89,9 @@ export default function AuthPanel() {
       }
 
       if (mode === "forgot") {
-        const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin;
+        const siteUrl = (
+          process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
+        ).replace(/\/+$/, "");
         await supabase.auth.resetPasswordForEmail(email, {
           redirectTo: `${siteUrl}/auth/reset`
         });
