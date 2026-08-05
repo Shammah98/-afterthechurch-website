@@ -25,6 +25,13 @@ function publicPreview(
       church: "Church Name Withheld"
     };
   }
+
+  if (privacy === "anonymous_author") {
+  return {
+    author: "Anonymous Author",
+    church: churchName || "Church or organisation name"
+  };
+}
   return {
     author: displayName || "Your chosen name",
     church: churchName || "Church or organisation name"
