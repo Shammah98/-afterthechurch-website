@@ -33,7 +33,9 @@ export default async function ResourcePage({
 
   const content = (
     <>
-      <section className="articleHero">
+     <section
+  className={`articleHero articleHero--${resource.slug}`}
+>
         <div>
           <p className="eyebrow">{resource.category}</p>
           <h1>{resource.title}</h1>
