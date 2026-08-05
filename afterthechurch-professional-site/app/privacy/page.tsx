@@ -36,7 +36,7 @@ const dataRows = [
 
 export default function PrivacyPage() {
   return (
-    <main className="legalPage">
+    <section className="legalPage">
       <header className="legalHero">
         <p className="eyebrow">Privacy policy</p>
         <h1>Your information, your choices and our responsibilities.</h1>
@@ -318,6 +318,6 @@ export default function PrivacyPage() {
           </section>
         </article>
       </div>
-    </main>
+    </section>
   );
 }
