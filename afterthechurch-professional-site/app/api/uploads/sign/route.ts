@@ -5,12 +5,14 @@ import { createAdminClient } from "@/lib/supabase-admin";
 
 const accepted: Record<string, string[]> = {
   audio: ["audio/mpeg", "audio/mp4", "audio/wav", "audio/x-m4a"],
-  video: ["video/mp4", "video/quicktime", "video/webm"]
+  video: ["video/mp4", "video/quicktime", "video/webm"],
+  image: ["image/jpeg", "image/png", "image/webp"]
 };
 
 const maxSize: Record<string, number> = {
   audio: 50 * 1024 * 1024,
-  video: 250 * 1024 * 1024
+  video: 250 * 1024 * 1024,
+  image: 10 * 1024 * 1024
 };
 
 function safeExtension(fileName: string) {
@@ -36,7 +38,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { fileName, contentType, fileSize, mediaType } = body;
 
-    if (!["audio", "video"].includes(mediaType)) {
+    if (!["audio", "video", "image"].includes(mediaType)) {
       return NextResponse.json({ error: "Invalid media type." }, { status: 400 });
     }
 
