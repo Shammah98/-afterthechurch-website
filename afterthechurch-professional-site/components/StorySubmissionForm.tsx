@@ -519,11 +519,11 @@ export default function StorySubmissionForm({
         <legend>Consent before submission</legend>
         <label className="checkboxRow">
           <input type="checkbox" name="consent" required />
-          I understand that the submission remains private until it is reviewed and approved.
+          I explicitly consent to AfterTheChurch privately processing this story and any sensitive information I choose to include. If approved, it may be published under the privacy level selected above, subject to the <Link href="/privacy">Privacy Policy</Link>.
         </label>
         <label className="checkboxRow">
           <input type="checkbox" name="rights" required />
-          This is my experience, and I have permission to share any uploaded recording or material.
+          This is my genuine experience to the best of my knowledge. I have the rights and permissions needed for uploaded material and accept the contributor provisions in the <Link href="/terms">Terms of Use</Link>.
         </label>
       </fieldset>
 
