@@ -48,8 +48,8 @@ export const resources: ResourceArticle[] = [
     "Forced confession",
     "Shunning"
   ],
-  image: "/images/woman-heart-sunset.jpg",
-  imageAlt: "A person making a heart shape with their hands at sunset.",
+  image: "/images/coercive.png",
+  imageAlt: "Coercive control by clergy.",
   overview:
     "Coercive control is not defined by one difficult sermon, one disagreement or one strict rule. It is a repeated pattern that gradually makes another person more dependent, less able to refuse and more afraid of the consequences of acting independently. In religious settings, control can become especially powerful when ordinary authority is presented as divine authority, disagreement is treated as spiritual danger, and belonging to the community is tied to salvation, family, housing, work, education or identity. The most useful question is not simply whether a group is strict. It is whether people can question, seek outside advice, protect private information, maintain relationships and leave without retaliation.",
   keyPoints: [
