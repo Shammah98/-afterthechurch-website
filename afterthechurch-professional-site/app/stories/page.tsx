@@ -118,10 +118,10 @@ export default async function StoriesPage() {
             not yet visible here.
           </p>
           <div className="buttonRow">
-            <Link className="button primary" href="/admin">
-              Open Moderation Queue
+            <Link className="button primary" href="/share">
+              Share Your Story
             </Link>
-            <Link className="button secondary" href="/account">
+            <Link className="button secondary" href="/manage">
               Check Your Submission
             </Link>
             <Link className="textLink" href="/resources">

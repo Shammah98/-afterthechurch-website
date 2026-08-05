@@ -4,8 +4,8 @@ export const metadata: Metadata = { title: "Frequently Asked Questions" };
 
 const questions = [
   {
-    q: "Do I need an account to read the website?",
-    a: "No. Public resources, approved stories, safety information, privacy information and the About page remain available without registration."
+    q: "Do I need an account to use the website or submit a story?",
+    a: "No. Public resources, approved stories and story submission are available without registration or sign-in."
   },
   {
     q: "Do I have to use my legal name?",
@@ -21,7 +21,7 @@ const questions = [
   },
   {
     q: "Can I remove my story later?",
-    a: "Yes. From your account, you can temporarily unpublish an approved story or permanently delete the submission and current uploaded media."
+    a: "Yes. On the device used to submit it, open Manage Your Submissions to temporarily unpublish an approved story or permanently delete the submission and uploaded media."
   },
   {
     q: "Is AfterTheChurch therapy or legal advice?",

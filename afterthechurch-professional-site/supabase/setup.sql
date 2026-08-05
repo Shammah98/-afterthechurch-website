@@ -1,5 +1,7 @@
 -- AFTERTHECHURCH DATABASE AND PRIVATE MEDIA SETUP
 -- Run once in Supabase: SQL Editor > New query > paste this file > Run.
+-- Also enable Authentication > Providers > Anonymous Sign-ins. Public visitors
+-- receive a private technical session without creating or seeing an account.
 
 create extension if not exists pgcrypto;
 

@@ -15,8 +15,7 @@ export default function TermsPage() {
         <h1>Clear rules for using and contributing to AfterTheChurch.</h1>
         <p className="lead">
           These Terms protect survivors, readers, contributors and the people who
-          operate the website. Please read them before creating an account or
-          submitting material.
+          operate the website. Please read them before submitting material.
         </p>
         <div className="legalMeta">
           <span><strong>Effective:</strong> 5 August 2026</span>
@@ -61,13 +60,13 @@ export default function TermsPage() {
             <h2>1. Agreement and eligibility</h2>
             <p>
               By accessing the site you agree to follow the provisions that apply
-              to public use. By creating an account, submitting material or using
-              account tools, you expressly accept these Terms and the{" "}
+              to public use. By submitting material or using private submission
+              controls, you expressly accept these Terms and the{" "}
               <Link href="/privacy">Privacy Policy</Link>. If you do not agree, do
-              not create an account or submit material.
+              not submit material.
             </p>
             <p>
-              Accounts and story submissions are intended for people aged 18 or
+              Story submissions are intended for people aged 18 or
               over. A person under 18 may contribute only with verifiable consent
               from a parent or legal guardian and prior written agreement from the
               operator. You must have legal capacity to grant the rights and make
@@ -80,7 +79,7 @@ export default function TermsPage() {
             <p>
               AfterTheChurch is a survivor-led educational and storytelling
               project operated from Norway by Ian Shammah. It provides public
-              educational material, moderated personal accounts and practical
+              educational material, moderated personal stories and practical
               signposting concerning harm in religious settings.
             </p>
             <p>
@@ -163,7 +162,7 @@ export default function TermsPage() {
             <p>You must not use the site to:</p>
             <ul className="plainList">
               <li>threaten, harass, intimidate, stalk or coordinate retaliation against a contributor or any other person;</li>
-              <li>identify or attempt to identify an anonymous contributor, or publish another person’s private contact, location, health or account information;</li>
+              <li>identify or attempt to identify an anonymous contributor, or publish another person’s private contact, location, health or authentication information;</li>
               <li>impersonate someone, submit content on their behalf without authority or misrepresent your connection to an organisation;</li>
               <li>upload material that is unlawful, defamatory, maliciously false, discriminatory, sexually exploitative, privacy-invasive or that infringes copyright, confidentiality or image rights;</li>
               <li>upload malware, attempt unauthorised access, test vulnerabilities without written permission, evade rate limits or interfere with the service;</li>
@@ -241,7 +240,7 @@ export default function TermsPage() {
               charges and privacy practices may change.
             </p>
             <p>
-              Accounts, storage and hosting depend on third-party infrastructure,
+              Anonymous contributor sessions, administrator authentication, storage and hosting depend on third-party infrastructure,
               including Supabase and Vercel. Those providers have their own terms,
               security measures and service limitations.
             </p>
@@ -309,18 +308,18 @@ export default function TermsPage() {
           </section>
 
           <section id="termination">
-            <h2>14. Account suspension, termination and changes</h2>
+            <h2>14. Access restriction, termination and changes</h2>
             <p>
-              AfterTheChurch may restrict or suspend an account where reasonably
+              AfterTheChurch may restrict submission or management access where reasonably
               necessary for security, legal compliance, investigation of abuse or
               protection of another person. Where safe and lawful, the user will be
               told the reason and given a way to request review.
             </p>
             <p>
               We may change or discontinue features and update these Terms.
-              Material changes affecting registered users will be communicated by a
-              reasonable method. Continued account use after the stated effective
-              date constitutes acceptance where the law allows; new consent will be
+              Material changes affecting contributors will be communicated by a
+              reasonable method where possible. Continued use after the stated
+              effective date constitutes acceptance where the law allows; new consent will be
               requested where required.
             </p>
           </section>
