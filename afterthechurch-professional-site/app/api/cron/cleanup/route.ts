@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
 
     const { data, error } = await supabase
       .from("stories")
-      .select("id,media_path")
+      .select("id,media_path,image_path")
       .in("status", ["rejected", "withdrawn"])
       .not("retention_expires_at", "is", null)
       .lte("retention_expires_at", now)
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     if (error) throw error;
 
     const paths = (data || [])
-      .map((story) => story.media_path)
+      .flatMap((story) => [story.media_path, story.image_path])
       .filter((path): path is string => Boolean(path));
 
     if (paths.length) {
