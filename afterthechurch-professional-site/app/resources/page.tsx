@@ -31,22 +31,50 @@ export default function ResourcesPage() {
       </section>
 
       <section className="resourceArchive editorialSection">
-        {resources.map((resource, index) => (
-          <article className="archiveRow" key={resource.slug}>
-            <span className="archiveNumber">{String(index + 1).padStart(2, "0")}</span>
-            <div>
-              <p className="resourceMeta">
-                {resource.category} · {resource.readingTime} min · {resource.intensity} intensity
-              </p>
-              <h2>{resource.title}</h2>
-              <p>{resource.deck}</p>
-            </div>
-            <Link className="archiveLink" href={`/resources/${resource.slug}`}>
-              Choose Detail
-              <ArrowRight aria-hidden="true" />
-            </Link>
-          </article>
-        ))}
+        <div className="resourceCardGrid">
+          {resources.map((resource, index) => (
+            <article className="resourceCard" key={resource.slug}>
+              <Link
+                className="resourceCardImageLink"
+                href={`/resources/${resource.slug}`}
+                aria-label={`Open ${resource.title}`}
+              >
+                <div className="resourceCardImage">
+                  <Image
+                    src={resource.image}
+                    alt={resource.imageAlt}
+                    fill
+                    sizes="(max-width: 680px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                  />
+                </div>
+              </Link>
+
+              <div className="resourceCardBody">
+                <div className="resourceCardTopline">
+                  <span className="resourceCardNumber">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>
+                    {resource.category} · {resource.readingTime} min · {resource.intensity} intensity
+                  </span>
+                </div>
+
+                <h2>
+                  <Link href={`/resources/${resource.slug}`}>
+                    {resource.title}
+                  </Link>
+                </h2>
+
+                <p>{resource.deck}</p>
+
+                <Link className="resourceCardAction" href={`/resources/${resource.slug}`}>
+                  Choose Detail
+                  <ArrowRight size={19} aria-hidden="true" />
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
     </>
   );
