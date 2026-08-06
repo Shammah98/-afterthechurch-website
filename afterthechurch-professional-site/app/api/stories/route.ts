@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { getUserFromRequest } from "@/lib/auth-server";
 import { storyCategories, contentWarningOptions } from "@/lib/content";
+import { sendStorySubmissionNotification } from "@/lib/email-notifications";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { cleanStringArray, cleanText, readingMinutes } from "@/lib/sanitize";
 import { createAdminClient } from "@/lib/supabase-admin";
@@ -63,6 +64,23 @@ export async function POST(request: NextRequest) {
       country_region: countryRegion || null, consent_confirmed: true, rights_confirmed: true, status: "pending"
     });
     if (error) throw error;
+
+    try {
+      await sendStorySubmissionNotification({
+        title,
+        displayName,
+        churchName,
+        privacyLevel: input.privacyLevel,
+        mediaType: input.mediaType,
+        categories,
+        contentIntensity: input.contentIntensity
+      });
+    } catch (notificationError) {
+      // Never make a successful survivor submission fail because the external
+      // email provider is unavailable or has not yet been configured.
+      console.error("Story notification failed:", notificationError);
+    }
+
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch (error) {
     console.error("Story submission failed:", error);
