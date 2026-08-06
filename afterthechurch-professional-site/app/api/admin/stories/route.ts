@@ -8,6 +8,24 @@ const fullSelect =
 const legacySelect =
   "id,title,display_name,church_name,privacy_level,media_type,media_path,story_text,short_summary,categories,content_warnings,content_intensity,created_at,author_change_request";
 
+type ModerationStoryRow = {
+  id: string;
+  title: string;
+  display_name: string;
+  church_name: string;
+  privacy_level: string;
+  media_type: string;
+  media_path: string | null;
+  image_path?: string | null;
+  story_text: string | null;
+  short_summary: string;
+  categories: string[] | null;
+  content_warnings: string[] | null;
+  content_intensity: string;
+  created_at: string;
+  author_change_request: string | null;
+};
+
 export async function GET(request: NextRequest) {
   try {
     const user = await getUserFromRequest(request);
@@ -17,11 +35,14 @@ export async function GET(request: NextRequest) {
 
     const supabase = createAdminClient();
 
-    let { data, error } = await supabase
+    const fullResult = await supabase
       .from("stories")
       .select(fullSelect)
       .in("status", ["pending", "changes_requested"])
       .order("created_at", { ascending: true });
+
+    let data = fullResult.data as ModerationStoryRow[] | null;
+    let error = fullResult.error;
 
     // Existing Supabase projects may not yet have the newer image_path column.
     // Keep moderation working until setup.sql is run again to add it.
@@ -32,7 +53,7 @@ export async function GET(request: NextRequest) {
         .in("status", ["pending", "changes_requested"])
         .order("created_at", { ascending: true });
 
-      data = legacyResult.data;
+      data = legacyResult.data as ModerationStoryRow[] | null;
       error = legacyResult.error;
     }
 
@@ -50,11 +71,10 @@ export async function GET(request: NextRequest) {
           mediaUrl = signed?.signedUrl || null;
         }
 
-        const imagePath = "image_path" in story ? story.image_path : null;
-        if (imagePath) {
+        if (story.image_path) {
           const { data: signed } = await supabase.storage
             .from("story-media")
-            .createSignedUrl(imagePath, 30 * 60);
+            .createSignedUrl(story.image_path, 30 * 60);
           imageUrl = signed?.signedUrl || null;
         }
 
