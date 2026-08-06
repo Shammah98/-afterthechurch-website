@@ -16,6 +16,7 @@ This is a complete replacement Next.js project built from the supplied brief.
 - Private Supabase Storage uploads
 - Device-linked submission controls for privacy changes, correction requests, unpublishing and deletion
 - Restricted administrator sign-in and moderation dashboard at `/admin`
+- Email notification to the administrator when a new story enters moderation
 - Quick Exit button
 - Rate limiting and honeypot spam protection
 - Security headers, form states, focus states, reduced motion and responsive layout
@@ -69,16 +70,15 @@ depend on development limits.
 
 ## 4. Environment variables
 
-Copy `.env.example` and rename the copy `.env.local`.
-
-Fill in every value. Generate random secrets with:
+Generate random secrets with:
 
 ```bash
 openssl rand -hex 32
 ```
 
-Never put `SUPABASE_SERVICE_ROLE_KEY`, `RATE_LIMIT_SECRET` or `CRON_SECRET`
-inside GitHub, screenshots or any variable beginning with `NEXT_PUBLIC_`.
+Never put `SUPABASE_SERVICE_ROLE_KEY`, `RATE_LIMIT_SECRET`, `CRON_SECRET` or
+`RESEND_API_KEY` inside GitHub, screenshots or any variable beginning with
+`NEXT_PUBLIC_`.
 
 `ADMIN_EMAILS` is a comma-separated list of administrator accounts allowed to
 open `/admin`.
@@ -96,10 +96,29 @@ Add these Environment Variables:
 - `ADMIN_EMAILS`
 - `RATE_LIMIT_SECRET`
 - `CRON_SECRET`
+- `RESEND_API_KEY`
+- `STORY_NOTIFICATION_EMAIL` (for example `sha2mmah@gmail.com`)
+- `STORY_NOTIFICATION_FROM` (for example `AfterTheChurch Notifications <notifications@updates.afterthechurch.com>`)
 
 Apply them to Production, Preview and Development.
 
-## 6. Moderation
+## 6. Story-submission email notifications
+
+Create a Resend account, add a sending domain or subdomain and create an API
+key. A subdomain such as `updates.afterthechurch.com` keeps notification-email
+reputation separate from the main website.
+
+Set `RESEND_API_KEY` in Vercel. Set `STORY_NOTIFICATION_EMAIL` to the private
+administrator inbox. After the sending domain is verified, set
+`STORY_NOTIFICATION_FROM` to an address using that domain.
+
+Until a custom domain is verified, Resend's testing sender may be used where
+permitted by the Resend account. Email-provider failure never blocks or deletes
+a story submission. The notification contains moderation metadata and a link to
+`/admin`, but intentionally excludes the full story text to reduce privacy
+exposure.
+
+## 7. Moderation
 
 1. In Supabase Authentication, create or retain the administrator user.
 2. Put that exact email address in `ADMIN_EMAILS` in Vercel.
@@ -115,7 +134,7 @@ Rejected or author-withdrawn submissions receive a 30-day deletion date. The
 daily Vercel Cron route removes the media and database record when that date
 passes.
 
-## 7. Public contributor controls
+## 8. Public contributor controls
 
 No account or sign-in is required. At `/manage`, a contributor using the same
 browser can:
@@ -128,7 +147,7 @@ browser can:
 The private contributor session is stored on that device. Clearing the site’s
 browser data or moving to another device can remove access to those controls.
 
-## 8. Human decisions still required
+## 9. Human decisions still required
 
 Software cannot truthfully invent these organisational facts:
 
