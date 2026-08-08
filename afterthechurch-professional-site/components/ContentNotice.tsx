@@ -5,17 +5,40 @@ import { useEffect, useState } from "react";
 
 type Mode = "notice" | "summary" | "full";
 
+function ImmediateCrisisHelp() {
+  return (
+    <aside className="immediateCrisisHelp" aria-labelledby="immediate-crisis-help">
+      <p className="eyebrow">Need help right now?</p>
+      <h2 id="immediate-crisis-help">Move towards another person and call.</h2>
+      <p>
+        If you may act on suicidal thoughts, have a plan or cannot stay safe,
+        call emergency services now and do not remain alone.
+      </p>
+      <div className="immediateCrisisLinks">
+        <a href="tel:113">Norway emergency: 113</a>
+        <a href="tel:116117">Norway urgent medical help: 116 117</a>
+        <a href="tel:988">US &amp; territories: call or text 988</a>
+        <a href="https://findahelpline.com/" target="_blank" rel="noreferrer">
+          Other countries: find a helpline
+        </a>
+      </div>
+    </aside>
+  );
+}
+
 export default function ContentNotice({
   storageKey,
   warnings,
   summary,
   backHref,
+  showCrisisHelp = false,
   children
 }: {
   storageKey: string;
   warnings: string[];
   summary: string;
   backHref: string;
+  showCrisisHelp?: boolean;
   children: React.ReactNode;
 }) {
   const [mode, setMode] = useState<Mode>("notice");
@@ -40,6 +63,7 @@ export default function ContentNotice({
         <p className="eyebrow">Short summary</p>
         <h1>Read only the overview</h1>
         <p className="lead">{summary}</p>
+        {showCrisisHelp && <ImmediateCrisisHelp />}
         <div className="buttonRow">
           <button className="button primary" type="button" onClick={() => choose("full")}>
             Continue to Full Content
@@ -60,6 +84,7 @@ export default function ContentNotice({
         This content discusses {warnings.length ? warnings.join(", ").toLowerCase() : "potentially distressing experiences"}.
         You can open the full content, read a shorter summary, or return without continuing.
       </p>
+      {showCrisisHelp && <ImmediateCrisisHelp />}
       <div className="buttonRow">
         <button className="button primary" type="button" onClick={() => choose("full")}>
           Continue to Full Content
