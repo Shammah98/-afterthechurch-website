@@ -91,7 +91,18 @@ export default function ProgressiveResource({
                 <article key={item.label}>
                   <h2>{item.label}</h2>
                   <p>{item.note}</p>
-                  <span>Resource in development</span>
+                  {item.href ? (
+                    <a
+                      className="sourceLink"
+                      href={item.href}
+                      target={item.href.startsWith("/") ? undefined : "_blank"}
+                      rel={item.href.startsWith("/") ? undefined : "noreferrer"}
+                    >
+                      Open source
+                    </a>
+                  ) : (
+                    <span>Source details listed above</span>
+                  )}
                 </article>
               ))}
             </div>
