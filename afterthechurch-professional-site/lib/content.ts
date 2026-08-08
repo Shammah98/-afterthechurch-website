@@ -1063,7 +1063,106 @@ export const resources: ResourceArticle[] = [
         note: "Most intervention evidence comes from intimate partner violence and specific high-cost religious communities. It should inform careful judgement, not be treated as proof that every religious setting or every person follows the same pattern."
       }
     ]
-  }
+  },
+{
+  "slug": "a-letter-to-you-dealing-with-suicidal-thoughts",
+  "title": "A letter to you who is dealing with suicidal thoughts",
+  "deck": "A personal letter of care, followed by practical steps and verified contacts for getting through the next few minutes safely.",
+  "category": "Immediate support",
+  "readingTime": 6,
+  "intensity": "high",
+  "warnings": [
+    "Suicide or self-harm"
+  ],
+  "image": "/images/reasons-to-stay.jpg",
+  "imageAlt": "An orange sunset over the sea with small boats and the words Reasons to stay",
+  "overview": "If you might act on suicidal thoughts now, have a plan or access to a way of harming yourself, or cannot keep yourself safe, move away from anything you could use, go where another person is present and call urgent support now. In Norway, call 113 for acute suicide risk or 116 117 for urgent out-of-hours medical help. In the United States and its territories, call or text 988. Elsewhere, use your local emergency number or FindAHelpline. The letter below offers companionship; it is not a substitute for crisis care.",
+  "keyPoints": [
+    "You do not have to solve your whole life today. The immediate task is to make the next few minutes safer.",
+    "If you may act now, call emergency services and move towards another person. Do not remain alone while waiting for help.",
+    "Put distance between you and anything you could use to hurt yourself; ask another person to hold or secure it.",
+    "Tell someone plainly what is happening. A short message is enough: “I am not safe alone right now. Please stay with me and help me get urgent support.”",
+    "In Norway, 113 is for acute suicide risk and 116 117 is the out-of-hours medical service for urgent situations that are not immediately life-threatening.",
+    "In the United States and its territories, the 988 Suicide & Crisis Lifeline is available by call or text.",
+    "Strong suicidal urges can change in intensity. Delay action, reduce access to means and let another person help carry the next decision.",
+    "This letter is peer encouragement, not medical treatment. Professional and emergency support matter."
+  ],
+  "fullSections": [
+    {
+      "heading": "Before you read the letter",
+      "paragraphs": [
+        "If you think you may act on suicidal thoughts now, have made a plan, have access to a method, have already hurt yourself or cannot promise your immediate safety, treat this as an emergency. Move away from anything you could use to harm yourself, go to a shared or public place if you can do so safely, and call emergency services. Do not stay alone while help is on the way.",
+        "You do not need to explain everything perfectly. You can say: “I am having suicidal thoughts and I am afraid I may act on them. I need help staying safe right now.” If speaking is difficult, show someone that sentence or send it as a message."
+      ]
+    },
+    {
+      "heading": "A letter from one human to another",
+      "paragraphs": [
+        "Hey friend,",
+        "I want to send you love at a time when you need to know that someone out there is thinking of you. You are not alone, and you are needed in this world. Take a deep breath. Stay with us for this moment.",
+        "You are the only you in the world. That is rare, amazing and worth protecting. Right now may feel too hard. Give this moment a little space. It may look like a mountain, but you do not have to climb the whole mountain today. Take only the next safe step.",
+        "One thought that helped me was this: none of us knows what is waiting on the other side of this moment. Stay long enough to find out. Take the next step up the mountain and let someone help carry the weight.",
+        "Please do not let the darkness make the decision for you today. There can be days when you genuinely laugh again. A wave of happiness may reach you in a way you cannot picture right now, and you may look back on today and recognise the strength it took to stay.",
+        "You may one day become a light for someone else—not because suffering was necessary, but because you learned how precious it is to be met with care in the dark. For now, focus only on making the next hour safer. Be gentle with yourself. You are worthy of help, rest, safety and every joyful thing this life can still hold.",
+        "With heartfelt love and strength, from one human to another."
+      ]
+    },
+    {
+      "heading": "For the next ten minutes",
+      "paragraphs": [
+        "Choose one action that reduces danger rather than trying to create a perfect plan. Hand medication, weapons, car keys or other means to someone trustworthy; move to a staffed or shared place; unlock the door for a responder; or call a person and ask them to come to you.",
+        "Then narrow time. Drink some water, place both feet on the floor and name five things you can see. Breathe out a little longer than you breathe in. These steps do not solve the cause of the pain; they create time for the intensity to shift and for help to reach you.",
+        "Avoid alcohol or drugs while the risk is high because they can reduce judgement and increase impulsivity. Ask another person to remain with you and make the next call together."
+      ]
+    },
+    {
+      "heading": "Get support beyond this page",
+      "paragraphs": [
+        "In Norway, Helsenorge advises calling 113 in acute suicide risk. If the situation is urgent but not immediately life-threatening, call the out-of-hours medical service on 116 117. You can also contact your GP when it is safe to wait for regular care.",
+        "In the United States and its territories, call or text 988 for the Suicide & Crisis Lifeline. In other countries, call your local emergency number or use FindAHelpline to identify a verified service where you are.",
+        "A website cannot assess your condition, monitor your safety or replace a qualified clinician. Use the contacts on this page and the AfterTheChurch safety page to reach a person who can respond in real time."
+      ]
+    }
+  ],
+  "practicalOptions": [
+    "Move out of isolation: sit beside a trusted person, go to a staffed reception area or ask someone to come to you.",
+    "Create distance from anything you could use to hurt yourself. Give it to someone else, leave the area or ask emergency services to help secure it.",
+    "Send this exact message if words are hard: “I am not safe alone right now. Please stay with me and help me get urgent support.”",
+    "Call 113 in Norway for acute suicide risk, 116 117 for urgent out-of-hours medical help, or your local emergency number.",
+    "In the United States and its territories, call or text 988 to reach a crisis counsellor.",
+    "Delay irreversible decisions. Commit only to the next ten minutes, then repeat while another person helps you.",
+    "Avoid alcohol and non-prescribed drugs while the risk is high.",
+    "Write down one safe person, one safe place and one number to call; keep the list where you can reach it quickly.",
+    "Open the AfterTheChurch safety page for additional crisis, healthcare and survivor-support contacts."
+  ],
+  "furtherReading": [
+    {
+      "label": "Helsenorge: Advice if you have suicidal thoughts",
+      "note": "Official Norwegian health guidance on acute suicide risk, talking to someone and obtaining professional help.",
+      "href": "https://www.helsenorge.no/en/psykisk-helse/suicidal-thoughts-and-suicide/how-to-help-yourself/"
+    },
+    {
+      "label": "Helsenorge: Help if you are struggling with mental health",
+      "note": "Official information on 113, the 116 117 out-of-hours medical service and routes into mental healthcare in Norway.",
+      "href": "https://www.helsenorge.no/en/psykisk-helse/help-if-you-are-struggling-with-mental-health/"
+    },
+    {
+      "label": "988 Suicide & Crisis Lifeline",
+      "note": "Free, confidential crisis support by call, text or chat in the United States and its territories, available 24 hours a day.",
+      "href": "https://988lifeline.org/"
+    },
+    {
+      "label": "FindAHelpline",
+      "note": "A directory for finding crisis and emotional-support services by country. In immediate danger, use the emergency number where you are.",
+      "href": "https://findahelpline.com/"
+    },
+    {
+      "label": "AfterTheChurch safety contacts",
+      "note": "The site’s practical directory of emergency, medical, abuse and survivor-support options.",
+      "href": "/safety"
+    }
+  ]
+}
 ];
 
 export function getResource(slug: string) {
