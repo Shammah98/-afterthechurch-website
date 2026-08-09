@@ -20,7 +20,7 @@ export async function PATCH(
 
     const { data: story, error: fetchError } = await supabase
       .from("stories")
-      .select("id,media_path,image_path")
+      .select("id,media_path,image_path,status")
       .eq("id", id)
       .maybeSingle();
 
@@ -79,6 +79,42 @@ export async function PATCH(
         .eq("id", id);
 
       if (error) throw error;
+      return NextResponse.json({ ok: true });
+    }
+
+    if (body.decision === "unpublish") {
+      if (story.status !== "approved") {
+        return NextResponse.json({ error: "Only a published story can be unpublished." }, { status: 400 });
+      }
+
+      const { error } = await supabase
+        .from("stories")
+        .update({
+          status: "withdrawn",
+          reviewed_at: new Date().toISOString(),
+          retention_expires_at: null
+        })
+        .eq("id", id);
+
+      if (error) throw error;
+      return NextResponse.json({ ok: true });
+    }
+
+    if (body.decision === "delete") {
+      const paths = [story.media_path, story.image_path].filter(
+        (path): path is string => Boolean(path)
+      );
+
+      if (paths.length) {
+        const { error: storageError } = await supabase.storage
+          .from("story-media")
+          .remove(paths);
+        if (storageError) throw storageError;
+      }
+
+      const { error } = await supabase.from("stories").delete().eq("id", id);
+      if (error) throw error;
+
       return NextResponse.json({ ok: true });
     }
 
