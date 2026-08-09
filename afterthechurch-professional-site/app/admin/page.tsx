@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AdminCommentModeration from "@/components/AdminCommentModeration";
 import AdminDashboard from "@/components/AdminDashboard";
+import AdminPublishedStories from "@/components/AdminPublishedStories";
 
 export const metadata: Metadata = {
   title: "Story and Comment Moderation",
@@ -19,6 +20,7 @@ export default function AdminPage() {
         </p>
       </div>
       <AdminDashboard />
+      <AdminPublishedStories />
       <AdminCommentModeration />
     </section>
   );
