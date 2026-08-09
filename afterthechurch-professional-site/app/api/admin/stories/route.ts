@@ -26,6 +26,15 @@ type ModerationStoryRow = {
   author_change_request: string | null;
 };
 
+type ManagedStoryRow = {
+  id: string;
+  title: string;
+  display_name: string;
+  church_name: string;
+  created_at: string;
+  status: string;
+};
+
 export async function GET(request: NextRequest) {
   try {
     const user = await getUserFromRequest(request);
@@ -98,7 +107,28 @@ export async function GET(request: NextRequest) {
       })
     );
 
-    return NextResponse.json({ stories });
+    const { data: managedData, error: managedError } = await supabase
+      .from("stories")
+      .select("id,title,display_name,church_name,created_at,status")
+      .in("status", ["approved", "withdrawn"])
+      .order("created_at", { ascending: false });
+
+    if (managedError) throw managedError;
+
+    const managedStories = (managedData || []) as ManagedStoryRow[];
+    const mapManaged = (story: ManagedStoryRow) => ({
+      id: story.id,
+      title: story.title,
+      displayName: story.display_name,
+      churchName: story.church_name,
+      createdAt: story.created_at
+    });
+
+    return NextResponse.json({
+      stories,
+      publishedStories: managedStories.filter((story) => story.status === "approved").map(mapManaged),
+      hiddenStories: managedStories.filter((story) => story.status === "withdrawn").map(mapManaged)
+    });
   } catch (error) {
     console.error("Admin queue failed:", error);
     return NextResponse.json(
