@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import QuickExit from "@/components/QuickExit";
+import { siteStarfieldDataUri } from "@/lib/site-starfield";
 import "./globals.css";
 import "./cosmic-theme.css";
 
@@ -41,11 +42,27 @@ export const metadata: Metadata = {
   }
 };
 
+const starfieldCss = `
+body::before {
+  background-color: #000 !important;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.38)),
+    url("${siteStarfieldDataUri}") !important;
+  background-size: cover, cover !important;
+  background-position: center, center !important;
+  background-repeat: no-repeat, no-repeat !important;
+  filter: contrast(1.05) brightness(0.96) !important;
+}
+`;
+
 export default function RootLayout({
   children
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: starfieldCss }} />
+      </head>
       <body>
         <a className="skipLink" href="#main-content">Skip to main content</a>
         <Header />
