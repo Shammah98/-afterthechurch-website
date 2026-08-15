@@ -33,35 +33,39 @@ export default async function ResourcePage({
 
   const content = (
     <>
-     <section
-  className={`articleHero articleHero--${resource.slug}`}
->
+      <section className={`articleHero articleHero--${resource.slug}`}>
         <div>
           <p className="eyebrow">{resource.category}</p>
           <h1>{resource.title}</h1>
           <p className="lead">{resource.deck}</p>
           <div className="articleMeta">
+            <span>By Ian Shammah</span>
             <span>{resource.readingTime} minute full read</span>
             <span>{resource.intensity} intensity</span>
+            <span>Evidence reviewed · August 2026</span>
           </div>
         </div>
         <Image
-  src={resource.image}
-  alt={resource.imageAlt}
-  width={940}
-  height={704}
-  className={`articleHeroImage articleHeroImage--${resource.slug}`}
-  priority
-/>
+          src={resource.image}
+          alt={resource.imageAlt}
+          width={940}
+          height={704}
+          className={`articleHeroImage articleHeroImage--${resource.slug}`}
+          priority
+        />
       </section>
 
       <section className="articleBody">
         <ProgressiveResource resource={resource} />
         <aside className="editorialNote">
-          <strong>Editorial approach</strong>
+          <strong>Editorial evidence review</strong>
           <p>
-            This material offers options to consider. It is not a diagnosis,
-            legal opinion, religious judgement or required recovery plan.
+            Reviewed for source accuracy, plain language and trauma-informed framing.
+            This is an editorial evidence review, not independent academic peer review.
+          </p>
+          <p>
+            This material is educational. It is not legal, medical or clinical advice,
+            a diagnosis, or a judgement about any particular religious organisation.
           </p>
         </aside>
       </section>
