@@ -58,6 +58,43 @@ export default function ProgressiveResource({
         {section === "full" && (
           <>
             <p className="eyebrow">Full article</p>
+
+            {resource.illustration && (
+              <figure
+                style={{
+                  margin: "0 0 42px",
+                  paddingBottom: "18px",
+                  borderBottom: "1px solid var(--line)"
+                }}
+              >
+                <img
+                  src={resource.illustration.src}
+                  alt={resource.illustration.alt}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "12px"
+                  }}
+                />
+                <figcaption
+                  style={{
+                    marginTop: "14px",
+                    color: "var(--muted)",
+                    fontSize: ".9rem",
+                    lineHeight: 1.55
+                  }}
+                >
+                  {resource.illustration.caption}
+                  {resource.illustration.credit && (
+                    <small style={{ display: "block", marginTop: "8px" }}>
+                      {resource.illustration.credit}
+                    </small>
+                  )}
+                </figcaption>
+              </figure>
+            )}
+
             {resource.fullSections.map((item) => (
               <section key={item.heading} className="articleSection">
                 <h2>{item.heading}</h2>
@@ -91,7 +128,18 @@ export default function ProgressiveResource({
                 <article key={item.label}>
                   <h2>{item.label}</h2>
                   <p>{item.note}</p>
-                  <span>Resource in development</span>
+                  {item.url ? (
+                    <a
+                      className="textLink"
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Open source
+                    </a>
+                  ) : (
+                    <span>Reference listed for verification</span>
+                  )}
                 </article>
               ))}
             </div>
