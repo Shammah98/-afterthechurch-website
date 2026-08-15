@@ -4,6 +4,10 @@ import { notFound } from "next/navigation";
 import ContentNotice from "@/components/ContentNotice";
 import ProgressiveResource from "@/components/ProgressiveResource";
 import { getResource, resources } from "@/lib/content";
+import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
+
+const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
+const reportingTitle = "How to prepare to report harm in a church in the UK";
 
 export function generateStaticParams() {
   return resources.map((resource) => ({ slug: resource.slug }));
@@ -17,7 +21,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const resource = getResource(slug);
   return {
-    title: resource?.title || "Resource",
+    title: slug === reportingSlug ? reportingTitle : resource?.title || "Resource",
     description: resource?.deck
   };
 }
@@ -31,12 +35,15 @@ export default async function ResourcePage({
   const resource = getResource(slug);
   if (!resource) notFound();
 
+  const isReportingGuide = resource.slug === reportingSlug;
+  const displayTitle = isReportingGuide ? reportingTitle : resource.title;
+
   const content = (
     <>
       <section className={`articleHero articleHero--${resource.slug}`}>
         <div>
           <p className="eyebrow">{resource.category}</p>
-          <h1>{resource.title}</h1>
+          <h1>{displayTitle}</h1>
           <p className="lead">{resource.deck}</p>
           <div className="articleMeta">
             <span>By Ian Shammah</span>
@@ -45,14 +52,24 @@ export default async function ResourcePage({
             <span>Evidence reviewed · August 2026</span>
           </div>
         </div>
-        <Image
-          src={resource.image}
-          alt={resource.imageAlt}
-          width={940}
-          height={704}
-          className={`articleHeroImage articleHeroImage--${resource.slug}`}
-          priority
-        />
+
+        {isReportingGuide ? (
+          <img
+            src={reportingGraphicDataUri}
+            alt="Illustrated harm-reduction graphic about reporting, support, consequences and community safety."
+            className={`articleHeroImage articleHeroImage--${resource.slug}`}
+            style={{ width: "100%", height: "auto", objectFit: "cover" }}
+          />
+        ) : (
+          <Image
+            src={resource.image}
+            alt={resource.imageAlt}
+            width={940}
+            height={704}
+            className={`articleHeroImage articleHeroImage--${resource.slug}`}
+            priority
+          />
+        )}
       </section>
 
       <section className="articleBody">
