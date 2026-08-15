@@ -1,0 +1,388 @@
+:root {
+  --cream: rgba(8, 14, 25, 0.82);
+  --cream-light: rgba(5, 10, 19, 0.78);
+  --paper: rgba(11, 17, 29, 0.88);
+  --muted: #c5cedc;
+  --wine: #dc7c9c;
+  --rose: #f0afc4;
+  --rose-soft: rgba(220, 124, 156, 0.16);
+  --sage: #9fb8c8;
+  --sage-soft: rgba(126, 164, 187, 0.16);
+  --line: rgba(255, 255, 255, 0.14);
+  --warning: #efb86e;
+  --danger: #ff929e;
+  --focus: #72d7ff;
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+}
+
+html {
+  background: #010205;
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+  background: transparent !important;
+  color: #f6f7fb;
+  isolation: isolate;
+  overflow-x: hidden;
+}
+
+/*
+  A panoramic star field inspired by the supplied reference image. It is CSS
+  generated rather than remotely hosted, so it remains reliable across
+  deployments and does not depend on a third-party image server.
+*/
+body::before {
+  content: "";
+  position: fixed;
+  inset: -34%;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #010205;
+  background-image:
+    radial-gradient(circle at 10% 16%, rgba(255,255,255,.98) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 28% 7%, rgba(166,219,255,.96) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 43% 22%, rgba(255,255,255,.92) 0 1.7px, transparent 2.5px),
+    radial-gradient(circle at 71% 10%, rgba(170,225,255,.95) 0 1.3px, transparent 2px),
+    radial-gradient(circle at 84% 26%, rgba(255,255,255,.94) 0 1.8px, transparent 2.6px),
+    radial-gradient(circle at 18% 44%, rgba(255,245,225,.98) 0 1.3px, transparent 2px),
+    radial-gradient(circle at 57% 38%, rgba(255,255,255,.94) 0 1.5px, transparent 2.2px),
+    radial-gradient(circle at 76% 55%, rgba(255,178,108,.96) 0 2.6px, rgba(255,210,156,.65) 3.8px, transparent 7px),
+    radial-gradient(circle at 92% 47%, rgba(149,215,255,.95) 0 1.5px, transparent 2.3px),
+    radial-gradient(circle at 34% 66%, rgba(255,255,255,.92) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 62% 73%, rgba(174,226,255,.96) 0 1.5px, transparent 2.3px),
+    radial-gradient(circle at 14% 82%, rgba(255,255,255,.9) 0 1.6px, transparent 2.4px),
+    radial-gradient(circle at 47% 90%, rgba(255,244,229,.96) 0 1.5px, transparent 2.4px),
+    radial-gradient(circle at 86% 86%, rgba(163,219,255,.94) 0 1.4px, transparent 2.2px),
+    radial-gradient(circle, rgba(255,255,255,.82) 0 0.7px, transparent 1.2px),
+    radial-gradient(circle, rgba(208,228,255,.62) 0 0.75px, transparent 1.3px),
+    radial-gradient(circle, rgba(255,255,255,.48) 0 0.6px, transparent 1.1px);
+  background-size:
+    100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    100% 100%, 100% 100%, 100% 100%, 100% 100%,
+    21px 21px, 37px 37px, 67px 67px;
+  background-position:
+    center, center, center, center, center, center, center, center, center, center,
+    center, center, center, center,
+    0 0, 11px 17px, 29px 31px;
+  transform: translate3d(-4%, -1%, 0) scale(1.08);
+  transform-origin: center;
+  filter: contrast(1.1) brightness(.9);
+  animation: cosmicPan 88s ease-in-out infinite alternate;
+  will-change: transform, background-position;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(67, 141, 205, 0.10), transparent 28%),
+    radial-gradient(circle at 80% 28%, rgba(185, 104, 139, 0.08), transparent 25%),
+    radial-gradient(circle at 52% 78%, rgba(110, 160, 202, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.42));
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes cosmicPan {
+  0% {
+    transform: translate3d(-6%, -2%, 0) scale(1.08) rotate(-0.4deg);
+    background-position:
+      center, center, center, center, center, center, center, center, center, center,
+      center, center, center, center,
+      0 0, 11px 17px, 29px 31px;
+  }
+  50% {
+    transform: translate3d(0%, 2%, 0) scale(1.13) rotate(0.25deg);
+  }
+  100% {
+    transform: translate3d(6%, -1%, 0) scale(1.1) rotate(0.55deg);
+    background-position:
+      center, center, center, center, center, center, center, center, center, center,
+      center, center, center, center,
+      120px 80px, -70px 120px, 95px -55px;
+  }
+}
+
+/* Transparent, readable surfaces let the star field remain visible. */
+.siteHeader {
+  background: rgba(5, 9, 17, 0.86) !important;
+  border-bottom-color: rgba(255,255,255,.12) !important;
+  box-shadow: 0 10px 34px rgba(0,0,0,.24);
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+}
+
+.editorialSection,
+.needsSection,
+.resourcesPreview,
+.reviewProcess,
+.submissionPreparation,
+.storiesPage,
+.accountPage,
+.adminPage,
+.formSection,
+.storyOrientation,
+.storyDetail,
+.prosePage,
+.narrowPage,
+.errorPage,
+.aboutContent {
+  background: rgba(3, 7, 14, 0.46) !important;
+}
+
+.pageHero,
+.splitHero,
+.articleHero,
+.resourceCard,
+.storyCard,
+.filterPanel,
+.editorialNote,
+.storyFallback,
+.authPanel,
+.quoteCarousel,
+fieldset,
+.accountStoryList > article,
+.adminDashboard > article,
+.reviewDetailGrid article,
+.safetyActionGrid article,
+.needRow,
+.needsSection .sectionIntro,
+.contentGate,
+.contentSummary {
+  background: rgba(10, 16, 29, 0.76) !important;
+  border-color: rgba(255,255,255,.13) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,.30);
+  backdrop-filter: blur(14px) saturate(1.08);
+  -webkit-backdrop-filter: blur(14px) saturate(1.08);
+}
+
+.resourceEditorialGrid article,
+.publicPreview,
+.choice,
+.privacyChoice {
+  background: rgba(12, 19, 32, 0.70) !important;
+  border-color: rgba(255,255,255,.13) !important;
+}
+
+.choice.active,
+.privacyChoice.active {
+  background: rgba(220, 124, 156, 0.17) !important;
+  border-color: rgba(240, 175, 196, 0.66) !important;
+  box-shadow: inset 0 0 0 1px rgba(240, 175, 196, 0.24) !important;
+}
+
+/* Text and controls */
+body,
+p,
+li,
+label,
+legend,
+summary,
+.brandWords strong,
+.footerIdentity strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+blockquote,
+nav a,
+.textButton,
+.button.quiet,
+.detailChooser button,
+.authTabs button,
+.linkButton,
+.filterHeading button {
+  color: #f5f7fb;
+}
+
+.lead,
+.largeCopy,
+.fieldHelp,
+label small,
+.resultsCount,
+.storyIdentity,
+.footerIdentity p,
+.footerFinePrint,
+.resourceCardBody > p,
+.safetyActionGrid p,
+.accountStatusHelp,
+.smallPrint,
+.resourceIntro,
+.needRow small,
+.needHighlights li,
+.articleMeta,
+.storyDetailMeta,
+.storyCardTopline,
+.adminMeta {
+  color: #c5cedc !important;
+}
+
+.brandWords small {
+  color: #b8c2d0 !important;
+}
+
+.eyebrow,
+.textLink,
+.needAction,
+.storyLink,
+.resourceCardAction {
+  color: #f0afc4 !important;
+}
+
+nav a:hover,
+.textButton:hover,
+.textLink:hover,
+.storyLink:hover {
+  color: #ffffff !important;
+}
+
+input,
+select,
+textarea {
+  background: rgba(2, 6, 13, 0.74) !important;
+  color: #f6f7fb !important;
+  border-color: rgba(255,255,255,.18) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9fa9b9;
+}
+
+select option {
+  background: #0b111e;
+  color: #f6f7fb;
+}
+
+.articleMeta span,
+.storyDetailMeta span,
+.storyCardTopline span,
+.adminMeta span,
+.resourceCardTopline span,
+.tagList span,
+.statusBadge,
+.needHighlights li {
+  background: rgba(255,255,255,.075) !important;
+  color: #dbe1eb !important;
+  border-color: rgba(255,255,255,.10) !important;
+}
+
+.intensity.gentle,
+.intensity.moderate,
+.intensity.high {
+  color: #f6f7fb !important;
+  border: 1px solid rgba(255,255,255,.11);
+}
+.intensity.gentle { background: rgba(126, 164, 187, 0.20) !important; }
+.intensity.moderate { background: rgba(239, 184, 110, 0.17) !important; }
+.intensity.high { background: rgba(220, 124, 156, 0.19) !important; }
+
+.detailChooser button,
+.authTabs button {
+  background: rgba(4, 9, 17, 0.62) !important;
+  border-color: rgba(255,255,255,.18) !important;
+}
+
+.detailChooser button.active,
+.authTabs button.active {
+  background: #8e3d5b !important;
+  color: white !important;
+  border-color: #d982a1 !important;
+}
+
+.button.secondary,
+.signInButton {
+  border-color: #e89bb7 !important;
+  color: #f2bad0 !important;
+}
+
+.button.secondary:hover,
+.signInButton:hover {
+  background: rgba(220,124,156,.19) !important;
+  color: #ffffff !important;
+}
+
+.button.primary {
+  background: #8e3d5b !important;
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,.08) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.28);
+}
+.button.primary:hover { background: #aa4c6e !important; }
+
+.dangerButton {
+  color: #ffb1ba !important;
+  border-color: rgba(255,145,158,.72) !important;
+}
+
+/* Keep photos vivid without making them look artificial against the darker UI. */
+.resourceCardImage img,
+.articleHeroImage,
+.storyCardImage,
+.storyImage,
+.groundingImage img,
+.submissionImage img,
+.storiesHomeImage img {
+  filter: saturate(1.03) contrast(1.05) brightness(.96);
+}
+
+.siteFooter {
+  background: rgba(3, 6, 13, 0.90) !important;
+  border-top: 1px solid rgba(255,255,255,.10);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.footerLinks a { color: #f3f5fa !important; }
+.footerLinks h2,
+.footerIdentity p,
+.footerFinePrint { color: #b9c3d1 !important; }
+
+/* Mobile menu remains legible over the moving background. */
+@media (max-width: 1100px) {
+  .navShell {
+    background: rgba(4, 8, 16, 0.96) !important;
+    border-bottom-color: rgba(255,255,255,.12) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+@media (max-width: 680px) {
+  body::before {
+    inset: -48%;
+    animation-duration: 110s;
+  }
+
+  .pageHero,
+  .splitHero,
+  .articleHero,
+  .resourceCard,
+  .storyCard,
+  .filterPanel,
+  .editorialNote,
+  .authPanel,
+  .storyFallback {
+    background: rgba(8, 14, 25, 0.84) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+    transform: scale(1.08);
+  }
+}
