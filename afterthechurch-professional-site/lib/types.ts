@@ -54,5 +54,11 @@ export interface ResourceArticle {
   keyPoints: string[];
   fullSections: { heading: string; paragraphs: string[] }[];
   practicalOptions: string[];
-  furtherReading: { label: string; note: string }[];
+  furtherReading: { label: string; note: string; url?: string }[];
+  illustration?: {
+    src: string;
+    alt: string;
+    caption: string;
+    credit?: string;
+  };
 }
