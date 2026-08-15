@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import QuickExit from "@/components/QuickExit";
 import "./globals.css";
+import "./cosmic-theme.css";
 
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
