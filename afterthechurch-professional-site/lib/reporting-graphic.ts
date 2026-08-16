@@ -1,1 +1,1 @@
-export const reportingGraphicDataUri = "https://images.squarespace-cdn.com/content/v1/5f925ec584857f3307673b83/80bc7009-c202-463c-9d57-6c733c6ddec6/Screenshot%2B2022-10-13%2Bat%2B14-57-25%2B%281%29%2BInstagram%2B%E2%80%A2%2BChats.jpg";
+export const reportingGraphicDataUri = "/api/reporting-image";
