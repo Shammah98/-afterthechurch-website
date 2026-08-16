@@ -1,0 +1,114 @@
+/*
+  Keep the approved starfield visible throughout the site.
+  Large page sections stay transparent; only individual content surfaces use
+  a translucent dark backing for readable contrast.
+*/
+
+body::before {
+  inset: -8% !important;
+  background-size: cover, cover !important;
+  background-position: center, center !important;
+  filter: contrast(1.08) brightness(1.06) saturate(1.05) !important;
+}
+
+body::after {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(70, 135, 205, 0.035), transparent 26%),
+    radial-gradient(circle at 80% 30%, rgba(180, 100, 145, 0.03), transparent 24%),
+    linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.10)) !important;
+}
+
+main,
+main > section,
+.editorialSection,
+.needsSection,
+.resourcesPreview,
+.resourceArchive,
+.reviewProcess,
+.submissionPreparation,
+.storiesPage,
+.accountPage,
+.adminPage,
+.formSection,
+.storyOrientation,
+.storyDetail,
+.articleBody,
+.prosePage,
+.narrowPage,
+.errorPage,
+.aboutContent,
+.groundingSection {
+  background: transparent !important;
+}
+
+/* Content remains readable while allowing the stars to show through. */
+.pageHero,
+.splitHero,
+.articleHero,
+.resourceCard,
+.storyCard,
+.filterPanel,
+.editorialNote,
+.storyFallback,
+.authPanel,
+.quoteCarousel,
+fieldset,
+.accountStoryList > article,
+.adminDashboard > article,
+.reviewDetailGrid article,
+.safetyActionGrid article,
+.needRow,
+.needsSection .sectionIntro,
+.contentGate,
+.contentSummary,
+.resourceEditorialGrid article,
+.publicPreview,
+.choice,
+.privacyChoice {
+  background: rgba(7, 12, 22, 0.53) !important;
+  border-color: rgba(255,255,255,.15) !important;
+  box-shadow: 0 18px 52px rgba(0,0,0,.22) !important;
+  backdrop-filter: blur(8px) saturate(1.05) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(1.05) !important;
+}
+
+.siteHeader {
+  background: rgba(4, 8, 15, 0.72) !important;
+}
+
+.siteFooter {
+  background: rgba(3, 6, 13, 0.70) !important;
+}
+
+@media (max-width: 680px) {
+  body::before {
+    inset: -5% !important;
+    background-size: auto 110%, auto 110% !important;
+    background-position: center center, center center !important;
+    animation-duration: 135s !important;
+  }
+
+  .pageHero,
+  .splitHero,
+  .articleHero,
+  .resourceCard,
+  .storyCard,
+  .filterPanel,
+  .editorialNote,
+  .authPanel,
+  .storyFallback,
+  .needRow,
+  .needsSection .sectionIntro,
+  .resourceEditorialGrid article,
+  .publicPreview {
+    background: rgba(7, 12, 22, 0.56) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    inset: 0 !important;
+    transform: none !important;
+    background-position: center !important;
+  }
+}
