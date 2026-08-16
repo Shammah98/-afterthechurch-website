@@ -1,1 +1,1 @@
-export const siteStarfieldDataUri = "/images/generated-starfield.webp";
+export const siteStarfieldDataUri = "/images/exact-star-background.webp";
