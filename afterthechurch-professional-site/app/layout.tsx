@@ -6,6 +6,7 @@ import QuickExit from "@/components/QuickExit";
 import { siteStarfieldDataUri } from "@/lib/site-starfield";
 import "./globals.css";
 import "./cosmic-theme.css";
+import "./cosmic-visibility.css";
 
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
@@ -46,12 +47,11 @@ const starfieldCss = `
 body::before {
   background-color: #000 !important;
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.20), rgba(0, 0, 0, 0.38)),
+    linear-gradient(rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.14)),
     url("${siteStarfieldDataUri}") !important;
   background-size: cover, cover !important;
   background-position: center, center !important;
   background-repeat: no-repeat, no-repeat !important;
-  filter: contrast(1.05) brightness(0.96) !important;
 }
 `;
 
