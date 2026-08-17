@@ -7,6 +7,8 @@ import type { ContentIntensity, MediaType, PublicStory } from "@/lib/types";
 type IdentityFilter = "all" | "anonymous" | "named";
 type SortMode = "recent" | "most_read" | "shortest";
 
+const fallbackImage = "/images/story-placeholder-church.webp";
+
 export default function StoryExplorer({
   stories,
   categories
@@ -24,19 +26,15 @@ export default function StoryExplorer({
   const [summaryOnly, setSummaryOnly] = useState(false);
   const [sort, setSort] = useState<SortMode>("recent");
   const [search, setSearch] = useState("");
-  const [visible, setVisible] = useState(6);
+  const [visible, setVisible] = useState(12);
 
   const backgrounds = useMemo(
-    () =>
-      [...new Set(stories.map((story) => story.religiousBackground).filter(Boolean))]
-        .sort() as string[],
+    () => [...new Set(stories.map((story) => story.religiousBackground).filter(Boolean))].sort() as string[],
     [stories]
   );
 
   const regions = useMemo(
-    () =>
-      [...new Set(stories.map((story) => story.countryRegion).filter(Boolean))]
-        .sort() as string[],
+    () => [...new Set(stories.map((story) => story.countryRegion).filter(Boolean))].sort() as string[],
     [stories]
   );
 
@@ -102,172 +100,131 @@ export default function StoryExplorer({
     setSummaryOnly(false);
     setSort("recent");
     setSearch("");
-    setVisible(6);
+    setVisible(12);
   }
 
   return (
-    <div className="storyExplorer">
-      <aside className="filterPanel" aria-label="Filter survivor stories">
-        <div className="filterHeading">
-          <h2>Choose what you are ready to read</h2>
-          <button type="button" onClick={reset}>Clear filters</button>
-        </div>
-
-        <label>
-          Search
+    <div className="storyExplorer storyExplorer--youtube">
+      <section className="youtubeStoryToolbar" aria-label="Filter survivor stories">
+        <label className="youtubeSearch">
+          <span className="srOnly">Search stories</span>
           <input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            placeholder="Title, topic, author or church"
+            placeholder="Search stories"
           />
         </label>
 
-        <label>
-          Topic
-          <select value={category} onChange={(event) => setCategory(event.target.value)}>
-            <option value="all">All topics</option>
-            {categories.map((item) => <option value={item} key={item}>{item}</option>)}
-          </select>
-        </label>
+        <select value={category} onChange={(event) => setCategory(event.target.value)} aria-label="Topic">
+          <option value="all">All topics</option>
+          {categories.map((item) => <option value={item} key={item}>{item}</option>)}
+        </select>
 
-        <div className="filterColumns">
-          <label>
-            Content intensity
-            <select
-              value={intensity}
-              onChange={(event) => setIntensity(event.target.value as "all" | ContentIntensity)}
-            >
-              <option value="all">Any intensity</option>
-              <option value="gentle">Gentle</option>
-              <option value="moderate">Moderate</option>
-              <option value="high">High</option>
-            </select>
-          </label>
+        <select value={sort} onChange={(event) => setSort(event.target.value as SortMode)} aria-label="Sort stories">
+          <option value="recent">Newest</option>
+          <option value="most_read">Most read</option>
+          <option value="shortest">Shortest</option>
+        </select>
 
-          <label>
-            Format
-            <select
-              value={mediaType}
-              onChange={(event) => setMediaType(event.target.value as "all" | MediaType)}
-            >
-              <option value="all">All formats</option>
-              <option value="written">Written</option>
-              <option value="audio">Audio available</option>
-              <option value="video">Video available</option>
-            </select>
-          </label>
+        <details className="youtubeMoreFilters">
+          <summary>More filters</summary>
+          <div className="youtubeMoreFiltersGrid">
+            <label>
+              Intensity
+              <select value={intensity} onChange={(event) => setIntensity(event.target.value as "all" | ContentIntensity)}>
+                <option value="all">Any</option>
+                <option value="gentle">Gentle</option>
+                <option value="moderate">Moderate</option>
+                <option value="high">High</option>
+              </select>
+            </label>
+            <label>
+              Format
+              <select value={mediaType} onChange={(event) => setMediaType(event.target.value as "all" | MediaType)}>
+                <option value="all">All formats</option>
+                <option value="written">Written</option>
+                <option value="audio">Audio</option>
+                <option value="video">Video</option>
+              </select>
+            </label>
+            <label>
+              Author
+              <select value={identity} onChange={(event) => setIdentity(event.target.value as IdentityFilter)}>
+                <option value="all">Named or anonymous</option>
+                <option value="anonymous">Anonymous only</option>
+                <option value="named">Chosen name shown</option>
+              </select>
+            </label>
+            <label>
+              Length
+              <select value={maxMinutes} onChange={(event) => setMaxMinutes(event.target.value)}>
+                <option value="all">Any length</option>
+                <option value="5">Up to 5 min</option>
+                <option value="10">Up to 10 min</option>
+                <option value="15">Up to 15 min</option>
+              </select>
+            </label>
+            <label>
+              Background
+              <select value={background} onChange={(event) => setBackground(event.target.value)}>
+                <option value="all">Any background</option>
+                {backgrounds.map((item) => <option value={item} key={item}>{item}</option>)}
+              </select>
+            </label>
+            <label>
+              Region
+              <select value={region} onChange={(event) => setRegion(event.target.value)}>
+                <option value="all">Any region</option>
+                {regions.map((item) => <option value={item} key={item}>{item}</option>)}
+              </select>
+            </label>
+            <label className="checkboxRow youtubeCheckbox">
+              <input type="checkbox" checked={summaryOnly} onChange={(event) => setSummaryOnly(event.target.checked)} />
+              Has a short summary
+            </label>
+          </div>
+        </details>
 
-          <label>
-            Author display
-            <select
-              value={identity}
-              onChange={(event) => setIdentity(event.target.value as IdentityFilter)}
-            >
-              <option value="all">Named or anonymous</option>
-              <option value="anonymous">Anonymous only</option>
-              <option value="named">Chosen name shown</option>
-            </select>
-          </label>
+        <button className="youtubeClearFilters" type="button" onClick={reset}>Clear</button>
+      </section>
 
-          <label>
-            Reading time
-            <select value={maxMinutes} onChange={(event) => setMaxMinutes(event.target.value)}>
-              <option value="all">Any length</option>
-              <option value="5">Up to 5 minutes</option>
-              <option value="10">Up to 10 minutes</option>
-              <option value="15">Up to 15 minutes</option>
-            </select>
-          </label>
-
-          <label>
-            Religious background
-            <select value={background} onChange={(event) => setBackground(event.target.value)}>
-              <option value="all">Any background</option>
-              {backgrounds.map((item) => <option value={item} key={item}>{item}</option>)}
-            </select>
-          </label>
-
-          <label>
-            Country or region
-            <select value={region} onChange={(event) => setRegion(event.target.value)}>
-              <option value="all">Any region</option>
-              {regions.map((item) => <option value={item} key={item}>{item}</option>)}
-            </select>
-          </label>
-        </div>
-
-        <label className="checkboxRow">
-          <input
-            type="checkbox"
-            checked={summaryOnly}
-            onChange={(event) => setSummaryOnly(event.target.checked)}
-          />
-          Show stories with a short summary
-        </label>
-
-        <label>
-          Sort
-          <select value={sort} onChange={(event) => setSort(event.target.value as SortMode)}>
-            <option value="recent">Recently published</option>
-            <option value="most_read">Most read</option>
-            <option value="shortest">Shortest first</option>
-          </select>
-        </label>
-      </aside>
-
-      <div className="storyResults">
+      <div className="storyResults storyResults--youtube">
         <p className="resultsCount" aria-live="polite">
-          {filtered.length} {filtered.length === 1 ? "story" : "stories"} match your choices.
+          {filtered.length} {filtered.length === 1 ? "story" : "stories"}
         </p>
 
         {filtered.length === 0 ? (
           <div className="emptyState">
             <h2>No stories match these filters.</h2>
-            <p>You can clear the filters or return later as more stories are published.</p>
-            <button className="button secondary" type="button" onClick={reset}>
-              Clear filters
-            </button>
+            <button className="button secondary" type="button" onClick={reset}>Clear filters</button>
           </div>
         ) : (
           <>
-            <div className="storyList">
+            <div className="storyList storyList--youtube">
               {filtered.slice(0, visible).map((story) => (
-                <article className="storyCard" key={story.id}>
-                  {story.imageUrl && (
+                <Link className="storyVideoCard" href={`/stories/${story.id}`} key={story.id}>
+                  <div className="storyVideoThumbnail">
                     <img
-                      className="storyCardImage"
-                      src={story.imageUrl}
-                      alt=""
+                      src={story.imageUrl || fallbackImage}
+                      alt={story.imageUrl ? `Image for ${story.title}` : "Ornate church interior used as the default image for a survivor story."}
                     />
-                  )}
-                  <div className="storyCardTopline">
-                    <span className={`intensity ${story.contentIntensity}`}>
-                      {story.contentIntensity} intensity
-                    </span>
-                    <span>{story.readingMinutes} min</span>
-                    <span>{story.mediaType}</span>
+                    <span className="storyDuration">{story.readingMinutes} min</span>
+                    <span className={`storyIntensityBadge ${story.contentIntensity}`}>{story.contentIntensity}</span>
                   </div>
-                  <h2>{story.title}</h2>
-                  <p className="storyIdentity">
-                    {story.authorDisplay} · {story.churchDisplay}
-                  </p>
-                  <div className="tagList">
-                    {story.categories.slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}
+                  <div className="storyVideoMeta">
+                    <h2>{story.title}</h2>
+                    <p>{story.authorDisplay} · {story.churchDisplay}</p>
+                    <small>
+                      {story.mediaType}
+                      {story.viewCount > 0 ? ` · ${story.viewCount} ${story.viewCount === 1 ? "read" : "reads"}` : ""}
+                    </small>
                   </div>
-                  <p>{story.shortSummary}</p>
-                  <Link className="storyLink" href={`/stories/${story.id}`}>
-                    Read Story
-                  </Link>
-                </article>
+                </Link>
               ))}
             </div>
 
             {visible < filtered.length && (
-              <button
-                type="button"
-                className="button secondary loadMore"
-                onClick={() => setVisible((value) => value + 6)}
-              >
+              <button type="button" className="button secondary loadMore" onClick={() => setVisible((value) => value + 12)}>
                 Show more stories
               </button>
             )}
