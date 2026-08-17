@@ -8,25 +8,6 @@ import type { PublicStory } from "@/lib/types";
 export const metadata: Metadata = { title: "Survivor Stories" };
 export const dynamic = "force-dynamic";
 
-const storyGuide = [
-  {
-    title: "You control the level of detail",
-    text: "Story cards show a summary, reading time, format and intensity before the full account opens."
-  },
-  {
-    title: "Identity is chosen by the author",
-    text: "A story may show a chosen name, withhold the organisation, or remain fully anonymous."
-  },
-  {
-    title: "No single story is a template",
-    text: "Experiences differ. A published account can offer recognition without deciding what your experience means."
-  },
-  {
-    title: "You can leave at any point",
-    text: "Nothing plays automatically. Use the filters, read only a summary, or return to a different part of the site."
-  }
-];
-
 export default async function StoriesPage() {
   let stories: PublicStory[] = [];
   let awaitingReview = 0;
@@ -59,15 +40,9 @@ export default async function StoriesPage() {
         without entering personal information.
       </p>
       <div className="buttonRow">
-        <Link className="button primary" href="/resources">
-          Read Educational Guides
-        </Link>
-        <Link className="button secondary" href="/share">
-          Review Story Privacy
-        </Link>
-        <Link className="textLink" href="/safety">
-          Open Safety Information
-        </Link>
+        <Link className="button primary" href="/resources">Read Educational Guides</Link>
+        <Link className="button secondary" href="/share">Review Story Privacy</Link>
+        <Link className="textLink" href="/safety">Open Safety Information</Link>
       </div>
     </section>
   ) : stories.length > 0 ? (
@@ -83,65 +58,29 @@ export default async function StoriesPage() {
       <p>
         Submitted stories remain private until a moderator checks consent,
         accidental identification, safeguarding concerns and the author’s
-        chosen privacy level. A submission is not lost simply because it is
-        not yet visible here.
+        chosen privacy level.
       </p>
       <div className="buttonRow">
-        <Link className="button primary" href="/share">
-          Share Your Story
-        </Link>
-        <Link className="button secondary" href="/manage">
-          Check Your Submission
-        </Link>
-        <Link className="textLink" href="/resources">
-          Read Educational Guides
-        </Link>
+        <Link className="button primary" href="/share">Share Your Story</Link>
+        <Link className="button secondary" href="/manage">Check Your Submission</Link>
       </div>
     </section>
   );
 
   return (
-    <section className="storiesPage">
-      <div className="pageIntro narrowIntro">
-        <p className="eyebrow">Survivor stories</p>
-        <h1>Stories from people who have experienced religious harm.</h1>
-        <p className="lead">
-          Browse the published accounts first. Use the filters to choose a topic,
-          intensity, format or reading length before opening a full story.
-        </p>
-      </div>
-
-      {library}
-
-      <section className="storyOrientation" aria-labelledby="story-guide-heading">
-        <div className="sectionIntro">
-          <p className="eyebrow">Read at your own pace</p>
-          <h2 id="story-guide-heading">The library is designed around consent, not curiosity.</h2>
-          <p>
-            Each story remains in the foreground while privacy guidance stays
-            available below it. You do not need to compare your experience with
-            anyone else or read material that feels too close today.
+    <section className="storiesPage storiesPage--videoLibrary">
+      <header className="storyLibraryHeader">
+        <div>
+          <p className="eyebrow">Survivor stories</p>
+          <h1>Stories</h1>
+          <p className="lead">
+            Browse survivor accounts by image and title, then choose what you want to open.
           </p>
         </div>
+        <Link className="button primary" href="/share">Share Your Story</Link>
+      </header>
 
-        <div className="reviewDetailGrid">
-          {storyGuide.map((item) => (
-            <article key={item.title}>
-              <strong>{item.title}</strong>
-              <p>{item.text}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className="buttonRow">
-          <Link className="button primary" href="/share">
-            Share Your Story
-          </Link>
-          <Link className="button secondary" href="/manage">
-            Manage Your Submission
-          </Link>
-        </div>
-      </section>
+      {library}
     </section>
   );
 }
