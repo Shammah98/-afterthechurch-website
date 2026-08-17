@@ -4,11 +4,13 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { resources } from "@/lib/content";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
+import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 
 export const metadata: Metadata = { title: "Educational Resources" };
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const reportingTitle = "How to prepare to report harm in a church in the UK";
+const allResources = [lgbtqChurchResource, ...resources];
 
 export default function ResourcesPage() {
   return (
@@ -36,7 +38,7 @@ export default function ResourcesPage() {
 
       <section className="resourceArchive editorialSection">
         <div className="resourceCardGrid">
-          {resources.map((resource, index) => {
+          {allResources.map((resource, index) => {
             const isReportingGuide = resource.slug === reportingSlug;
             const displayTitle = isReportingGuide ? reportingTitle : resource.title;
 
