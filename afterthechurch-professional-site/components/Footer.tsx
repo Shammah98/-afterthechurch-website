@@ -1,48 +1,35 @@
-import Image from "next/image";
 import Link from "next/link";
+import SocialLinks from "@/components/SocialLinks";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Footer() {
   return (
     <footer className="siteFooter">
       <div className="footerMain">
         <div className="footerIdentity">
-          <Image
-            src="/images/afterthechurch-logo.jpg"
-            width={82}
-            height={82}
-            alt=""
-            className="footerLogo"
-          />
-          <div>
-            <strong>AfterTheChurch</strong>
-            <p>Practical support for people rebuilding life after religious harm.</p>
-          </div>
+          <strong>AfterTheChurch</strong>
+          <p>Practical support, survivor stories and evidence-informed resources after religious harm.</p>
         </div>
 
-        <div className="footerLinks">
-          <div>
-            <h2>Use the site</h2>
-            <Link href="/resources">Educational resources</Link>
-            <Link href="/stories">Survivor stories</Link>
-            <Link href="/share">Story submission</Link>
-            <Link href="/manage">Manage your submissions</Link>
-          </div>
-          <div>
-            <h2>Information</h2>
-            <Link href="/safety">Safety and urgent help</Link>
-            <Link href="/privacy">Privacy and data</Link>
-            <Link href="/terms">Terms of use</Link>
-            <Link href="/faq">Frequently asked questions</Link>
-          </div>
+        <div className="footerControls">
+          <ThemeToggle />
+          <SocialLinks />
         </div>
+
+        <nav className="footerLinks" aria-label="Footer navigation">
+          <Link href="/stories">Stories</Link>
+          <Link href="/resources">Resources</Link>
+          <Link href="/share">Share your story</Link>
+          <Link href="/safety">Safety</Link>
+          <Link href="/about">About</Link>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms</Link>
+        </nav>
       </div>
 
       <div className="footerFinePrint">
-        <p>
-          AfterTheChurch does not provide emergency, medical, legal or crisis
-          services. Use professional or emergency support where needed.
-        </p>
-        <p>© {new Date().getFullYear()} AfterTheChurch.</p>
+        <span>AfterTheChurch does not replace medical, legal or emergency services.</span>
+        <span>© {new Date().getFullYear()} AfterTheChurch</span>
       </div>
     </footer>
   );
