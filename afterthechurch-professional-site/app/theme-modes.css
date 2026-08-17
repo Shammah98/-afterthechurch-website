@@ -1,0 +1,325 @@
+/* User-selectable appearance modes. Dark keeps the existing cosmic treatment. */
+html[data-theme="light"] {
+  --paper: rgba(255, 251, 246, .96);
+  --cream: rgba(248, 240, 231, .96);
+  --cream-light: rgba(255, 252, 248, .98);
+  --ink: #2b201b;
+  --muted: #715e55;
+  --wine: #9a4561;
+  --wine-dark: #6f2941;
+  --rose: #b85c78;
+  --rose-soft: rgba(184, 92, 120, .13);
+  --sage: #647a70;
+  --sage-soft: rgba(100, 122, 112, .12);
+  --line: rgba(67, 47, 38, .16);
+  color-scheme: light;
+}
+
+html[data-theme="warm"] {
+  --paper: rgba(247, 236, 222, .97);
+  --cream: rgba(232, 215, 195, .96);
+  --cream-light: rgba(250, 241, 230, .98);
+  --ink: #302017;
+  --muted: #73584a;
+  --wine: #955067;
+  --wine-dark: #603143;
+  --rose: #a95972;
+  --rose-soft: rgba(169, 89, 114, .14);
+  --sage: #6f7967;
+  --sage-soft: rgba(111, 121, 103, .13);
+  --line: rgba(82, 56, 40, .18);
+  color-scheme: light;
+}
+
+html[data-theme="light"] body,
+html[data-theme="warm"] body {
+  color: var(--ink) !important;
+}
+
+html[data-theme="light"] body {
+  background: #f7f1e9 !important;
+}
+
+html[data-theme="warm"] body {
+  background: #e8d6c2 !important;
+}
+
+html[data-theme="light"] body::before {
+  opacity: .10 !important;
+  filter: grayscale(.12) sepia(.12) brightness(1.18) contrast(.84) !important;
+}
+
+html[data-theme="warm"] body::before {
+  opacity: .14 !important;
+  filter: sepia(.45) saturate(.68) brightness(1.08) contrast(.82) !important;
+}
+
+html[data-theme="light"] body::after {
+  background: linear-gradient(180deg, rgba(247,241,233,.84), rgba(247,241,233,.92)) !important;
+}
+
+html[data-theme="warm"] body::after {
+  background: linear-gradient(180deg, rgba(232,214,194,.82), rgba(232,214,194,.91)) !important;
+}
+
+html[data-theme="light"] .siteHeader,
+html[data-theme="light"] .siteFooter {
+  background: rgba(250, 245, 239, .94) !important;
+  color: var(--ink) !important;
+  border-color: rgba(67, 47, 38, .14) !important;
+}
+
+html[data-theme="warm"] .siteHeader,
+html[data-theme="warm"] .siteFooter {
+  background: rgba(224, 203, 181, .94) !important;
+  color: var(--ink) !important;
+  border-color: rgba(82, 56, 40, .16) !important;
+}
+
+html[data-theme="light"] .pageHero,
+html[data-theme="light"] .splitHero,
+html[data-theme="light"] .articleHero,
+html[data-theme="light"] .resourceCard,
+html[data-theme="light"] .storyCard,
+html[data-theme="light"] .filterPanel,
+html[data-theme="light"] .editorialNote,
+html[data-theme="light"] .storyFallback,
+html[data-theme="light"] .authPanel,
+html[data-theme="light"] .quoteCarousel,
+html[data-theme="light"] fieldset,
+html[data-theme="light"] .accountStoryList > article,
+html[data-theme="light"] .adminDashboard > article,
+html[data-theme="light"] .reviewDetailGrid article,
+html[data-theme="light"] .safetyActionGrid article,
+html[data-theme="light"] .needRow,
+html[data-theme="light"] .needsSection .sectionIntro,
+html[data-theme="light"] .contentGate,
+html[data-theme="light"] .contentSummary,
+html[data-theme="light"] .resourceEditorialGrid article,
+html[data-theme="light"] .publicPreview,
+html[data-theme="light"] .choice,
+html[data-theme="light"] .privacyChoice,
+html[data-theme="light"] .youtubeStoryToolbar,
+html[data-theme="light"] .storyVideoCard,
+html[data-theme="light"] .youtubeMoreFiltersGrid {
+  background: rgba(255, 251, 246, .93) !important;
+  border-color: rgba(67, 47, 38, .15) !important;
+  box-shadow: 0 16px 42px rgba(74, 49, 38, .10) !important;
+  color: var(--ink) !important;
+}
+
+html[data-theme="warm"] .pageHero,
+html[data-theme="warm"] .splitHero,
+html[data-theme="warm"] .articleHero,
+html[data-theme="warm"] .resourceCard,
+html[data-theme="warm"] .storyCard,
+html[data-theme="warm"] .filterPanel,
+html[data-theme="warm"] .editorialNote,
+html[data-theme="warm"] .storyFallback,
+html[data-theme="warm"] .authPanel,
+html[data-theme="warm"] .quoteCarousel,
+html[data-theme="warm"] fieldset,
+html[data-theme="warm"] .accountStoryList > article,
+html[data-theme="warm"] .adminDashboard > article,
+html[data-theme="warm"] .reviewDetailGrid article,
+html[data-theme="warm"] .safetyActionGrid article,
+html[data-theme="warm"] .needRow,
+html[data-theme="warm"] .needsSection .sectionIntro,
+html[data-theme="warm"] .contentGate,
+html[data-theme="warm"] .contentSummary,
+html[data-theme="warm"] .resourceEditorialGrid article,
+html[data-theme="warm"] .publicPreview,
+html[data-theme="warm"] .choice,
+html[data-theme="warm"] .privacyChoice,
+html[data-theme="warm"] .youtubeStoryToolbar,
+html[data-theme="warm"] .storyVideoCard,
+html[data-theme="warm"] .youtubeMoreFiltersGrid {
+  background: rgba(247, 236, 222, .94) !important;
+  border-color: rgba(82, 56, 40, .18) !important;
+  box-shadow: 0 16px 42px rgba(80, 52, 35, .12) !important;
+  color: var(--ink) !important;
+}
+
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] h5,
+html[data-theme="light"] h6,
+html[data-theme="light"] p,
+html[data-theme="light"] li,
+html[data-theme="light"] label,
+html[data-theme="light"] strong,
+html[data-theme="light"] summary,
+html[data-theme="light"] .brandWords strong,
+html[data-theme="light"] .storyVideoMeta h2,
+html[data-theme="warm"] h1,
+html[data-theme="warm"] h2,
+html[data-theme="warm"] h3,
+html[data-theme="warm"] h4,
+html[data-theme="warm"] h5,
+html[data-theme="warm"] h6,
+html[data-theme="warm"] p,
+html[data-theme="warm"] li,
+html[data-theme="warm"] label,
+html[data-theme="warm"] strong,
+html[data-theme="warm"] summary,
+html[data-theme="warm"] .brandWords strong,
+html[data-theme="warm"] .storyVideoMeta h2 {
+  color: var(--ink) !important;
+}
+
+html[data-theme="light"] .resultsCount,
+html[data-theme="light"] .storyIdentity,
+html[data-theme="light"] .storyVideoMeta p,
+html[data-theme="light"] .storyVideoMeta small,
+html[data-theme="light"] .footerIdentity p,
+html[data-theme="light"] .footerFinePrint,
+html[data-theme="warm"] .resultsCount,
+html[data-theme="warm"] .storyIdentity,
+html[data-theme="warm"] .storyVideoMeta p,
+html[data-theme="warm"] .storyVideoMeta small,
+html[data-theme="warm"] .footerIdentity p,
+html[data-theme="warm"] .footerFinePrint {
+  color: var(--muted) !important;
+}
+
+html[data-theme="light"] input,
+html[data-theme="light"] select,
+html[data-theme="light"] textarea,
+html[data-theme="warm"] input,
+html[data-theme="warm"] select,
+html[data-theme="warm"] textarea {
+  background: rgba(255, 255, 255, .88) !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+}
+
+html[data-theme="warm"] input,
+html[data-theme="warm"] select,
+html[data-theme="warm"] textarea {
+  background: rgba(255, 248, 239, .88) !important;
+}
+
+html[data-theme="light"] input::placeholder,
+html[data-theme="light"] textarea::placeholder,
+html[data-theme="warm"] input::placeholder,
+html[data-theme="warm"] textarea::placeholder {
+  color: var(--muted) !important;
+  opacity: .85;
+}
+
+html[data-theme="light"] a:not(.button):not(.storyVideoCard),
+html[data-theme="warm"] a:not(.button):not(.storyVideoCard) {
+  color: var(--wine-dark);
+}
+
+/* Theme and social controls */
+.footerControls {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.themeToggle {
+  display: grid;
+  gap: 8px;
+}
+
+.themeToggleLabel {
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.themeToggleOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.themeToggleOptions button {
+  min-height: 38px;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: .86rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.themeToggleOptions button.active {
+  background: var(--wine);
+  border-color: var(--wine);
+  color: white !important;
+}
+
+.socialLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.socialIconLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 750;
+}
+
+.socialIconLink svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  align-content: start;
+}
+
+.footerLinks a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+/* Reliable YouTube-style story thumbnails. */
+.storyVideoThumbnail {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #151820;
+}
+
+.storyVideoThumbnail img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  object-fit: cover !important;
+  object-position: center;
+}
+
+.storyVideoCard {
+  overflow: hidden;
+}
+
+@media (max-width: 680px) {
+  .footerControls { width: 100%; }
+  .themeToggleOptions { width: 100%; }
+  .themeToggleOptions button { flex: 1 1 0; }
+  .socialIconLink { flex: 1 1 auto; justify-content: center; }
+}
