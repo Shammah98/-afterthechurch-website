@@ -6,7 +6,7 @@ import type { ContentIntensity, MediaType, PublicStory } from "@/lib/types";
 
 type IdentityFilter = "all" | "anonymous" | "named";
 type SortMode = "recent" | "most_read" | "shortest";
-const fallbackImage = "/images/story-placeholder-church.webp";
+const fallbackImage = "https://raw.githubusercontent.com/Shammah98/-afterthechurch-website/f80483bcd290eb80802e0ff8dc37943c349040c8/afterthechurch-professional-site/public/images/story-placeholder-church.webp";
 
 export default function StoryExplorer({ stories, categories }: { stories: PublicStory[]; categories: readonly string[] }) {
   const [category, setCategory] = useState("all");
