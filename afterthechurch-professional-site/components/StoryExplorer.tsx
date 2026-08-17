@@ -75,19 +75,7 @@ export default function StoryExplorer({
         if (sort === "shortest") return a.readingMinutes - b.readingMinutes;
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
       });
-  }, [
-    stories,
-    search,
-    category,
-    intensity,
-    mediaType,
-    identity,
-    maxMinutes,
-    background,
-    region,
-    summaryOnly,
-    sort
-  ]);
+  }, [stories, search, category, intensity, mediaType, identity, maxMinutes, background, region, summaryOnly, sort]);
 
   function reset() {
     setCategory("all");
@@ -108,11 +96,7 @@ export default function StoryExplorer({
       <section className="youtubeStoryToolbar" aria-label="Filter survivor stories">
         <label className="youtubeSearch">
           <span className="srOnly">Search stories</span>
-          <input
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-            placeholder="Search stories"
-          />
+          <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search stories" />
         </label>
 
         <select value={category} onChange={(event) => setCategory(event.target.value)} aria-label="Topic">
@@ -129,59 +113,13 @@ export default function StoryExplorer({
         <details className="youtubeMoreFilters">
           <summary>More filters</summary>
           <div className="youtubeMoreFiltersGrid">
-            <label>
-              Intensity
-              <select value={intensity} onChange={(event) => setIntensity(event.target.value as "all" | ContentIntensity)}>
-                <option value="all">Any</option>
-                <option value="gentle">Gentle</option>
-                <option value="moderate">Moderate</option>
-                <option value="high">High</option>
-              </select>
-            </label>
-            <label>
-              Format
-              <select value={mediaType} onChange={(event) => setMediaType(event.target.value as "all" | MediaType)}>
-                <option value="all">All formats</option>
-                <option value="written">Written</option>
-                <option value="audio">Audio</option>
-                <option value="video">Video</option>
-              </select>
-            </label>
-            <label>
-              Author
-              <select value={identity} onChange={(event) => setIdentity(event.target.value as IdentityFilter)}>
-                <option value="all">Named or anonymous</option>
-                <option value="anonymous">Anonymous only</option>
-                <option value="named">Chosen name shown</option>
-              </select>
-            </label>
-            <label>
-              Length
-              <select value={maxMinutes} onChange={(event) => setMaxMinutes(event.target.value)}>
-                <option value="all">Any length</option>
-                <option value="5">Up to 5 min</option>
-                <option value="10">Up to 10 min</option>
-                <option value="15">Up to 15 min</option>
-              </select>
-            </label>
-            <label>
-              Background
-              <select value={background} onChange={(event) => setBackground(event.target.value)}>
-                <option value="all">Any background</option>
-                {backgrounds.map((item) => <option value={item} key={item}>{item}</option>)}
-              </select>
-            </label>
-            <label>
-              Region
-              <select value={region} onChange={(event) => setRegion(event.target.value)}>
-                <option value="all">Any region</option>
-                {regions.map((item) => <option value={item} key={item}>{item}</option>)}
-              </select>
-            </label>
-            <label className="checkboxRow youtubeCheckbox">
-              <input type="checkbox" checked={summaryOnly} onChange={(event) => setSummaryOnly(event.target.checked)} />
-              Has a short summary
-            </label>
+            <label>Intensity<select value={intensity} onChange={(event) => setIntensity(event.target.value as "all" | ContentIntensity)}><option value="all">Any</option><option value="gentle">Gentle</option><option value="moderate">Moderate</option><option value="high">High</option></select></label>
+            <label>Format<select value={mediaType} onChange={(event) => setMediaType(event.target.value as "all" | MediaType)}><option value="all">All formats</option><option value="written">Written</option><option value="audio">Audio</option><option value="video">Video</option></select></label>
+            <label>Author<select value={identity} onChange={(event) => setIdentity(event.target.value as IdentityFilter)}><option value="all">Named or anonymous</option><option value="anonymous">Anonymous only</option><option value="named">Chosen name shown</option></select></label>
+            <label>Length<select value={maxMinutes} onChange={(event) => setMaxMinutes(event.target.value)}><option value="all">Any length</option><option value="5">Up to 5 min</option><option value="10">Up to 10 min</option><option value="15">Up to 15 min</option></select></label>
+            <label>Background<select value={background} onChange={(event) => setBackground(event.target.value)}><option value="all">Any background</option>{backgrounds.map((item) => <option value={item} key={item}>{item}</option>)}</select></label>
+            <label>Region<select value={region} onChange={(event) => setRegion(event.target.value)}><option value="all">Any region</option>{regions.map((item) => <option value={item} key={item}>{item}</option>)}</select></label>
+            <label className="checkboxRow youtubeCheckbox"><input type="checkbox" checked={summaryOnly} onChange={(event) => setSummaryOnly(event.target.checked)} />Has a short summary</label>
           </div>
         </details>
 
@@ -189,45 +127,30 @@ export default function StoryExplorer({
       </section>
 
       <div className="storyResults storyResults--youtube">
-        <p className="resultsCount" aria-live="polite">
-          {filtered.length} {filtered.length === 1 ? "story" : "stories"}
-        </p>
+        <p className="resultsCount" aria-live="polite">{filtered.length} {filtered.length === 1 ? "story" : "stories"}</p>
 
         {filtered.length === 0 ? (
-          <div className="emptyState">
-            <h2>No stories match these filters.</h2>
-            <button className="button secondary" type="button" onClick={reset}>Clear filters</button>
-          </div>
+          <div className="emptyState"><h2>No stories match these filters.</h2><button className="button secondary" type="button" onClick={reset}>Clear filters</button></div>
         ) : (
           <>
             <div className="storyList storyList--youtube">
               {filtered.slice(0, visible).map((story) => (
                 <Link className="storyVideoCard" href={`/stories/${story.id}`} key={story.id}>
                   <div className="storyVideoThumbnail">
-                    <img
-                      src={story.imageUrl || fallbackImage}
-                      alt={story.imageUrl ? `Image for ${story.title}` : "Ornate church interior used as the default image for a survivor story."}
-                    />
+                    <img src={story.imageUrl || fallbackImage} alt={story.imageUrl ? `Image for ${story.title}` : "Ornate church interior used as the default image for a survivor story."} />
                     <span className="storyDuration">{story.readingMinutes} min</span>
                     <span className={`storyIntensityBadge ${story.contentIntensity}`}>{story.contentIntensity}</span>
                   </div>
                   <div className="storyVideoMeta">
                     <h2>{story.title}</h2>
                     <p>{story.authorDisplay} · {story.churchDisplay}</p>
-                    <small>
-                      {story.mediaType}
-                      {story.viewCount > 0 ? ` · ${story.viewCount} ${story.viewCount === 1 ? "read" : "reads"}` : ""}
-                    </small>
+                    <small>{story.mediaType}{story.viewCount > 0 ? ` · ${story.viewCount} ${story.viewCount === 1 ? "read" : "reads"}` : ""}</small>
                   </div>
                 </Link>
               ))}
             </div>
 
-            {visible < filtered.length && (
-              <button type="button" className="button secondary loadMore" onClick={() => setVisible((value) => value + 12)}>
-                Show more stories
-              </button>
-            )}
+            {visible < filtered.length && <button type="button" className="button secondary loadMore" onClick={() => setVisible((value) => value + 12)}>Show more stories</button>}
           </>
         )}
       </div>
