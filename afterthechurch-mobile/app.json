@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Afterthechurch",
+    "slug": "afterthechurch",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "afterthechurch",
+    "userInterfaceStyle": "dark",
+    "plugins": ["expo-router"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.afterthechurch.mobile"
+    },
+    "android": {
+      "package": "com.afterthechurch.mobile",
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
