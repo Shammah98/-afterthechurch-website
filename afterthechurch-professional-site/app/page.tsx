@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { resources } from "@/lib/content";
+import { reviewedResources } from "@/lib/reviewed-resources";
 import { getApprovedStories } from "@/lib/stories";
 import type { PublicStory } from "@/lib/types";
 
@@ -162,9 +162,6 @@ export default async function HomePage() {
   </div>
 </section>
 
-
-      
-
       <section className="needsSection">
         <div className="sectionIntro">
   <p className="eyebrow">Choose what you need today</p>
@@ -197,8 +194,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-
-
       <section className="reflectionsSection resourcesPreview editorialSection">
   <div className="sectionIntro">
     <p className="eyebrow">Quiet thoughts for difficult days</p>
@@ -222,8 +217,6 @@ export default async function HomePage() {
   </div>
 </section>
 
-
-      
       <section className="resourcesPreview editorialSection">
         <div className="sectionIntro">
           <p className="eyebrow">Educational resources</p>
@@ -236,7 +229,7 @@ export default async function HomePage() {
         </div>
 
         <div className="resourceEditorialGrid">
-          {resources.slice(0, 3).map((resource, index) => (
+          {reviewedResources.slice(0, 3).map((resource, index) => (
             <article className={index === 0 ? "resourceFeature" : "resourceSmall"} key={resource.slug}>
               <Image
                 src={resource.image}
