@@ -50,13 +50,9 @@ export default function StoryExplorer({
             ? story.privacyLevel === "fully_anonymous"
             : story.privacyLevel !== "fully_anonymous");
 
-        const text = [
-          story.title,
-          story.shortSummary,
-          story.authorDisplay,
-          story.churchDisplay,
-          story.categories.join(" ")
-        ].join(" ").toLowerCase();
+        const text = [story.title, story.shortSummary, story.authorDisplay, story.churchDisplay, story.categories.join(" ")]
+          .join(" ")
+          .toLowerCase();
 
         return (
           (!term || text.includes(term)) &&
