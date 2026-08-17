@@ -72,6 +72,61 @@ fieldset,
   -webkit-backdrop-filter: blur(8px) saturate(1.05) !important;
 }
 
+/*
+  Some legal, privacy and warning callouts intentionally keep a pale paper
+  background. The global cosmic theme makes ordinary body copy white, which is
+  too low-contrast on those surfaces. Use a dark reddish-pink ink instead.
+*/
+.liabilityBox,
+.legalImportant,
+.legalContact,
+.legalSummaryGrid > div,
+.dataUseList article,
+.privacyLevelList p,
+.moderatorNote,
+.reviewWarning,
+.urgentNotice,
+.urgentContactNotice {
+  color: #96304f !important;
+}
+
+.liabilityBox p,
+.legalImportant p,
+.legalContact p,
+.legalContact span,
+.legalSummaryGrid > div span,
+.dataUseList article p,
+.dataUseList article p strong,
+.privacyLevelList p,
+.moderatorNote p,
+.reviewWarning p,
+.urgentNotice p,
+.urgentContactNotice p {
+  color: #96304f !important;
+}
+
+.liabilityBox strong,
+.legalImportant strong,
+.legalContact strong,
+.legalSummaryGrid > div strong,
+.dataUseList article strong,
+.privacyLevelList strong,
+.moderatorNote strong,
+.reviewWarning strong,
+.urgentNotice strong,
+.urgentContactNotice h2,
+.urgentContactNotice strong {
+  color: #7e1f42 !important;
+}
+
+.legalContact a,
+.liabilityBox a,
+.legalImportant a,
+.urgentContactNotice a {
+  color: #8f274c !important;
+  text-decoration-color: rgba(143, 39, 76, .55);
+}
+
 .siteHeader {
   background: rgba(4, 8, 15, 0.72) !important;
 }
