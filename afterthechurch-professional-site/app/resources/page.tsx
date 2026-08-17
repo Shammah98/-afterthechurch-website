@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { resources } from "@/lib/content";
+import { reviewedResources } from "@/lib/reviewed-resources";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 
 export const metadata: Metadata = { title: "Educational Resources" };
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
-const reportingTitle = "How to prepare to report harm in a church in the UK";
-const allResources = [lgbtqChurchResource, ...resources];
+const allResources = [lgbtqChurchResource, ...reviewedResources];
 
 export default function ResourcesPage() {
   return (
@@ -22,8 +21,8 @@ export default function ResourcesPage() {
           <h1>Understand more, at your own pace.</h1>
 
           <p className="lead">
-            These resources explain harmful religious behaviours in a clear and
-            grounded way. Start with a brief overview, and continue into more detail
+            Evidence-informed articles using peer-reviewed research, statistics and
+            primary guidance. Start with a brief overview and continue into more detail
             when you feel ready.
           </p>
         </div>
@@ -40,14 +39,13 @@ export default function ResourcesPage() {
         <div className="resourceCardGrid">
           {allResources.map((resource, index) => {
             const isReportingGuide = resource.slug === reportingSlug;
-            const displayTitle = isReportingGuide ? reportingTitle : resource.title;
 
             return (
               <article className="resourceCard" key={resource.slug}>
                 <Link
                   className="resourceCardImageLink"
                   href={`/resources/${resource.slug}`}
-                  aria-label={`Open ${displayTitle}`}
+                  aria-label={`Open ${resource.title}`}
                 >
                   <div className="resourceCardImage">
                     {isReportingGuide ? (
@@ -79,7 +77,7 @@ export default function ResourcesPage() {
 
                   <h2>
                     <Link href={`/resources/${resource.slug}`}>
-                      {displayTitle}
+                      {resource.title}
                     </Link>
                   </h2>
 
