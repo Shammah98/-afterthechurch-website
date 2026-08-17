@@ -17,7 +17,7 @@ export const lgbtqChurchResource: ResourceArticle = {
     "Shunning",
     "Suicide or self-harm"
   ],
-  image: "/images/lgbtq-church-refuge.webp",
+  image: "/images/lgbtq-church-refuge.svg",
   imageAlt:
     "Rainbow-coloured fabric with the words: The church should be a refuge, not a source of trauma. AfterTheChurch.",
   overview:
