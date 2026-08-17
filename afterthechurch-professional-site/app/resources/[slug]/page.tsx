@@ -3,17 +3,15 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import ContentNotice from "@/components/ContentNotice";
 import ProgressiveResource from "@/components/ProgressiveResource";
-import { getResource, resources } from "@/lib/content";
+import { reviewedResources } from "@/lib/reviewed-resources";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
-const reportingTitle = "How to prepare to report harm in a church in the UK";
-const allResources = [lgbtqChurchResource, ...resources];
+const allResources = [lgbtqChurchResource, ...reviewedResources];
 
 function getAnyResource(slug: string) {
-  if (slug === lgbtqChurchResource.slug) return lgbtqChurchResource;
-  return getResource(slug);
+  return allResources.find((resource) => resource.slug === slug) || null;
 }
 
 export function generateStaticParams() {
@@ -28,7 +26,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const resource = getAnyResource(slug);
   return {
-    title: slug === reportingSlug ? reportingTitle : resource?.title || "Resource",
+    title: resource?.title || "Resource",
     description: resource?.deck
   };
 }
@@ -43,21 +41,19 @@ export default async function ResourcePage({
   if (!resource) notFound();
 
   const isReportingGuide = resource.slug === reportingSlug;
-  const isLgbtqEvidenceReview = resource.slug === lgbtqChurchResource.slug;
-  const displayTitle = isReportingGuide ? reportingTitle : resource.title;
 
   const content = (
     <>
       <section className={`articleHero articleHero--${resource.slug}`}>
         <div>
           <p className="eyebrow">{resource.category}</p>
-          <h1>{displayTitle}</h1>
+          <h1>{resource.title}</h1>
           <p className="lead">{resource.deck}</p>
           <div className="articleMeta">
             <span>By Ian Shammah</span>
             <span>{resource.readingTime} minute full read</span>
             <span>{resource.intensity} intensity</span>
-            <span>{isLgbtqEvidenceReview ? "Peer-reviewed evidence synthesis" : "Evidence reviewed"} · August 2026</span>
+            <span>Peer-reviewed evidence synthesis · August 2026</span>
           </div>
         </div>
 
@@ -83,15 +79,17 @@ export default async function ResourcePage({
       <section className="articleBody">
         <ProgressiveResource resource={resource} />
         <aside className="editorialNote">
-          <strong>{isLgbtqEvidenceReview ? "Peer-reviewed evidence synthesis" : "Editorial evidence review"}</strong>
+          <strong>Peer-reviewed evidence synthesis</strong>
           <p>
-            {isLgbtqEvidenceReview
-              ? "This article synthesises findings from peer-reviewed studies and a systematic review. The AfterTheChurch article itself has not undergone independent academic peer review."
-              : "Reviewed for source accuracy, plain language and trauma-informed framing. This is an editorial evidence review, not independent academic peer review."}
+            This article was written by Ian Shammah and synthesises findings from
+            peer-reviewed research and, where relevant, primary regulatory or clinical
+            guidance. The AfterTheChurch article itself has not undergone independent
+            academic peer review.
           </p>
           <p>
-            This material is educational. It is not legal, medical or clinical advice,
-            a diagnosis, or a judgement about any particular religious organisation.
+            Statistics are presented with their study context and limitations. This
+            material is educational. It is not legal, medical or clinical advice, a
+            diagnosis, or a judgement about any particular religious organisation.
           </p>
         </aside>
       </section>
