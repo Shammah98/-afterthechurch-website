@@ -82,6 +82,7 @@ export default function ResourcesPage() {
                   </h2>
 
                   <p>{resource.deck}</p>
+                  <p className="resourceMeta">By Ian Shammah · Peer-reviewed evidence synthesis</p>
 
                   <Link className="resourceCardAction" href={`/resources/${resource.slug}`}>
                     Choose Detail
