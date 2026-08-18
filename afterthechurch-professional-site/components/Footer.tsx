@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import SocialLinks from "@/components/SocialLinks";
 
 export default function Footer() {
   return (
@@ -34,11 +33,6 @@ export default function Footer() {
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
           </div>
-        </div>
-
-        <div className="footerSocials">
-          <span className="footerSocialLabel">Follow</span>
-          <SocialLinks />
         </div>
       </div>
 
