@@ -43,6 +43,18 @@ export default function HelpSomeonePage() {
         </ul>
       </section>
 
+      <aside className="editorialNote" style={{ position: "static", marginBottom: "36px" }}>
+        <strong>How this request is handled</strong>
+        <p>
+          The request is stored privately and is not published. Only authorised AfterTheChurch administrators can review it.
+          We will not contact the person directly unless the form confirms that they know about the request and have agreed to share a safe contact method.
+        </p>
+        <p>
+          Closed support requests are scheduled for deletion after 180 days unless a lawful safety or legal preservation need requires longer retention.
+          Notification emails deliberately exclude names, contact details and the description of what happened.
+        </p>
+      </aside>
+
       <div className="formSection">
         <HelpSomeoneForm />
       </div>
