@@ -43,7 +43,30 @@ export async function GET(request: NextRequest) {
       if (deleteError) throw deleteError;
     }
 
-    return NextResponse.json({ deleted: ids.length });
+    const { data: supportData, error: supportLookupError } = await supabase
+      .from("support_requests")
+      .select("id")
+      .eq("status", "closed")
+      .not("retention_expires_at", "is", null)
+      .lte("retention_expires_at", now)
+      .limit(100);
+
+    if (supportLookupError) throw supportLookupError;
+
+    const supportIds = (supportData || []).map((item) => item.id);
+    if (supportIds.length) {
+      const { error: supportDeleteError } = await supabase
+        .from("support_requests")
+        .delete()
+        .in("id", supportIds);
+
+      if (supportDeleteError) throw supportDeleteError;
+    }
+
+    return NextResponse.json({
+      deletedStories: ids.length,
+      deletedSupportRequests: supportIds.length
+    });
   } catch (error) {
     console.error("Retention cleanup failed:", error);
     return NextResponse.json({ error: "Cleanup failed." }, { status: 500 });
