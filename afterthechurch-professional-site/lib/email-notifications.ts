@@ -8,6 +8,11 @@ type StorySubmissionNotification = {
   contentIntensity: string;
 };
 
+type SupportRequestNotification = {
+  country: string;
+  urgentRisk: boolean;
+};
+
 function escapeHtml(value: string) {
   return value.replace(/[&<>'"]/g, (character) => {
     const entities: Record<string, string> = {
@@ -21,18 +26,8 @@ function escapeHtml(value: string) {
   });
 }
 
-export async function sendStorySubmissionNotification(
-  submission: StorySubmissionNotification
-) {
+function notificationConfig() {
   const apiKey = process.env.RESEND_API_KEY;
-
-  // Email notifications are optional. A missing email configuration must never
-  // prevent a survivor's submission from being saved for moderation.
-  if (!apiKey) {
-    console.info("Story notification skipped: RESEND_API_KEY is not configured.");
-    return;
-  }
-
   const recipient =
     process.env.STORY_NOTIFICATION_EMAIL?.trim() || "sha2mmah@gmail.com";
   const from =
@@ -41,7 +36,21 @@ export async function sendStorySubmissionNotification(
   const siteUrl = (
     process.env.NEXT_PUBLIC_SITE_URL || "https://www.afterthechurch.com"
   ).replace(/\/+$/, "");
-  const adminUrl = `${siteUrl}/admin`;
+
+  return { apiKey, recipient, from, adminUrl: `${siteUrl}/admin` };
+}
+
+export async function sendStorySubmissionNotification(
+  submission: StorySubmissionNotification
+) {
+  const { apiKey, recipient, from, adminUrl } = notificationConfig();
+
+  // Email notifications are optional. A missing email configuration must never
+  // prevent a survivor's submission from being saved for moderation.
+  if (!apiKey) {
+    console.info("Story notification skipped: RESEND_API_KEY is not configured.");
+    return;
+  }
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -93,5 +102,57 @@ export async function sendStorySubmissionNotification(
   if (!response.ok) {
     const details = await response.text();
     throw new Error(`Resend notification failed (${response.status}): ${details}`);
+  }
+}
+
+export async function sendSupportRequestNotification(
+  submission: SupportRequestNotification
+) {
+  const { apiKey, recipient, from, adminUrl } = notificationConfig();
+
+  if (!apiKey) {
+    console.info("Support request notification skipped: RESEND_API_KEY is not configured.");
+    return;
+  }
+
+  const urgency = submission.urgentRisk ? "URGENT-RISK FLAG — " : "";
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from,
+      to: [recipient],
+      subject: `${urgency}New private support request`,
+      text: [
+        "A new private Help Someone Else Safely request has been submitted to AfterTheChurch.",
+        "",
+        `Country: ${submission.country}`,
+        `Urgent-risk flag selected: ${submission.urgentRisk ? "Yes" : "No"}`,
+        "",
+        `Open the restricted administrator page to review it: ${adminUrl}`,
+        "",
+        "Names, contact details and the description are intentionally excluded from this email."
+      ].join("\n"),
+      html: `
+        <div style="font-family:Arial,sans-serif;line-height:1.6;color:#241f1c;max-width:640px;margin:auto">
+          <h1 style="font-size:24px">New private support request</h1>
+          <p>A Help Someone Else Safely request has entered the restricted AfterTheChurch administrator queue.</p>
+          <p><strong>Country:</strong> ${escapeHtml(submission.country)}<br/>
+          <strong>Urgent-risk flag selected:</strong> ${submission.urgentRisk ? "Yes" : "No"}</p>
+          <p style="margin:28px 0">
+            <a href="${adminUrl}" style="background:#7f2438;color:white;padding:12px 18px;border-radius:999px;text-decoration:none;font-weight:bold">Open private admin queue</a>
+          </p>
+          <p style="font-size:13px;color:#665f5a">Names, contact details and the description are intentionally excluded from this email.</p>
+        </div>
+      `
+    })
+  });
+
+  if (!response.ok) {
+    const details = await response.text();
+    throw new Error(`Resend support notification failed (${response.status}): ${details}`);
   }
 }
