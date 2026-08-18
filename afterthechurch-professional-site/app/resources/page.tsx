@@ -9,6 +9,7 @@ import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 export const metadata: Metadata = { title: "Educational Resources" };
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
+const supportGuideSlug = "supporting-someone-still-inside";
 const allResources = [lgbtqChurchResource, ...reviewedResources];
 
 export default function ResourcesPage() {
@@ -39,12 +40,16 @@ export default function ResourcesPage() {
         <div className="resourceCardGrid">
           {allResources.map((resource, index) => {
             const isReportingGuide = resource.slug === reportingSlug;
+            const resourceHref =
+              resource.slug === supportGuideSlug
+                ? `/resources/${resource.slug}?guide=1`
+                : `/resources/${resource.slug}`;
 
             return (
               <article className="resourceCard" key={resource.slug}>
                 <Link
                   className="resourceCardImageLink"
-                  href={`/resources/${resource.slug}`}
+                  href={resourceHref}
                   aria-label={`Open ${resource.title}`}
                 >
                   <div className="resourceCardImage">
@@ -76,7 +81,7 @@ export default function ResourcesPage() {
                   </div>
 
                   <h2>
-                    <Link href={`/resources/${resource.slug}`}>
+                    <Link href={resourceHref}>
                       {resource.title}
                     </Link>
                   </h2>
@@ -84,7 +89,7 @@ export default function ResourcesPage() {
                   <p>{resource.deck}</p>
                   <p className="resourceMeta">By Ian Shammah · Peer-reviewed evidence synthesis</p>
 
-                  <Link className="resourceCardAction" href={`/resources/${resource.slug}`}>
+                  <Link className="resourceCardAction" href={resourceHref}>
                     Choose Detail
                     <ArrowRight size={19} aria-hidden="true" />
                   </Link>
