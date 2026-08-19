@@ -15,6 +15,10 @@ const supportGuideSlug = "supporting-someone-still-inside";
 const gossipSlug = "gossip-in-church-leadership";
 const allResources = [sexEducationChurchResource, gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
 
+function replaceDashPunctuationWithEllipses<T>(value: T): T {
+  return JSON.parse(JSON.stringify(value).replace(/[—–]/g, "…")) as T;
+}
+
 export default function ResourcesPage() {
   return (
     <>
@@ -44,17 +48,20 @@ export default function ResourcesPage() {
           {allResources.map((resource, index) => {
             const isReportingGuide = resource.slug === reportingSlug;
             const isGossipGuide = resource.slug === gossipSlug;
+            const displayResource = isReportingGuide
+              ? replaceDashPunctuationWithEllipses(resource)
+              : resource;
             const resourceHref =
-              resource.slug === supportGuideSlug
-                ? `/resources/${resource.slug}?guide=1`
-                : `/resources/${resource.slug}`;
+              displayResource.slug === supportGuideSlug
+                ? `/resources/${displayResource.slug}?guide=1`
+                : `/resources/${displayResource.slug}`;
 
             return (
-              <article className="resourceCard" key={resource.slug}>
+              <article className="resourceCard" key={displayResource.slug}>
                 <Link
                   className="resourceCardImageLink"
                   href={resourceHref}
-                  aria-label={`Open ${resource.title}`}
+                  aria-label={`Open ${displayResource.title}`}
                 >
                   <div className="resourceCardImage">
                     {isReportingGuide ? (
@@ -65,8 +72,8 @@ export default function ResourcesPage() {
                       />
                     ) : isGossipGuide ? (
                       <img
-                        src={resource.image}
-                        alt={resource.imageAlt}
+                        src={displayResource.image}
+                        alt={displayResource.imageAlt}
                         style={{
                           width: "100%",
                           height: "100%",
@@ -76,8 +83,8 @@ export default function ResourcesPage() {
                       />
                     ) : (
                       <Image
-                        src={resource.image}
-                        alt={resource.imageAlt}
+                        src={displayResource.image}
+                        alt={displayResource.imageAlt}
                         fill
                         sizes="(max-width: 680px) 100vw, (max-width: 1100px) 50vw, 33vw"
                       />
@@ -91,17 +98,17 @@ export default function ResourcesPage() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span>
-                      {resource.category} · {resource.readingTime} min · {resource.intensity} intensity
+                      {displayResource.category} · {displayResource.readingTime} min · {displayResource.intensity} intensity
                     </span>
                   </div>
 
                   <h2>
                     <Link href={resourceHref}>
-                      {resource.title}
+                      {displayResource.title}
                     </Link>
                   </h2>
 
-                  <p>{resource.deck}</p>
+                  <p>{displayResource.deck}</p>
                   <p className="resourceMeta">By Ian Shammah · Peer-reviewed evidence synthesis</p>
 
                   <Link className="resourceCardAction" href={resourceHref}>
