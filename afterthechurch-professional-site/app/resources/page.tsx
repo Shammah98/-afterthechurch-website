@@ -6,13 +6,14 @@ import { reviewedResources } from "@/lib/reviewed-resources";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
+import { sexEducationChurchResource } from "@/lib/sex-education-church-resource";
 
 export const metadata: Metadata = { title: "Educational Resources" };
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const supportGuideSlug = "supporting-someone-still-inside";
 const gossipSlug = "gossip-in-church-leadership";
-const allResources = [gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
+const allResources = [sexEducationChurchResource, gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
 
 export default function ResourcesPage() {
   return (
