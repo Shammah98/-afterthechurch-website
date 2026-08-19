@@ -6,9 +6,10 @@ import ProgressiveResource from "@/components/ProgressiveResource";
 import { reviewedResources } from "@/lib/reviewed-resources";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
+import { gossipChurchResource } from "@/lib/gossip-church-resource";
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
-const allResources = [lgbtqChurchResource, ...reviewedResources];
+const allResources = [gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
 
 function getAnyResource(slug: string) {
   return allResources.find((resource) => resource.slug === slug) || null;
