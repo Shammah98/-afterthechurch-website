@@ -11,6 +11,8 @@ export const metadata: Metadata = { title: "Educational Resources" };
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const supportGuideSlug = "supporting-someone-still-inside";
+const gossipSlug = "gossip-in-church-leadership";
+const gossipCoverUrl = "https://covers.openlibrary.org/b/isbn/9780982019207-L.jpg";
 const allResources = [gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
 
 export default function ResourcesPage() {
@@ -41,6 +43,7 @@ export default function ResourcesPage() {
         <div className="resourceCardGrid">
           {allResources.map((resource, index) => {
             const isReportingGuide = resource.slug === reportingSlug;
+            const isGossipGuide = resource.slug === gossipSlug;
             const resourceHref =
               resource.slug === supportGuideSlug
                 ? `/resources/${resource.slug}?guide=1`
@@ -59,6 +62,17 @@ export default function ResourcesPage() {
                         src={reportingGraphicDataUri}
                         alt="Illustrated harm-reduction graphic about reporting, support, consequences and community safety."
                         style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                    ) : isGossipGuide ? (
+                      <img
+                        src={gossipCoverUrl}
+                        alt={resource.imageAlt}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          filter: "contrast(1.04) saturate(1.03)"
+                        }}
                       />
                     ) : (
                       <Image
