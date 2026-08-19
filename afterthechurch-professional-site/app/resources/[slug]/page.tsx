@@ -9,6 +9,8 @@ import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource";
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
+const gossipSlug = "gossip-in-church-leadership";
+const gossipCoverUrl = "https://covers.openlibrary.org/b/isbn/9780982019207-L.jpg";
 const allResources = [gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
 
 function getAnyResource(slug: string) {
@@ -42,6 +44,7 @@ export default async function ResourcePage({
   if (!resource) notFound();
 
   const isReportingGuide = resource.slug === reportingSlug;
+  const isGossipGuide = resource.slug === gossipSlug;
 
   const content = (
     <>
@@ -64,6 +67,18 @@ export default async function ResourcePage({
             alt="Illustrated harm-reduction graphic about reporting, support, consequences and community safety."
             className={`articleHeroImage articleHeroImage--${resource.slug}`}
             style={{ width: "100%", height: "auto", objectFit: "cover" }}
+          />
+        ) : isGossipGuide ? (
+          <img
+            src={gossipCoverUrl}
+            alt={resource.imageAlt}
+            className={`articleHeroImage articleHeroImage--${resource.slug}`}
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "cover",
+              filter: "contrast(1.04) saturate(1.03)"
+            }}
           />
         ) : (
           <Image
