@@ -120,9 +120,11 @@ export default async function HomePage() {
      <section className="groundingSection editorialSection">
   <div className="groundingImage">
     <Image
-      src="/images/Traumatic-Brain-Injury-X-Ray.webp"
-      alt="An illustration representing the brain and nervous system."
+      src="/images/coercive.png"
+      alt="A person seated inside a glowing transparent enclosure while a crowd watches from outside, illustrating harmful control."
       fill
+      quality={100}
+      priority
       sizes="(max-width: 900px) 100vw, 55vw"
       className="groundingImagePhoto"
     />
