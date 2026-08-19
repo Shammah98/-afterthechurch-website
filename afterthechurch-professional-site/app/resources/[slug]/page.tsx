@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import ContentNotice from "@/components/ContentNotice";
 import ProgressiveResource from "@/components/ProgressiveResource";
 import { reviewedResources } from "@/lib/reviewed-resources";
+import { faithHealingResource } from "@/lib/faith-healing-resource";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
@@ -11,19 +12,18 @@ import { sexEducationChurchResource } from "@/lib/sex-education-church-resource"
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const gossipSlug = "gossip-in-church-leadership";
-const allResources = [sexEducationChurchResource, gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
-
-function replaceDashPunctuationWithEllipses<T>(value: T): T {
-  return JSON.parse(JSON.stringify(value).replace(/[—–]/g, "…")) as T;
-}
+const faithHealingSlug = "faith-healing-and-medical-decisions";
+const allResources = [
+  sexEducationChurchResource,
+  gossipChurchResource,
+  lgbtqChurchResource,
+  ...reviewedResources.map((resource) =>
+    resource.slug === faithHealingSlug ? faithHealingResource : resource
+  )
+];
 
 function getAnyResource(slug: string) {
-  const resource = allResources.find((item) => item.slug === slug) || null;
-  if (!resource) return null;
-
-  return resource.slug === reportingSlug
-    ? replaceDashPunctuationWithEllipses(resource)
-    : resource;
+  return allResources.find((resource) => resource.slug === slug) || null;
 }
 
 export function generateStaticParams() {

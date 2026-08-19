@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { reviewedResources } from "@/lib/reviewed-resources";
+import { faithHealingResource } from "@/lib/faith-healing-resource";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
@@ -13,11 +14,15 @@ export const metadata: Metadata = { title: "Educational Resources" };
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const supportGuideSlug = "supporting-someone-still-inside";
 const gossipSlug = "gossip-in-church-leadership";
-const allResources = [sexEducationChurchResource, gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
-
-function replaceDashPunctuationWithEllipses<T>(value: T): T {
-  return JSON.parse(JSON.stringify(value).replace(/[—–]/g, "…")) as T;
-}
+const faithHealingSlug = "faith-healing-and-medical-decisions";
+const allResources = [
+  sexEducationChurchResource,
+  gossipChurchResource,
+  lgbtqChurchResource,
+  ...reviewedResources.map((resource) =>
+    resource.slug === faithHealingSlug ? faithHealingResource : resource
+  )
+];
 
 export default function ResourcesPage() {
   return (
@@ -48,20 +53,17 @@ export default function ResourcesPage() {
           {allResources.map((resource, index) => {
             const isReportingGuide = resource.slug === reportingSlug;
             const isGossipGuide = resource.slug === gossipSlug;
-            const displayResource = isReportingGuide
-              ? replaceDashPunctuationWithEllipses(resource)
-              : resource;
             const resourceHref =
-              displayResource.slug === supportGuideSlug
-                ? `/resources/${displayResource.slug}?guide=1`
-                : `/resources/${displayResource.slug}`;
+              resource.slug === supportGuideSlug
+                ? `/resources/${resource.slug}?guide=1`
+                : `/resources/${resource.slug}`;
 
             return (
-              <article className="resourceCard" key={displayResource.slug}>
+              <article className="resourceCard" key={resource.slug}>
                 <Link
                   className="resourceCardImageLink"
                   href={resourceHref}
-                  aria-label={`Open ${displayResource.title}`}
+                  aria-label={`Open ${resource.title}`}
                 >
                   <div className="resourceCardImage">
                     {isReportingGuide ? (
@@ -72,8 +74,8 @@ export default function ResourcesPage() {
                       />
                     ) : isGossipGuide ? (
                       <img
-                        src={displayResource.image}
-                        alt={displayResource.imageAlt}
+                        src={resource.image}
+                        alt={resource.imageAlt}
                         style={{
                           width: "100%",
                           height: "100%",
@@ -83,8 +85,8 @@ export default function ResourcesPage() {
                       />
                     ) : (
                       <Image
-                        src={displayResource.image}
-                        alt={displayResource.imageAlt}
+                        src={resource.image}
+                        alt={resource.imageAlt}
                         fill
                         sizes="(max-width: 680px) 100vw, (max-width: 1100px) 50vw, 33vw"
                       />
@@ -98,17 +100,17 @@ export default function ResourcesPage() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span>
-                      {displayResource.category} · {displayResource.readingTime} min · {displayResource.intensity} intensity
+                      {resource.category} · {resource.readingTime} min · {resource.intensity} intensity
                     </span>
                   </div>
 
                   <h2>
                     <Link href={resourceHref}>
-                      {displayResource.title}
+                      {resource.title}
                     </Link>
                   </h2>
 
-                  <p>{displayResource.deck}</p>
+                  <p>{resource.deck}</p>
                   <p className="resourceMeta">By Ian Shammah · Peer-reviewed evidence synthesis</p>
 
                   <Link className="resourceCardAction" href={resourceHref}>
