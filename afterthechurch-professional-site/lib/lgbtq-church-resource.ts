@@ -4,7 +4,7 @@ export const lgbtqChurchResource: ResourceArticle = {
   slug: "lgbtq-people-and-harm-in-churches",
   title: "When church becomes a source of harm for LGBTQ+ people",
   deck:
-    "An evidence-based review of how rejection, identity conflict, coercive teachings and exclusion in religious settings can affect LGBTQ+ mental health — and what safer, affirming faith communities can do differently.",
+    "An evidence-based review of how rejection, identity conflict, coercive teachings and exclusion in religious settings can affect LGBTQ+ mental health … and what safer, affirming faith communities can do differently.",
   category: "LGBTQ+ people and religious harm",
   readingTime: 16,
   intensity: "moderate",
@@ -23,7 +23,7 @@ export const lgbtqChurchResource: ResourceArticle = {
   overview:
     "For many LGBTQ+ people, religion is not simply a source of harm or a source of comfort. It can be both. The strongest research does not support the idea that faith itself is inherently damaging. Instead, risk tends to rise when religious participation is tied to rejection, shame, concealment, identity conflict, threats of exclusion, pressure to change sexual orientation or gender identity, or the belief that a core part of oneself is morally defective. A 2026 systematic review synthesising 55 quantitative studies and more than 512,000 LGBTQIA+ participants described religion and spirituality as an ambivalent force: distress was more likely when faith was linked to internalised stigma, identity conflict and exclusion, while affirming communities, meaning-making and supportive spiritual coping could be protective. This article therefore focuses on the conditions under which churches can become harmful, while recognising that affirming faith communities can also be places of belonging and recovery.",
   keyPoints: [
-    "The evidence points to minority stress and religious identity conflict — not LGBTQ+ identity itself — as important pathways to poorer mental health.",
+    "The evidence points to minority stress and religious identity conflict … not LGBTQ+ identity itself … as important pathways to poorer mental health.",
     "In one national study of LGBT young adults, 43% reported conflict between their religious beliefs and sexuality; among those who experienced conflict, 42% said they left their religious affiliation because of it.",
     "A large study of college students found sexual-minority young adults had 4.52 times the adjusted odds of past-year suicidal ideation compared with heterosexual peers; among Catholics, the adjusted odds ratio was 5.25.",
     "A 2025 mixed-methods study of 429 LGBTQ+ participants found religion played a role in suppressing sexual orientation for 59.2% of participants.",
@@ -34,7 +34,7 @@ export const lgbtqChurchResource: ResourceArticle = {
   ],
   fullSections: [
     {
-      heading: "The central issue is not religion alone — it is the social environment created around LGBTQ+ identity",
+      heading: "The central issue is not religion alone … it is the social environment created around LGBTQ+ identity",
       paragraphs: [
         "Religion is often associated with community, meaning, ritual and social support. Those benefits can be psychologically valuable. But the same institution can become a source of chronic stress when an LGBTQ+ person learns that acceptance is conditional on concealment, celibacy, silence, gender conformity or attempts to change. Minority stress theory helps explain why: repeated exposure to stigma can produce expectations of rejection, internalised stigma, concealment and heightened vigilance. Religious settings can intensify these mechanisms when moral authority and belonging are attached to them.",
         "A recent systematic review of 55 quantitative studies, involving 512,551 LGBTQIA+ participants, found that religion and spirituality were associated with distress when they were linked to internalised homo-, bi- or transphobia, identity conflict and exclusion. The same review also found evidence of resilience when spirituality provided meaning, coping and affirming community. This distinction matters. It means the question is not simply whether someone is religious, but what kind of religious environment they are living in and what that environment requires of them."
@@ -51,11 +51,11 @@ export const lgbtqChurchResource: ResourceArticle = {
       heading: "Shame, concealment and internalised stigma are important pathways of harm",
       paragraphs: [
         "When a church repeatedly describes same-sex relationships, gender diversity or LGBTQ+ identity as disordered, sinful, rebellious or evidence of spiritual failure, those messages can move from the social environment into a person's self-concept. Research has linked religious stress to more negative sexual-minority identity and greater psychological difficulty. Studies of religious sexual-minority adults likewise identify internalised homonegativity as an important mechanism connecting non-affirming environments with distress.",
-        "A 2025 mixed-methods study of 429 LGBTQ+ people found that religion influenced suppression of sexual orientation for 254 participants — 59.2% of the sample. Participants described fear, shame, rejection and separation from religious communities. Concealment can sometimes be a rational short-term safety strategy, particularly where housing, family, immigration status, employment or education are tied to the church. The harm occurs when concealment becomes the price of belonging and the person has little realistic freedom to be known safely."
+        "A 2025 mixed-methods study of 429 LGBTQ+ people found that religion influenced suppression of sexual orientation for 254 participants … 59.2% of the sample. Participants described fear, shame, rejection and separation from religious communities. Concealment can sometimes be a rational short-term safety strategy, particularly where housing, family, immigration status, employment or education are tied to the church. The harm occurs when concealment becomes the price of belonging and the person has little realistic freedom to be known safely."
       ]
     },
     {
-      heading: "Suicidality requires careful interpretation — but the disparities are serious",
+      heading: "Suicidality requires careful interpretation … but the disparities are serious",
       paragraphs: [
         "Suicide is multi-causal, and no responsible article should claim that a church teaching by itself causes a suicide attempt. The evidence does, however, show strong associations between sexual-minority status, stigma, identity conflict and suicidal thinking. In a study comparing 37,471 heterosexual and 2,679 sexual-minority young adults, sexual-minority participants had 4.52 times the adjusted odds of reporting suicidal ideation in the previous year. Among Catholic respondents, sexual-minority Catholics had 5.25 times the adjusted odds of suicidal ideation compared with heterosexual Catholics.",
         "Other work focused specifically on religious conflict has found relationships among unresolved conflict, internalised homophobia and suicidality. Among sexual-minority Latter-day Saints, interpersonal religious struggles, internalised homonegativity and concealment were associated with greater suicidal ideation, while resolving conflict between sexual and religious identities, family support and friend support were associated with lower suicidal ideation. The practical lesson is not that faith must be abandoned. It is that persistent shame, isolation and identity conflict should be treated as genuine safeguarding and mental-health concerns."
@@ -102,14 +102,14 @@ export const lgbtqChurchResource: ResourceArticle = {
     "Keep pastoral counselling voluntary. You are allowed to end a conversation, refuse disclosure and seek an independent therapist or adviser.",
     "If leaders use private information publicly, document what happened and review the church's safeguarding, privacy and complaints procedures.",
     "Treat threats of shunning, housing loss, employment loss, forced outing or family retaliation as practical safety issues, not merely theological disagreements.",
-    "If you want to keep your faith, look for communities that explicitly state how LGBTQ+ members, couples, clergy, volunteers and young people are treated in practice — not only that 'everyone is welcome'.",
+    "If you want to keep your faith, look for communities that explicitly state how LGBTQ+ members, couples, clergy, volunteers and young people are treated in practice … not only that 'everyone is welcome'.",
     "If you are supporting someone, avoid debating theology while they are in crisis. Focus first on safety, sleep, social support, housing, health care and the person's own choices.",
     "For church leaders: prohibit conversion practices, forced confession and public outing; establish confidential safeguarding routes and train leaders in LGBTQ+-affirming mental-health literacy.",
     "If there is immediate danger, sexual violence, abuse of a child or adult at risk, or a serious suicide risk, use appropriate emergency, medical or safeguarding services rather than relying only on internal church processes."
   ],
   furtherReading: [
     {
-      label: "Systematic review — Religiosity/spirituality and mental health for LGBTQIA+ people of faith",
+      label: "Systematic review … Religiosity/spirituality and mental health for LGBTQIA+ people of faith",
       note:
         "A preregistered systematic review of 55 quantitative studies (N = 512,551), finding religion/spirituality can operate as both a stressor and a source of resilience depending on stigma, identity conflict, coping and affirmation.",
       url: "https://pubmed.ncbi.nlm.nih.gov/41592285/"
@@ -121,13 +121,13 @@ export const lgbtqChurchResource: ResourceArticle = {
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4706071/"
     },
     {
-      label: "Questions of faith — religious affiliation and suicidal ideation among sexual-minority young adults",
+      label: "Questions of faith … religious affiliation and suicidal ideation among sexual-minority young adults",
       note:
         "Large study reporting elevated adjusted odds of suicidal ideation among sexual-minority young adults across several religious affiliations.",
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10334798/"
     },
     {
-      label: "Coming out as LGBTQ+ — mental-health impact of religious responses to disclosure",
+      label: "Coming out as LGBTQ+ … mental-health impact of religious responses to disclosure",
       note:
         "Mixed-methods study of 429 participants examining suppression, shame, rejection, separation from religion and affirmation.",
       url: "https://pubmed.ncbi.nlm.nih.gov/39853193/"
@@ -145,7 +145,7 @@ export const lgbtqChurchResource: ResourceArticle = {
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3489382/"
     },
     {
-      label: "HRC Foundation — Stances of Faiths on LGBTQ+ Issues: Roman Catholic Church",
+      label: "HRC Foundation … Stances of Faiths on LGBTQ+ Issues: Roman Catholic Church",
       note:
         "Background on official Catholic teaching and variation in LGBTQ+ parishioners' lived experiences.",
       url: "https://www.hrc.org/resources/stances-of-faiths-on-lgbt-issues-roman-catholic-church"
