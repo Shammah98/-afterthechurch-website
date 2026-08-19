@@ -5,12 +5,13 @@ import { ArrowRight } from "lucide-react";
 import { reviewedResources } from "@/lib/reviewed-resources";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
+import { gossipChurchResource } from "@/lib/gossip-church-resource";
 
 export const metadata: Metadata = { title: "Educational Resources" };
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const supportGuideSlug = "supporting-someone-still-inside";
-const allResources = [lgbtqChurchResource, ...reviewedResources];
+const allResources = [gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
 
 export default function ResourcesPage() {
   return (
