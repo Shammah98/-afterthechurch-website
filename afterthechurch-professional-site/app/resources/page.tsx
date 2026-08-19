@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { reviewedResources } from "@/lib/reviewed-resources";
 import { faithHealingResource } from "@/lib/faith-healing-resource";
+import { coerciveControlResource } from "@/lib/coercive-control-resource";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
@@ -15,13 +16,16 @@ const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const supportGuideSlug = "supporting-someone-still-inside";
 const gossipSlug = "gossip-in-church-leadership";
 const faithHealingSlug = "faith-healing-and-medical-decisions";
+const coerciveControlSlug = "recognising-coercive-control";
 const allResources = [
   sexEducationChurchResource,
   gossipChurchResource,
   lgbtqChurchResource,
-  ...reviewedResources.map((resource) =>
-    resource.slug === faithHealingSlug ? faithHealingResource : resource
-  )
+  ...reviewedResources.map((resource) => {
+    if (resource.slug === faithHealingSlug) return faithHealingResource;
+    if (resource.slug === coerciveControlSlug) return coerciveControlResource;
+    return resource;
+  })
 ];
 
 export default function ResourcesPage() {
