@@ -7,10 +7,11 @@ import { reviewedResources } from "@/lib/reviewed-resources";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
+import { sexEducationChurchResource } from "@/lib/sex-education-church-resource";
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const gossipSlug = "gossip-in-church-leadership";
-const allResources = [gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
+const allResources = [sexEducationChurchResource, gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
 
 function getAnyResource(slug: string) {
   return allResources.find((resource) => resource.slug === slug) || null;
