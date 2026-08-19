@@ -13,8 +13,17 @@ const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const gossipSlug = "gossip-in-church-leadership";
 const allResources = [sexEducationChurchResource, gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
 
+function replaceDashPunctuationWithEllipses<T>(value: T): T {
+  return JSON.parse(JSON.stringify(value).replace(/[—–]/g, "…")) as T;
+}
+
 function getAnyResource(slug: string) {
-  return allResources.find((resource) => resource.slug === slug) || null;
+  const resource = allResources.find((item) => item.slug === slug) || null;
+  if (!resource) return null;
+
+  return resource.slug === reportingSlug
+    ? replaceDashPunctuationWithEllipses(resource)
+    : resource;
 }
 
 export function generateStaticParams() {
