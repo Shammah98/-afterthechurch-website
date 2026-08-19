@@ -6,11 +6,10 @@ import ProgressiveResource from "@/components/ProgressiveResource";
 import { reviewedResources } from "@/lib/reviewed-resources";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
-import { gossipChurchResource } from "@/lib/gossip-church-resource";
+import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const gossipSlug = "gossip-in-church-leadership";
-const gossipCoverUrl = "https://covers.openlibrary.org/b/isbn/9780982019207-L.jpg";
 const allResources = [gossipChurchResource, lgbtqChurchResource, ...reviewedResources];
 
 function getAnyResource(slug: string) {
@@ -70,7 +69,7 @@ export default async function ResourcePage({
           />
         ) : isGossipGuide ? (
           <img
-            src={gossipCoverUrl}
+            src={resource.image}
             alt={resource.imageAlt}
             className={`articleHeroImage articleHeroImage--${resource.slug}`}
             style={{
