@@ -20,7 +20,7 @@ export default function Header() {
     <header className="siteHeader">
       <Link href="/" className="brand" aria-label="AfterTheChurch home">
         <Image
-          src="/images/afterthechurch-logo.jpg"
+          src="/images/afterthechurch-logo-new.svg"
           width={54}
           height={54}
           alt=""
