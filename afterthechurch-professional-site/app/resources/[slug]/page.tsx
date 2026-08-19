@@ -5,6 +5,7 @@ import ContentNotice from "@/components/ContentNotice";
 import ProgressiveResource from "@/components/ProgressiveResource";
 import { reviewedResources } from "@/lib/reviewed-resources";
 import { faithHealingResource } from "@/lib/faith-healing-resource";
+import { coerciveControlResource } from "@/lib/coercive-control-resource";
 import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
@@ -13,13 +14,16 @@ import { sexEducationChurchResource } from "@/lib/sex-education-church-resource"
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const gossipSlug = "gossip-in-church-leadership";
 const faithHealingSlug = "faith-healing-and-medical-decisions";
+const coerciveControlSlug = "recognising-coercive-control";
 const allResources = [
   sexEducationChurchResource,
   gossipChurchResource,
   lgbtqChurchResource,
-  ...reviewedResources.map((resource) =>
-    resource.slug === faithHealingSlug ? faithHealingResource : resource
-  )
+  ...reviewedResources.map((resource) => {
+    if (resource.slug === faithHealingSlug) return faithHealingResource;
+    if (resource.slug === coerciveControlSlug) return coerciveControlResource;
+    return resource;
+  })
 ];
 
 function getAnyResource(slug: string) {
