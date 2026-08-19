@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footerMain">
         <div className="footerIdentity">
           <Image
-            src="/images/afterthechurch-logo.jpg"
+            src="/images/afterthechurch-logo-new.svg"
             width={62}
             height={62}
             alt=""
