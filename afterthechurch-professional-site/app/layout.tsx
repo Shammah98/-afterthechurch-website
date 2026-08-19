@@ -8,6 +8,7 @@ import "./globals.css";
 import "./cosmic-theme.css";
 import "./cosmic-visibility.css";
 import "./footer-polish.css";
+import "./safety-pink-fix.css";
 
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
