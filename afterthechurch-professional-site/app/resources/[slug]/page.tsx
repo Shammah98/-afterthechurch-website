@@ -16,6 +16,7 @@ const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const gossipSlug = "gossip-in-church-leadership";
 const faithHealingSlug = "faith-healing-and-medical-decisions";
 const coerciveControlSlug = "recognising-coercive-control";
+const financialGivingSlug = "financial-pressure-and-giving";
 const allResources = [
   sexEducationChurchResource,
   gossipChurchResource,
@@ -31,8 +32,8 @@ function replaceLongDash(text: string) {
   return text.replace(/\s*—\s*/g, " … ");
 }
 
-function formatReportingGuide(resource: ResourceArticle): ResourceArticle {
-  if (resource.slug !== reportingSlug) return resource;
+function formatResourcePunctuation(resource: ResourceArticle): ResourceArticle {
+  if (resource.slug !== reportingSlug && resource.slug !== financialGivingSlug) return resource;
 
   return {
     ...resource,
@@ -68,7 +69,7 @@ function formatReportingGuide(resource: ResourceArticle): ResourceArticle {
 
 function getAnyResource(slug: string) {
   const resource = allResources.find((item) => item.slug === slug) || null;
-  return resource ? formatReportingGuide(resource) : null;
+  return resource ? formatResourcePunctuation(resource) : null;
 }
 
 export function generateStaticParams() {
