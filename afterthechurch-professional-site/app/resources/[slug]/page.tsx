@@ -17,6 +17,7 @@ const gossipSlug = "gossip-in-church-leadership";
 const faithHealingSlug = "faith-healing-and-medical-decisions";
 const coerciveControlSlug = "recognising-coercive-control";
 const financialGivingSlug = "financial-pressure-and-giving";
+const supportingSomeoneSlug = "supporting-someone-still-inside";
 const allResources = [
   sexEducationChurchResource,
   gossipChurchResource,
@@ -33,7 +34,13 @@ function replaceLongDash(text: string) {
 }
 
 function formatResourcePunctuation(resource: ResourceArticle): ResourceArticle {
-  if (resource.slug !== reportingSlug && resource.slug !== financialGivingSlug) return resource;
+  if (
+    resource.slug !== reportingSlug &&
+    resource.slug !== financialGivingSlug &&
+    resource.slug !== supportingSomeoneSlug
+  ) {
+    return resource;
+  }
 
   return {
     ...resource,
