@@ -10,6 +10,7 @@ import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
 import { sexEducationChurchResource } from "@/lib/sex-education-church-resource";
+import type { ResourceArticle } from "@/lib/types";
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const gossipSlug = "gossip-in-church-leadership";
@@ -26,8 +27,48 @@ const allResources = [
   })
 ];
 
+function replaceLongDash(text: string) {
+  return text.replace(/\s*—\s*/g, " … ");
+}
+
+function formatReportingGuide(resource: ResourceArticle): ResourceArticle {
+  if (resource.slug !== reportingSlug) return resource;
+
+  return {
+    ...resource,
+    title: replaceLongDash(resource.title),
+    deck: replaceLongDash(resource.deck),
+    category: replaceLongDash(resource.category),
+    warnings: resource.warnings.map(replaceLongDash),
+    imageAlt: replaceLongDash(resource.imageAlt),
+    overview: replaceLongDash(resource.overview),
+    keyPoints: resource.keyPoints.map(replaceLongDash),
+    fullSections: resource.fullSections.map((section) => ({
+      heading: replaceLongDash(section.heading),
+      paragraphs: section.paragraphs.map(replaceLongDash)
+    })),
+    practicalOptions: resource.practicalOptions.map(replaceLongDash),
+    furtherReading: resource.furtherReading.map((item) => ({
+      ...item,
+      label: replaceLongDash(item.label),
+      note: replaceLongDash(item.note)
+    })),
+    illustration: resource.illustration
+      ? {
+          ...resource.illustration,
+          alt: replaceLongDash(resource.illustration.alt),
+          caption: replaceLongDash(resource.illustration.caption),
+          credit: resource.illustration.credit
+            ? replaceLongDash(resource.illustration.credit)
+            : undefined
+        }
+      : undefined
+  };
+}
+
 function getAnyResource(slug: string) {
-  return allResources.find((resource) => resource.slug === slug) || null;
+  const resource = allResources.find((item) => item.slug === slug) || null;
+  return resource ? formatReportingGuide(resource) : null;
 }
 
 export function generateStaticParams() {
