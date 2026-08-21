@@ -9,15 +9,18 @@ import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
 import { sexEducationChurchResource } from "@/lib/sex-education-church-resource";
+import { bullyingChurchResource } from "@/lib/bullying-church-resource";
 
 export const metadata: Metadata = { title: "Educational Resources" };
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const supportGuideSlug = "supporting-someone-still-inside";
 const gossipSlug = "gossip-in-church-leadership";
+const bullyingSlug = "bullies-and-sissies";
 const faithHealingSlug = "faith-healing-and-medical-decisions";
 const coerciveControlSlug = "recognising-coercive-control";
 const allResources = [
+  bullyingChurchResource,
   sexEducationChurchResource,
   gossipChurchResource,
   lgbtqChurchResource,
@@ -57,6 +60,7 @@ export default function ResourcesPage() {
           {allResources.map((resource, index) => {
             const isReportingGuide = resource.slug === reportingSlug;
             const isGossipGuide = resource.slug === gossipSlug;
+            const isBullyingGuide = resource.slug === bullyingSlug;
             const resourceHref =
               resource.slug === supportGuideSlug
                 ? `/resources/${resource.slug}?guide=1`
@@ -76,7 +80,7 @@ export default function ResourcesPage() {
                         alt="Illustrated harm-reduction graphic about reporting, support, consequences and community safety."
                         style={{ width: "100%", height: "100%", objectFit: "cover" }}
                       />
-                    ) : isGossipGuide ? (
+                    ) : isGossipGuide || isBullyingGuide ? (
                       <img
                         src={resource.image}
                         alt={resource.imageAlt}
@@ -84,7 +88,7 @@ export default function ResourcesPage() {
                           width: "100%",
                           height: "100%",
                           objectFit: "cover",
-                          filter: "contrast(1.04) saturate(1.03)"
+                          filter: isGossipGuide ? "contrast(1.04) saturate(1.03)" : undefined
                         }}
                       />
                     ) : (
