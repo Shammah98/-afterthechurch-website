@@ -10,15 +10,18 @@ import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
 import { sexEducationChurchResource } from "@/lib/sex-education-church-resource";
+import { bullyingChurchResource } from "@/lib/bullying-church-resource";
 import type { ResourceArticle } from "@/lib/types";
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const gossipSlug = "gossip-in-church-leadership";
+const bullyingSlug = "bullies-and-sissies";
 const faithHealingSlug = "faith-healing-and-medical-decisions";
 const coerciveControlSlug = "recognising-coercive-control";
 const financialGivingSlug = "financial-pressure-and-giving";
 const supportingSomeoneSlug = "supporting-someone-still-inside";
 const allResources = [
+  bullyingChurchResource,
   sexEducationChurchResource,
   gossipChurchResource,
   lgbtqChurchResource,
@@ -107,6 +110,7 @@ export default async function ResourcePage({
 
   const isReportingGuide = resource.slug === reportingSlug;
   const isGossipGuide = resource.slug === gossipSlug;
+  const isBullyingGuide = resource.slug === bullyingSlug;
 
   const content = (
     <>
@@ -130,7 +134,7 @@ export default async function ResourcePage({
             className={`articleHeroImage articleHeroImage--${resource.slug}`}
             style={{ width: "100%", height: "auto", objectFit: "cover" }}
           />
-        ) : isGossipGuide ? (
+        ) : isGossipGuide || isBullyingGuide ? (
           <img
             src={resource.image}
             alt={resource.imageAlt}
@@ -139,7 +143,7 @@ export default async function ResourcePage({
               width: "100%",
               height: "auto",
               objectFit: "cover",
-              filter: "contrast(1.04) saturate(1.03)"
+              filter: isGossipGuide ? "contrast(1.04) saturate(1.03)" : undefined
             }}
           />
         ) : (
