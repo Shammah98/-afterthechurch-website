@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { getBrowserSupabase } from "@/lib/supabase-browser";
+import { getAdminAccessToken, getBrowserSupabase } from "@/lib/supabase-browser";
 
 type SupportRequest = {
   id: string;
@@ -35,40 +35,53 @@ export default function AdminSupportRequests() {
   const [busyId, setBusyId] = useState<string | null>(null);
 
   async function getAdminToken() {
-    const { data } = await getBrowserSupabase().auth.getSession();
-    const session = data.session;
-    if (!session || session.user.is_anonymous) return null;
-    return session.access_token;
+    return getAdminAccessToken();
   }
 
   async function load() {
-    const token = await getAdminToken();
-    if (!token) {
+    try {
+      const token = await getAdminToken();
+      if (!token) {
+        setAuthorised(false);
+        setRequests([]);
+        setMessage("Sign in with the administrator panel above to review private support requests.");
+        return;
+      }
+
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 10000);
+      let response: Response;
+
+      try {
+        response = await fetch("/api/admin/support-requests", {
+          headers: { Authorization: `Bearer ${token}` },
+          cache: "no-store",
+          signal: controller.signal
+        });
+      } finally {
+        window.clearTimeout(timeout);
+      }
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setAuthorised(response.status === 403 ? false : true);
+        setRequests([]);
+        setMessage(result.error || "The support-request queue could not be loaded.");
+        return;
+      }
+
+      const items = result.requests as SupportRequest[];
+      setAuthorised(true);
+      setRequests(items);
+      setNotes(Object.fromEntries(items.map((item) => [item.id, item.adminNotes || ""])));
+      setStatuses(Object.fromEntries(items.map((item) => [item.id, item.status])));
+      setMessage(items.length ? "" : "There are no private support requests yet.");
+    } catch {
       setAuthorised(false);
       setRequests([]);
-      setMessage("Sign in with the administrator panel above to review private support requests.");
-      return;
+      setMessage("Support-request access could not be checked. Sign in above or refresh the page.");
     }
-
-    const response = await fetch("/api/admin/support-requests", {
-      headers: { Authorization: `Bearer ${token}` },
-      cache: "no-store"
-    });
-    const result = await response.json();
-
-    if (!response.ok) {
-      setAuthorised(response.status === 403 ? false : true);
-      setRequests([]);
-      setMessage(result.error || "The support-request queue could not be loaded.");
-      return;
-    }
-
-    const items = result.requests as SupportRequest[];
-    setAuthorised(true);
-    setRequests(items);
-    setNotes(Object.fromEntries(items.map((item) => [item.id, item.adminNotes || ""])));
-    setStatuses(Object.fromEntries(items.map((item) => [item.id, item.status])));
-    setMessage(items.length ? "" : "There are no private support requests yet.");
   }
 
   useEffect(() => {
@@ -84,35 +97,41 @@ export default function AdminSupportRequests() {
     const token = await getAdminToken();
     if (!token) {
       setAuthorised(false);
+      setMessage("Administrator sign-in is required.");
       return;
     }
 
     setBusyId(item.id);
     setMessage("Saving support-request notes…");
 
-    const response = await fetch("/api/admin/support-requests", {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        id: item.id,
-        status: statuses[item.id] || item.status,
-        adminNotes: notes[item.id] || ""
-      })
-    });
+    try {
+      const response = await fetch("/api/admin/support-requests", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          id: item.id,
+          status: statuses[item.id] || item.status,
+          adminNotes: notes[item.id] || ""
+        })
+      });
 
-    const result = await response.json();
-    if (!response.ok) {
-      setMessage(result.error || "The update could not be saved.");
+      const result = await response.json();
+      if (!response.ok) {
+        setMessage(result.error || "The update could not be saved.");
+        setBusyId(null);
+        return;
+      }
+
+      await load();
+      setMessage("Support request updated.");
+    } catch {
+      setMessage("The support-request update could not be saved. Please try again.");
+    } finally {
       setBusyId(null);
-      return;
     }
-
-    await load();
-    setMessage("Support request updated.");
-    setBusyId(null);
   }
 
   const openCount = useMemo(
