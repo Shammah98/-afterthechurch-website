@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { getBrowserSupabase } from "@/lib/supabase-browser";
+import { getAdminAccessToken, getBrowserSupabase } from "@/lib/supabase-browser";
 
 type ManagedStory = {
   id: string;
@@ -20,37 +20,51 @@ export default function AdminPublishedStories() {
   const [busyId, setBusyId] = useState<string | null>(null);
 
   async function token() {
-    const { data } = await getBrowserSupabase().auth.getSession();
-    const session = data.session;
-    if (!session || session.user.is_anonymous) return null;
-    return session.access_token;
+    return getAdminAccessToken();
   }
 
   async function load() {
-    const accessToken = await token();
-    if (!accessToken) {
+    try {
+      const accessToken = await token();
+      if (!accessToken) {
+        setVisible(false);
+        setPublished([]);
+        setHidden([]);
+        return;
+      }
+
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 10000);
+      let response: Response;
+
+      try {
+        response = await fetch("/api/admin/stories", {
+          headers: { Authorization: `Bearer ${accessToken}` },
+          cache: "no-store",
+          signal: controller.signal
+        });
+      } finally {
+        window.clearTimeout(timeout);
+      }
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        if (response.status === 403) setVisible(false);
+        setStatus(result.error || "Published stories could not be loaded.");
+        return;
+      }
+
+      setVisible(true);
+      setPublished(result.publishedStories || []);
+      setHidden(result.hiddenStories || []);
+      setStatus("");
+    } catch {
       setVisible(false);
       setPublished([]);
       setHidden([]);
-      return;
+      setStatus("Published-story controls could not be loaded. Please refresh or sign in again.");
     }
-
-    const response = await fetch("/api/admin/stories", {
-      headers: { Authorization: `Bearer ${accessToken}` },
-      cache: "no-store"
-    });
-    const result = await response.json();
-
-    if (!response.ok) {
-      if (response.status === 403) setVisible(false);
-      setStatus(result.error || "Published stories could not be loaded.");
-      return;
-    }
-
-    setVisible(true);
-    setPublished(result.publishedStories || []);
-    setHidden(result.hiddenStories || []);
-    setStatus("");
   }
 
   useEffect(() => {
@@ -92,31 +106,36 @@ export default function AdminPublishedStories() {
           : "Republishing story…"
     );
 
-    const response = await fetch(`/api/admin/stories/${story.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`
-      },
-      body: JSON.stringify({ decision, moderatorNotes: "" })
-    });
-    const result = await response.json();
+    try {
+      const response = await fetch(`/api/admin/stories/${story.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`
+        },
+        body: JSON.stringify({ decision, moderatorNotes: "" })
+      });
+      const result = await response.json();
 
-    if (!response.ok) {
-      setStatus(result.error || "The story could not be updated.");
+      if (!response.ok) {
+        setStatus(result.error || "The story could not be updated.");
+        setBusyId(null);
+        return;
+      }
+
+      await load();
+      setStatus(
+        decision === "delete"
+          ? "Story permanently deleted."
+          : decision === "unpublish"
+            ? "Story is now private from the public website."
+            : "Story republished."
+      );
+    } catch {
+      setStatus("The story could not be updated. Please try again.");
+    } finally {
       setBusyId(null);
-      return;
     }
-
-    await load();
-    setStatus(
-      decision === "delete"
-        ? "Story permanently deleted."
-        : decision === "unpublish"
-          ? "Story is now private from the public website."
-          : "Story republished."
-    );
-    setBusyId(null);
   }
 
   if (!visible) return null;
