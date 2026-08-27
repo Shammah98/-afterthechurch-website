@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
-import { getBrowserSupabase } from "@/lib/supabase-browser";
+import { getAdminAccessToken, getBrowserSupabase } from "@/lib/supabase-browser";
 
 type ReviewStory = {
   id: string;
@@ -32,50 +32,60 @@ export default function AdminDashboard() {
   const [busy, setBusy] = useState(false);
 
   async function getAdminToken() {
-    const { data } = await getBrowserSupabase().auth.getSession();
-    const session = data.session;
-
-    if (!session || session.user.is_anonymous) return null;
-    return session.access_token;
+    return getAdminAccessToken();
   }
 
   async function load() {
-    const token = await getAdminToken();
+    try {
+      const token = await getAdminToken();
 
-    if (!token) {
-      setAuthorised(false);
-      setStories([]);
-      setStatus("");
-      return;
-    }
-
-    const response = await fetch("/api/admin/stories", {
-      headers: { Authorization: `Bearer ${token}` },
-      cache: "no-store"
-    });
-    const result = await response.json();
-
-    if (!response.ok) {
-      if (response.status === 403) {
-        await getBrowserSupabase().auth.signOut();
+      if (!token) {
         setAuthorised(false);
         setStories([]);
-        setStatus("That email is not authorised for moderation.");
-      } else {
-        // The sign-in succeeded. Keep the moderator inside the dashboard so a
-        // temporary database error does not misleadingly show the login form.
-        setAuthorised(true);
-        setStories([]);
-        setStatus(result.error || "The moderation queue could not be loaded.");
+        setStatus("");
+        return;
       }
-      return;
-    }
 
-    setAuthorised(true);
-    setStories(result.stories);
-    setStatus(
-      result.stories.length ? "" : "There are no submissions awaiting review."
-    );
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 10000);
+      let response: Response;
+
+      try {
+        response = await fetch("/api/admin/stories", {
+          headers: { Authorization: `Bearer ${token}` },
+          cache: "no-store",
+          signal: controller.signal
+        });
+      } finally {
+        window.clearTimeout(timeout);
+      }
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        if (response.status === 403) {
+          await getBrowserSupabase().auth.signOut();
+          setAuthorised(false);
+          setStories([]);
+          setStatus("That email is not authorised for moderation.");
+        } else {
+          setAuthorised(true);
+          setStories([]);
+          setStatus(result.error || "The moderation queue could not be loaded.");
+        }
+        return;
+      }
+
+      setAuthorised(true);
+      setStories(result.stories);
+      setStatus(
+        result.stories.length ? "" : "There are no submissions awaiting review."
+      );
+    } catch {
+      setAuthorised(false);
+      setStories([]);
+      setStatus("Administrator access could not be checked. Please sign in again or refresh the page.");
+    }
   }
 
   useEffect(() => {
@@ -90,20 +100,27 @@ export default function AdminDashboard() {
     const form = new FormData(event.currentTarget);
     const password = String(form.get("password") || "");
     const normalisedEmail = email.trim();
-    const { error } = await getBrowserSupabase().auth.signInWithPassword({
-      email: normalisedEmail,
-      password
-    });
 
-    if (error) {
+    try {
+      const { error } = await getBrowserSupabase().auth.signInWithPassword({
+        email: normalisedEmail,
+        password
+      });
+
+      if (error) {
+        setAuthorised(false);
+        setStatus("The administrator email or password was not accepted.");
+        setBusy(false);
+        return;
+      }
+
+      await load();
+    } catch {
       setAuthorised(false);
-      setStatus("The administrator email or password was not accepted.");
+      setStatus("Administrator sign-in could not be completed. Please try again.");
+    } finally {
       setBusy(false);
-      return;
     }
-
-    await load();
-    setBusy(false);
   }
 
   async function requestReset() {
@@ -114,62 +131,75 @@ export default function AdminDashboard() {
     }
 
     setBusy(true);
-    const siteUrl = (
-      process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
-    ).replace(/\/+$/, "");
-    const { error } = await getBrowserSupabase().auth.resetPasswordForEmail(
-      normalisedEmail,
-      { redirectTo: `${siteUrl}/auth/reset` }
-    );
+    try {
+      const siteUrl = (
+        process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
+      ).replace(/\/+$/, "");
+      const { error } = await getBrowserSupabase().auth.resetPasswordForEmail(
+        normalisedEmail,
+        { redirectTo: `${siteUrl}/auth/reset` }
+      );
 
-    setStatus(
-      error
-        ? "A reset email could not be sent. Please try again."
-        : "If that administrator account exists, a password-reset email will arrive shortly."
-    );
-    setBusy(false);
+      setStatus(
+        error
+          ? "A reset email could not be sent. Please try again."
+          : "If that administrator account exists, a password-reset email will arrive shortly."
+      );
+    } catch {
+      setStatus("A reset email could not be sent. Please try again.");
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function signOut() {
-    await getBrowserSupabase().auth.signOut();
-    setAuthorised(false);
-    setStories([]);
-    setStatus("Administrator signed out.");
+    try {
+      await getBrowserSupabase().auth.signOut();
+    } finally {
+      setAuthorised(false);
+      setStories([]);
+      setStatus("Administrator signed out.");
+    }
   }
 
   async function review(id: string, decision: "approve" | "reject") {
     const token = await getAdminToken();
     if (!token) {
       setAuthorised(false);
+      setStatus("Administrator sign-in is required.");
       return;
     }
 
     setStatus("Saving the moderation decision…");
 
-    const response = await fetch(`/api/admin/stories/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        decision,
-        moderatorNotes: notes[id] || ""
-      })
-    });
+    try {
+      const response = await fetch(`/api/admin/stories/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          decision,
+          moderatorNotes: notes[id] || ""
+        })
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-    if (!response.ok) {
-      setStatus(result.error || "The decision was not saved.");
-      return;
+      if (!response.ok) {
+        setStatus(result.error || "The decision was not saved.");
+        return;
+      }
+
+      await load();
+      setStatus(
+        `Submission ${decision === "approve" ? "approved and published" : "rejected"}.`
+      );
+      setApprovedStoryId(decision === "approve" ? id : null);
+    } catch {
+      setStatus("The decision could not be saved. Please try again.");
     }
-
-    await load();
-    setStatus(
-      `Submission ${decision === "approve" ? "approved and published" : "rejected"}.`
-    );
-    setApprovedStoryId(decision === "approve" ? id : null);
   }
 
   if (authorised === null) {
