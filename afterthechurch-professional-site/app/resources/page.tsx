@@ -9,7 +9,7 @@ import { reportingGraphicDataUri } from "@/lib/reporting-graphic";
 import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
 import { sexEducationChurchResource } from "@/lib/sex-education-church-resource";
-import { bullyingChurchResource } from "@/lib/bullying-church-resource";
+import { bullyingChurchResource } from "@/lib/bullying-church-resource-live";
 
 export const metadata: Metadata = { title: "Educational Resources" };
 
