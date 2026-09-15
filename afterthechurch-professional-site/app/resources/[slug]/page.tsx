@@ -145,7 +145,7 @@ export default async function ResourcePage({
           />
         ) : isGossipGuide || isBullyingGuide || isToxicClergyGuide ? (
           <img
-            src={resource.image}
+            src={isToxicClergyGuide ? "/api/toxic-cover?v=4" : resource.image}
             alt={resource.imageAlt}
             className={`articleHeroImage articleHeroImage--${resource.slug}`}
             style={{
