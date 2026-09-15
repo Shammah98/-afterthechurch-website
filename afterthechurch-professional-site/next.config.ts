@@ -31,8 +31,23 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "2mb"
     }
   },
+  outputFileTracingIncludes: {
+    "/api/toxic-cover": ["./.upload/toxic-cover.part00.bin", "./.upload/toxic-cover.part01.bin"]
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: "/images/toxic-church.jpeg",
+          destination: "/api/toxic-cover"
+        }
+      ],
+      afterFiles: [],
+      fallback: []
+    };
   }
 };
 
