@@ -1,5 +1,4 @@
 import type { ResourceArticle } from "./types";
-import { toxicClergyCoverDataUri } from "./toxic-clergy-cover";
 
 export const toxicClergyLeadershipResource: ResourceArticle = {
   slug: "toxicity-in-clergy-leadership",
@@ -16,7 +15,7 @@ export const toxicClergyLeadershipResource: ResourceArticle = {
     "Authoritarian leadership",
     "Retaliation after disagreement"
   ],
-  image: toxicClergyCoverDataUri,
+  image: "/images/toxic-church.jpeg",
   imageAlt:
     "A dark green Toxic Church graphic with a red biohazard symbol over the words Toxic Church.",
   author: "Lim Siew Pik",
