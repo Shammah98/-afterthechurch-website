@@ -10,6 +10,7 @@ import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
 import { sexEducationChurchResource } from "@/lib/sex-education-church-resource";
 import { bullyingChurchResource } from "@/lib/bullying-church-resource-live";
+import { toxicClergyLeadershipResource } from "@/lib/toxic-clergy-leadership-resource";
 
 export const metadata: Metadata = { title: "Educational Resources" };
 
@@ -17,9 +18,11 @@ const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const supportGuideSlug = "supporting-someone-still-inside";
 const gossipSlug = "gossip-in-church-leadership";
 const bullyingSlug = "bullies-and-sissies";
+const toxicClergySlug = "toxicity-in-clergy-leadership";
 const faithHealingSlug = "faith-healing-and-medical-decisions";
 const coerciveControlSlug = "recognising-coercive-control";
 const allResources = [
+  toxicClergyLeadershipResource,
   bullyingChurchResource,
   sexEducationChurchResource,
   gossipChurchResource,
@@ -61,10 +64,15 @@ export default function ResourcesPage() {
             const isReportingGuide = resource.slug === reportingSlug;
             const isGossipGuide = resource.slug === gossipSlug;
             const isBullyingGuide = resource.slug === bullyingSlug;
+            const isToxicClergyGuide = resource.slug === toxicClergySlug;
             const resourceHref =
               resource.slug === supportGuideSlug
                 ? `/resources/${resource.slug}?guide=1`
                 : `/resources/${resource.slug}`;
+            const author = resource.author || "Ian Shammah";
+            const reviewLabel = resource.peerReviewed
+              ? "Peer-reviewed journal article"
+              : "Peer-reviewed evidence synthesis";
 
             return (
               <article className="resourceCard" key={resource.slug}>
@@ -80,7 +88,7 @@ export default function ResourcesPage() {
                         alt="Illustrated harm-reduction graphic about reporting, support, consequences and community safety."
                         style={{ width: "100%", height: "100%", objectFit: "cover" }}
                       />
-                    ) : isGossipGuide || isBullyingGuide ? (
+                    ) : isGossipGuide || isBullyingGuide || isToxicClergyGuide ? (
                       <img
                         src={resource.image}
                         alt={resource.imageAlt}
@@ -119,7 +127,7 @@ export default function ResourcesPage() {
                   </h2>
 
                   <p>{resource.deck}</p>
-                  <p className="resourceMeta">By Ian Shammah · Peer-reviewed evidence synthesis</p>
+                  <p className="resourceMeta">By {author} · {reviewLabel}</p>
 
                   <Link className="resourceCardAction" href={resourceHref}>
                     Choose Detail
