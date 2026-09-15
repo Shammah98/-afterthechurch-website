@@ -90,7 +90,7 @@ export default function ResourcesPage() {
                       />
                     ) : isGossipGuide || isBullyingGuide || isToxicClergyGuide ? (
                       <img
-                        src={resource.image}
+                        src={isToxicClergyGuide ? "/api/toxic-cover?v=4" : resource.image}
                         alt={resource.imageAlt}
                         style={{
                           width: "100%",
