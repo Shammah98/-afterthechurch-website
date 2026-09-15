@@ -1,0 +1,51 @@
+name: Materialize Toxic Church cover
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/materialize-toxic-cover.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-cover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create normal JPEG asset from the supplied cover data
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const modulePath = 'afterthechurch-professional-site/lib/toxic-clergy-cover.ts';
+          const imagePath = 'afterthechurch-professional-site/public/images/toxic-church.jpeg';
+          const resourcePath = 'afterthechurch-professional-site/lib/toxic-clergy-leadership-resource.ts';
+
+          const source = fs.readFileSync(modulePath, 'utf8');
+          const match = source.match(/data:image\/jpeg;base64,([^\"]+)/);
+          if (!match) throw new Error('Could not find Toxic Church JPEG data.');
+
+          fs.mkdirSync(path.dirname(imagePath), { recursive: true });
+          fs.writeFileSync(imagePath, Buffer.from(match[1], 'base64'));
+
+          let resource = fs.readFileSync(resourcePath, 'utf8');
+          resource = resource.replace('import { toxicClergyCoverDataUri } from "./toxic-clergy-cover";\n', '');
+          resource = resource.replace('image: toxicClergyCoverDataUri,', 'image: "/images/toxic-church.jpeg",');
+          fs.writeFileSync(resourcePath, resource);
+          NODE
+
+      - name: Commit the JPEG to GitHub
+        run: |
+          git config user.name "Shammah98"
+          git config user.email "73389252+Shammah98@users.noreply.github.com"
+          git add afterthechurch-professional-site/public/images/toxic-church.jpeg afterthechurch-professional-site/lib/toxic-clergy-leadership-resource.ts
+          git rm afterthechurch-professional-site/lib/toxic-clergy-cover.ts
+          git commit -m "Store Toxic Church cover as image asset"
+          git push origin main
