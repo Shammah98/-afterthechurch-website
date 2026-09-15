@@ -11,16 +11,19 @@ import { lgbtqChurchResource } from "@/lib/lgbtq-church-resource";
 import { gossipChurchResource } from "@/lib/gossip-church-resource-live";
 import { sexEducationChurchResource } from "@/lib/sex-education-church-resource";
 import { bullyingChurchResource } from "@/lib/bullying-church-resource-live";
+import { toxicClergyLeadershipResource } from "@/lib/toxic-clergy-leadership-resource";
 import type { ResourceArticle } from "@/lib/types";
 
 const reportingSlug = "preparing-to-report-harm-in-a-church-charity";
 const gossipSlug = "gossip-in-church-leadership";
 const bullyingSlug = "bullies-and-sissies";
+const toxicClergySlug = "toxicity-in-clergy-leadership";
 const faithHealingSlug = "faith-healing-and-medical-decisions";
 const coerciveControlSlug = "recognising-coercive-control";
 const financialGivingSlug = "financial-pressure-and-giving";
 const supportingSomeoneSlug = "supporting-someone-still-inside";
 const allResources = [
+  toxicClergyLeadershipResource,
   bullyingChurchResource,
   sexEducationChurchResource,
   gossipChurchResource,
@@ -111,6 +114,11 @@ export default async function ResourcePage({
   const isReportingGuide = resource.slug === reportingSlug;
   const isGossipGuide = resource.slug === gossipSlug;
   const isBullyingGuide = resource.slug === bullyingSlug;
+  const isToxicClergyGuide = resource.slug === toxicClergySlug;
+  const author = resource.author || "Ian Shammah";
+  const reviewLabel = resource.peerReviewed
+    ? "Peer-reviewed journal article"
+    : "Peer-reviewed evidence synthesis · August 2026";
 
   const content = (
     <>
@@ -120,10 +128,11 @@ export default async function ResourcePage({
           <h1>{resource.title}</h1>
           <p className="lead">{resource.deck}</p>
           <div className="articleMeta">
-            <span>By Ian Shammah</span>
+            <span>By {author}</span>
             <span>{resource.readingTime} minute full read</span>
             <span>{resource.intensity} intensity</span>
-            <span>Peer-reviewed evidence synthesis · August 2026</span>
+            <span>{reviewLabel}</span>
+            {resource.publication ? <span>{resource.publication}</span> : null}
           </div>
         </div>
 
@@ -134,7 +143,7 @@ export default async function ResourcePage({
             className={`articleHeroImage articleHeroImage--${resource.slug}`}
             style={{ width: "100%", height: "auto", objectFit: "cover" }}
           />
-        ) : isGossipGuide || isBullyingGuide ? (
+        ) : isGossipGuide || isBullyingGuide || isToxicClergyGuide ? (
           <img
             src={resource.image}
             alt={resource.imageAlt}
@@ -161,18 +170,37 @@ export default async function ResourcePage({
       <section className="articleBody">
         <ProgressiveResource resource={resource} />
         <aside className="editorialNote">
-          <strong>Peer-reviewed evidence synthesis</strong>
-          <p>
-            This article was written by Ian Shammah and synthesises findings from
-            peer-reviewed research and, where relevant, primary regulatory or clinical
-            guidance. The AfterTheChurch article itself has not undergone independent
-            academic peer review.
-          </p>
-          <p>
-            Statistics are presented with their study context and limitations. This
-            material is educational. It is not legal, medical or clinical advice, a
-            diagnosis, or a judgement about any particular religious organisation.
-          </p>
+          {resource.peerReviewed ? (
+            <>
+              <strong>Peer-reviewed source article</strong>
+              <p>
+                This resource presents the findings of the peer-reviewed article by {author}
+                {resource.publication ? `, published in ${resource.publication}` : ""}. The
+                structured overview on AfterTheChurch is a reading guide and condensation of
+                the original paper rather than a replacement for the published article.
+              </p>
+              <p>
+                Findings are presented with their original study context and limitations. Use
+                the original paper in Further Reading for the complete argument, tables,
+                references and methodological detail.
+              </p>
+            </>
+          ) : (
+            <>
+              <strong>Peer-reviewed evidence synthesis</strong>
+              <p>
+                This article was written by {author} and synthesises findings from
+                peer-reviewed research and, where relevant, primary regulatory or clinical
+                guidance. The AfterTheChurch article itself has not undergone independent
+                academic peer review.
+              </p>
+              <p>
+                Statistics are presented with their study context and limitations. This
+                material is educational. It is not legal, medical or clinical advice, a
+                diagnosis, or a judgement about any particular religious organisation.
+              </p>
+            </>
+          )}
         </aside>
       </section>
     </>
