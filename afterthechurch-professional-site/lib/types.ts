@@ -50,6 +50,9 @@ export interface ResourceArticle {
   warnings: string[];
   image: string;
   imageAlt: string;
+  author?: string;
+  peerReviewed?: boolean;
+  publication?: string;
   overview: string;
   keyPoints: string[];
   fullSections: { heading: string; paragraphs: string[] }[];
