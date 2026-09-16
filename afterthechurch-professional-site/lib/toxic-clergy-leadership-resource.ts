@@ -15,9 +15,9 @@ export const toxicClergyLeadershipResource: ResourceArticle = {
     "Authoritarian leadership",
     "Retaliation after disagreement"
   ],
-  image: "/images/toxic-church.jpeg",
+  image: "/images/church-cliff-resource.webp",
   imageAlt:
-    "A dark green Toxic Church graphic with a red biohazard symbol over the words Toxic Church.",
+    "A painted church standing near the edge of a cliff beneath a bright sky.",
   author: "Lim Siew Pik",
   peerReviewed: true,
   publication: "Journal of Religious Leadership, Vol. 15, No. 1, Spring 2016",
