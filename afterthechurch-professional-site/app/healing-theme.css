@@ -1,0 +1,522 @@
+/*
+  Light healing theme
+  -------------------
+  A calm, non-white palette built around warm ivory, soft sage and muted rose.
+  This file is loaded after the older cosmic/theme overrides so it deliberately
+  wins the cascade while preserving the existing page layouts and interactions.
+*/
+
+:root {
+  --cream: #e8efe7;
+  --cream-light: #f1f3eb;
+  --paper: #f7f3e9;
+  --ink: #26332f;
+  --muted: #5d6b66;
+  --wine: #7a5563;
+  --wine-dark: #59414a;
+  --rose: #a77c87;
+  --rose-soft: #eadcdf;
+  --sage: #5d756a;
+  --sage-soft: #dce7dc;
+  --line: #cbd5cd;
+  --warning: #966b39;
+  --danger: #95515a;
+  --focus: #2f6e68;
+  --shadow: 0 16px 42px rgba(52, 69, 61, 0.10);
+}
+
+html {
+  background: #edf2ea !important;
+  color-scheme: light !important;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 6%, rgba(220, 231, 220, .82), transparent 32%),
+    radial-gradient(circle at 92% 18%, rgba(234, 220, 223, .56), transparent 28%),
+    linear-gradient(180deg, #edf2ea 0%, #f3efe7 48%, #e9f0e9 100%) !important;
+  color: var(--ink) !important;
+}
+
+/* Disable the previous starfield without disturbing any of the page layout CSS. */
+body::before,
+body::after {
+  content: none !important;
+  display: none !important;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+main,
+main > section,
+.editorialSection,
+.needsSection,
+.reviewProcess,
+.submissionPreparation,
+.storiesPage,
+.accountPage,
+.adminPage,
+.formSection,
+.storyOrientation,
+.storyDetail,
+.articleBody,
+.prosePage,
+.narrowPage,
+.errorPage,
+.aboutContent,
+.groundingSection,
+.resourceArchive {
+  color: var(--ink) !important;
+}
+
+/* Header and navigation */
+.siteHeader {
+  background: rgba(243, 245, 237, .96) !important;
+  border-bottom: 1px solid #cbd5cd !important;
+  box-shadow: 0 8px 26px rgba(61, 77, 69, .08) !important;
+  backdrop-filter: blur(16px) saturate(1.02) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.02) !important;
+}
+
+.brandWords strong,
+.brandWords small,
+nav a,
+.textButton,
+.menuButton {
+  color: var(--ink) !important;
+}
+
+.brandWords small { color: var(--muted) !important; }
+nav a:hover,
+.textButton:hover { color: var(--wine) !important; }
+.menuButton { background: transparent !important; }
+
+.signInButton {
+  border-color: #86606d !important;
+  color: #684653 !important;
+  background: rgba(247, 243, 233, .72) !important;
+}
+.signInButton:hover {
+  background: #7a5563 !important;
+  color: #fffaf5 !important;
+}
+
+/* Typography and links */
+body,
+p,
+li,
+label,
+legend,
+summary,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+blockquote,
+.detailChooser button,
+.authTabs button,
+.linkButton,
+.filterHeading button {
+  color: var(--ink) !important;
+}
+
+.lead,
+.largeCopy,
+.fieldHelp,
+label small,
+.resultsCount,
+.storyIdentity,
+.resourceCardBody > p,
+.safetyActionGrid p,
+.accountStatusHelp,
+.smallPrint,
+.resourceIntro,
+.needRow small,
+.needHighlights li,
+.articleMeta,
+.storyDetailMeta,
+.storyCardTopline,
+.adminMeta {
+  color: var(--muted) !important;
+}
+
+.eyebrow,
+.textLink,
+.needAction,
+.storyLink,
+.resourceCardAction {
+  color: #76505f !important;
+}
+
+.textLink:hover,
+.storyLink:hover,
+.resourceCardAction:hover {
+  color: #513842 !important;
+}
+
+/* Calm light content surfaces */
+.pageHero,
+.splitHero,
+.articleHero,
+.resourceCard,
+.storyCard,
+.filterPanel,
+.editorialNote,
+.storyFallback,
+.authPanel,
+.quoteCarousel,
+fieldset,
+.accountStoryList > article,
+.adminDashboard > article,
+.reviewDetailGrid article,
+.safetyActionGrid article,
+.needRow,
+.needsSection .sectionIntro,
+.contentGate,
+.contentSummary,
+.resourceEditorialGrid article,
+.publicPreview,
+.choice,
+.privacyChoice {
+  background: rgba(247, 243, 233, .94) !important;
+  border-color: var(--line) !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.needsSection,
+.reviewProcess {
+  background: rgba(232, 239, 231, .68) !important;
+}
+
+.resourcesPreview,
+.resourceArchive {
+  background: rgba(244, 239, 230, .72) !important;
+}
+
+.storiesHomeContent {
+  background: #dce7dc !important;
+  color: var(--ink) !important;
+}
+
+.aboutHome {
+  background: #ece5da !important;
+  color: var(--ink) !important;
+}
+
+.urgentHome {
+  background: #eadfe0 !important;
+  color: var(--ink) !important;
+}
+.urgentHome p { color: #5f5558 !important; }
+
+.quietMessage {
+  background: rgba(247, 243, 233, .72) !important;
+  border-left-color: var(--sage) !important;
+}
+
+/* Keep photo-led hero sections expressive but softer and readable. */
+.homeHero {
+  background: #6f8178 !important;
+}
+.heroShade {
+  background:
+    linear-gradient(90deg, rgba(38, 54, 48, .78) 0%, rgba(48, 61, 55, .55) 48%, rgba(60, 73, 67, .10) 82%),
+    linear-gradient(0deg, rgba(33, 46, 41, .34), transparent 58%) !important;
+}
+.homeHeroInner,
+.homeHeroInner h1,
+.homeHeroInner strong {
+  color: #fffaf4 !important;
+}
+.homeHeroInner > p:not(.eyebrow) { color: #f2eee7 !important; }
+.homeHero .eyebrow,
+.lightEyebrow { color: #f0d9d8 !important; }
+
+/* Buttons */
+.button.primary {
+  background: #49675d !important;
+  border-color: #49675d !important;
+  color: #fffaf4 !important;
+  box-shadow: 0 10px 24px rgba(52, 78, 68, .16) !important;
+}
+.button.primary:hover { background: #39564c !important; }
+
+.button.secondary {
+  background: rgba(247, 243, 233, .62) !important;
+  border-color: #7a5563 !important;
+  color: #684653 !important;
+}
+.button.secondary:hover {
+  background: #eadcdf !important;
+  color: #513842 !important;
+}
+
+.button.quiet {
+  background: rgba(247, 243, 233, .56) !important;
+  border-color: var(--line) !important;
+  color: var(--ink) !important;
+}
+
+.button.light {
+  background: #f7f3e9 !important;
+  color: #4c3b41 !important;
+}
+
+.button.outlineLight {
+  border-color: rgba(255,250,244,.82) !important;
+  color: #fffaf4 !important;
+}
+
+.quickExit {
+  background: #684653 !important;
+  color: #fffaf4 !important;
+  border-color: #f4ece7 !important;
+  box-shadow: 0 10px 28px rgba(72, 54, 60, .18) !important;
+}
+.quickExit:hover { background: #513842 !important; }
+
+.dangerButton {
+  color: #85444e !important;
+  border-color: #a8626c !important;
+  background: transparent !important;
+}
+
+/* Forms */
+input,
+select,
+textarea {
+  background: #f8f4eb !important;
+  color: var(--ink) !important;
+  border-color: #bdc9c1 !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.34) !important;
+}
+
+input::placeholder,
+textarea::placeholder { color: #7b8781 !important; }
+select option { background: #f8f4eb !important; color: var(--ink) !important; }
+
+.choice.active,
+.privacyChoice.active {
+  background: #e2ebe1 !important;
+  border-color: #70877b !important;
+  box-shadow: inset 0 0 0 1px #70877b !important;
+}
+
+/* Tags and status labels */
+.articleMeta span,
+.storyDetailMeta span,
+.storyCardTopline span,
+.adminMeta span,
+.resourceCardTopline span,
+.tagList span,
+.statusBadge,
+.needHighlights li {
+  background: #edf1e9 !important;
+  color: #53635c !important;
+  border-color: #cbd5cd !important;
+}
+
+.intensity.gentle {
+  background: #dce8dc !important;
+  color: #385447 !important;
+}
+.intensity.moderate {
+  background: #eee4cf !important;
+  color: #765a31 !important;
+}
+.intensity.high {
+  background: #eadcdf !important;
+  color: #754651 !important;
+}
+
+/* Legal, safety and moderation callouts */
+.liabilityBox,
+.legalImportant,
+.legalContact,
+.legalSummaryGrid > div,
+.dataUseList article,
+.privacyLevelList p,
+.moderatorNote,
+.reviewWarning,
+.urgentNotice,
+.urgentContactNotice {
+  color: var(--ink) !important;
+  border-color: #c9b98f !important;
+  background: #f1eadb !important;
+}
+
+.urgentContactNotice,
+.reviewWarning {
+  background: #eee0df !important;
+  border-left-color: #95515a !important;
+}
+
+.liabilityBox p,
+.legalImportant p,
+.legalContact p,
+.legalContact span,
+.legalSummaryGrid > div span,
+.dataUseList article p,
+.dataUseList article p strong,
+.privacyLevelList p,
+.moderatorNote p,
+.reviewWarning p,
+.urgentNotice p,
+.urgentContactNotice p,
+.liabilityBox strong,
+.legalImportant strong,
+.legalContact strong,
+.legalSummaryGrid > div strong,
+.dataUseList article strong,
+.privacyLevelList strong,
+.moderatorNote strong,
+.reviewWarning strong,
+.urgentNotice strong,
+.urgentContactNotice h2,
+.urgentContactNotice strong {
+  color: var(--ink) !important;
+}
+
+.legalContact a,
+.liabilityBox a,
+.legalImportant a,
+.urgentContactNotice a {
+  color: #76505f !important;
+  text-decoration-color: rgba(118, 80, 95, .48) !important;
+}
+
+.contactScript blockquote { color: #684653 !important; }
+
+/* Admin and account surfaces */
+.statusBadge.approved { background: #dce8dc !important; color: #385447 !important; }
+.statusBadge.rejected,
+.statusBadge.withdrawn { background: #eadcdf !important; color: #754651 !important; }
+
+/* Story media: preserve image/video contrast without dimming photographs. */
+.resourceCardImage img,
+.articleHeroImage,
+.storyCardImage,
+.storyImage,
+.groundingImage img,
+.submissionImage img,
+.storiesHomeImage img,
+.storyVideoThumbnail img {
+  filter: none !important;
+}
+
+.storyMedia,
+.storyVideoThumbnail {
+  background: #d6ded8 !important;
+}
+
+.audioStory {
+  background: #dce7dc !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line);
+}
+.audioStory * { color: var(--ink) !important; }
+
+/* Preserve the video-library layout, but convert its controls and copy to light mode. */
+.youtubeStoryToolbar {
+  background: rgba(232, 239, 231, .94) !important;
+  border-color: #c7d2ca !important;
+  box-shadow: 0 10px 28px rgba(55, 73, 64, .08) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.youtubeStoryToolbar input,
+.youtubeStoryToolbar select,
+.youtubeMoreFilters summary,
+.youtubeClearFilters {
+  background: #f7f3e9 !important;
+  color: var(--ink) !important;
+  border-color: #bdc9c1 !important;
+}
+
+.youtubeClearFilters { color: #76505f !important; }
+.youtubeMoreFilters[open] summary { border-color: #8e6875 !important; }
+
+.youtubeMoreFiltersGrid {
+  background: #f7f3e9 !important;
+  border-color: #bdc9c1 !important;
+  box-shadow: 0 18px 44px rgba(52, 69, 61, .16) !important;
+}
+.youtubeMoreFiltersGrid label { color: var(--ink) !important; }
+.storyResults--youtube .resultsCount { color: var(--muted) !important; }
+.storyVideoMeta h2 { color: var(--ink) !important; }
+.storyVideoMeta p,
+.storyVideoMeta small { color: var(--muted) !important; }
+
+/* Duration/intensity chips sit on top of photos, so dark translucent backing is intentional. */
+.storyDuration,
+.storyIntensityBadge {
+  background: rgba(35, 44, 40, .82) !important;
+  color: #fffaf4 !important;
+}
+.storyIntensityBadge.gentle { color: #d9f2dc !important; }
+.storyIntensityBadge.moderate { color: #f4dfb6 !important; }
+.storyIntensityBadge.high { color: #f3cbd1 !important; }
+
+/* Footer */
+.siteFooter {
+  background: #dfe8e0 !important;
+  color: var(--ink) !important;
+  border-top: 1px solid #c5d0c8 !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+.footerIdentity strong,
+.footerIdentity p,
+.footerLinks h2,
+.footerLinks a,
+.footerFinePrint {
+  color: var(--ink) !important;
+}
+.footerIdentity p,
+.footerLinks h2,
+.footerFinePrint { color: #5d6b66 !important; }
+.footerLinks a:hover { color: #684653 !important; }
+.footerFinePrint { border-top-color: rgba(72, 92, 82, .18) !important; }
+
+@media (max-width: 1100px) {
+  .navShell {
+    background: rgba(243, 245, 237, .98) !important;
+    border-bottom-color: #cbd5cd !important;
+    box-shadow: 0 16px 32px rgba(52, 69, 61, .10) !important;
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .pageHero,
+  .splitHero,
+  .articleHero,
+  .resourceCard,
+  .storyCard,
+  .filterPanel,
+  .editorialNote,
+  .authPanel,
+  .storyFallback,
+  .needRow,
+  .needsSection .sectionIntro,
+  .resourceEditorialGrid article,
+  .publicPreview {
+    background: rgba(247, 243, 233, .97) !important;
+  }
+
+  .youtubeMoreFiltersGrid {
+    background: #f7f3e9 !important;
+  }
+}
