@@ -1,0 +1,514 @@
+.scope {
+  --safety-surface: rgba(255, 253, 248, 0.9);
+  --safety-soft: #f1ede4;
+  --safety-green: #647260;
+  --safety-line: rgba(38, 37, 31, 0.14);
+  --safety-shadow: 0 18px 44px rgba(48, 39, 30, 0.08);
+}
+
+.scope :global(.safetyPage) {
+  max-width: 1180px;
+  counter-reset: safety-section;
+}
+
+.scope :global(.safetyPage) > :global(.eyebrow):first-child {
+  margin-bottom: 16px;
+}
+
+.scope :global(.safetyPage) > h1 {
+  max-width: 880px;
+  margin: 0 0 24px;
+  font-size: clamp(3.4rem, 7vw, 6.1rem);
+  line-height: 0.98;
+}
+
+.scope :global(.safetyPage) > :global(.lead) {
+  max-width: 790px;
+  margin-bottom: 42px;
+  font-size: clamp(1.08rem, 1.7vw, 1.3rem);
+  line-height: 1.7;
+}
+
+/* Emergency block */
+.scope :global(.urgentContactNotice) {
+  margin: 0 0 24px;
+  padding: clamp(26px, 4vw, 42px);
+  border: 1px solid rgba(111, 39, 53, 0.22);
+  border-left: 6px solid var(--wine);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f7ebe8 0%, #fff9f4 100%);
+  box-shadow: var(--safety-shadow);
+}
+
+.scope :global(.urgentContactNotice) h2 {
+  max-width: 760px;
+  margin: 4px 0 22px;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+}
+
+.scope :global(.emergencyNumbers) {
+  gap: 10px;
+  margin: 22px 0;
+}
+
+.scope :global(.emergencyNumbers) a {
+  min-height: 86px;
+  padding: 16px;
+  border: 1px solid rgba(111, 39, 53, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 253, 248, 0.9);
+  box-shadow: 0 7px 20px rgba(48, 39, 30, 0.04);
+}
+
+/* Country navigation */
+.scope :global(.contactJumpNav) {
+  position: sticky;
+  top: 92px;
+  z-index: 18;
+  margin: 0 0 54px;
+  padding: 9px;
+  gap: 7px;
+  border: 1px solid var(--safety-line);
+  border-radius: 16px;
+  background: rgba(255, 253, 248, 0.93);
+  box-shadow: 0 12px 32px rgba(48, 39, 30, 0.07);
+  backdrop-filter: blur(14px);
+}
+
+.scope :global(.contactJumpNav) a {
+  flex: 1 1 auto;
+  min-width: max-content;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+}
+
+.scope :global(.contactJumpNav) a:hover,
+.scope :global(.contactJumpNav) a:focus-visible {
+  border-color: rgba(111, 39, 53, 0.2);
+  background: var(--rose-soft);
+}
+
+/* Preparation + support directory */
+.scope :global(.contactPreparation) {
+  margin-bottom: 78px;
+  padding: clamp(28px, 4vw, 46px);
+  border: 1px solid rgba(102, 117, 99, 0.2);
+  border-top: 6px solid var(--safety-green);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #e5eadf 0%, #f1f3ec 100%);
+  box-shadow: var(--safety-shadow);
+}
+
+.scope :global(.contactPreparation) h2 {
+  font-size: clamp(2rem, 3.8vw, 3.1rem);
+  line-height: 1.05;
+}
+
+.scope :global(.contactPreparation .plainList li) {
+  padding: 15px 0 15px 30px;
+  border-bottom-color: rgba(38, 37, 31, 0.13);
+}
+
+.scope :global(.supportRegion) {
+  margin-bottom: 76px;
+  scroll-margin-top: 170px;
+}
+
+.scope :global(.supportRegionHeader) {
+  max-width: 820px;
+  margin-bottom: 26px;
+}
+
+.scope :global(.supportRegionHeader) h2 {
+  margin: 4px 0 12px;
+  font-size: clamp(2.35rem, 4.5vw, 4rem);
+}
+
+.scope :global(.supportRegionHeader) > p:last-child {
+  max-width: 68ch;
+  color: var(--muted);
+}
+
+.scope :global(.contactGrid) {
+  gap: 14px;
+}
+
+.scope :global(.contactCard) {
+  min-height: 100%;
+  padding: 24px;
+  border: 1px solid var(--safety-line);
+  border-radius: 16px;
+  background: var(--safety-surface);
+  box-shadow: 0 9px 26px rgba(48, 39, 30, 0.045);
+}
+
+.scope :global(.contactCard) h3 {
+  margin: 0 0 11px;
+  font-size: 1.55rem;
+}
+
+.scope :global(.contactCard) > p {
+  line-height: 1.58;
+}
+
+.scope :global(.contactNumber),
+.scope :global(.contactText) {
+  width: fit-content;
+  margin-top: 9px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: #f0e3df;
+  color: var(--wine-dark);
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.scope :global(.contactAvailability) {
+  font-size: 0.84rem;
+}
+
+.scope :global(.directoryNote),
+.scope :global(.serviceAccuracyNote) {
+  margin-top: 20px;
+  padding: 18px 20px;
+  border-left: 4px solid var(--safety-green);
+  border-radius: 0 10px 10px 0;
+  background: rgba(223, 229, 216, 0.55);
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.scope :global(.internationalLinks) {
+  gap: 12px;
+}
+
+.scope :global(.internationalLinks) a {
+  padding: 22px;
+  border: 1px solid var(--safety-line);
+  border-radius: 15px;
+  background: var(--safety-surface);
+  box-shadow: 0 8px 22px rgba(48, 39, 30, 0.04);
+}
+
+.scope :global(.internationalLinks) strong {
+  font-size: 1.12rem;
+}
+
+.scope :global(.contactScript) {
+  margin: 0 0 88px;
+  padding: clamp(28px, 5vw, 52px);
+  border-radius: 18px;
+  background: var(--wine-dark);
+  color: #fffaf5;
+  box-shadow: 0 20px 48px rgba(62, 24, 33, 0.18);
+}
+
+.scope :global(.contactScript .eyebrow) {
+  color: #e8b9ae;
+}
+
+.scope :global(.contactScript) h2 {
+  max-width: 820px;
+  margin: 5px 0 24px;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+}
+
+.scope :global(.contactScript) blockquote {
+  margin: 0 0 24px;
+  padding: 24px 0 24px 26px;
+  border-left: 3px solid #d8aa9f;
+  color: #f7eee8;
+  font-size: clamp(1.03rem, 1.7vw, 1.2rem);
+  line-height: 1.75;
+}
+
+.scope :global(.contactScript) > p:last-child {
+  color: #d9cbc5;
+}
+
+/* The practical guide sections shown after the contact directory */
+.scope :global(.safetyPage) > h2 {
+  counter-increment: safety-section;
+  position: relative;
+  max-width: 900px;
+  margin: 0;
+  padding: 44px 0 17px 68px;
+  border-top: 1px solid var(--safety-line);
+  font-size: clamp(2.15rem, 4.3vw, 3.65rem);
+  line-height: 1.06;
+  text-wrap: pretty;
+}
+
+.scope :global(.safetyPage) > h2::before {
+  content: "0" counter(safety-section);
+  position: absolute;
+  left: 0;
+  top: 49px;
+  color: var(--rose);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.scope :global(.safetyPage) > h2 + p {
+  max-width: 800px;
+  margin: 0 0 30px 68px;
+  color: #4e514a;
+  font-size: 1.04rem;
+  line-height: 1.78;
+}
+
+.scope :global(.safetyActionGrid) {
+  margin: 8px 0 74px 68px;
+  gap: 12px;
+  border-top: 0;
+}
+
+.scope :global(.safetyActionGrid) article {
+  padding: 24px !important;
+  border: 1px solid var(--safety-line) !important;
+  border-radius: 14px;
+  background: rgba(255, 253, 248, 0.78);
+  box-shadow: 0 8px 22px rgba(48, 39, 30, 0.035);
+}
+
+.scope :global(.safetyActionGrid) strong {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--ink);
+  font-size: 1.32rem;
+  line-height: 1.2;
+}
+
+.scope :global(.safetyActionGrid) p {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+.scope :global(.safetyPage) > h2 + :global(.plainList) {
+  max-width: 880px;
+  margin: 2px 0 74px 68px;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--safety-line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 253, 248, 0.78);
+  box-shadow: 0 10px 28px rgba(48, 39, 30, 0.04);
+}
+
+.scope :global(.safetyPage) > h2 + :global(.plainList) li {
+  position: relative;
+  padding: 20px 22px 20px 54px;
+  border-bottom: 1px solid var(--safety-line);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.scope :global(.safetyPage) > h2 + :global(.plainList) li:last-child {
+  border-bottom: 0;
+}
+
+.scope :global(.safetyPage) > h2 + :global(.plainList) li::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 29px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rose);
+}
+
+.scope :global(.serviceAccuracyNote) {
+  max-width: 900px;
+  margin: 66px 0 0 68px;
+}
+
+.scope :global(.pageActions) {
+  margin: 28px 0 0 68px;
+  padding: 26px;
+  border: 1px solid var(--safety-line);
+  border-radius: 16px;
+  background: rgba(255, 253, 248, 0.78);
+}
+
+@media (max-width: 900px) {
+  .scope :global(.contactJumpNav) {
+    position: static;
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+
+  .scope :global(.contactJumpNav) a {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 150px;
+  }
+
+  .scope :global(.contactPreparation),
+  .scope :global(.contactGrid),
+  .scope :global(.internationalLinks) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .scope :global(.safetyPage) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .scope :global(.safetyPage) > h1 {
+    font-size: clamp(3rem, 14vw, 4.2rem);
+  }
+
+  .scope :global(.safetyPage) > :global(.lead) {
+    margin-bottom: 30px;
+    font-size: 1.04rem;
+  }
+
+  .scope :global(.urgentContactNotice) {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+
+  .scope :global(.emergencyNumbers) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .scope :global(.emergencyNumbers) a {
+    min-height: 74px;
+    padding: 13px;
+  }
+
+  .scope :global(.contactJumpNav) {
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: 38px;
+    padding: 12px 20px;
+    gap: 8px;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .scope :global(.contactJumpNav) a {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 0;
+    padding: 10px 8px;
+    border-color: var(--safety-line);
+    background: rgba(255, 255, 255, 0.58);
+    font-size: 0.78rem;
+  }
+
+  .scope :global(.contactPreparation) {
+    margin-bottom: 58px;
+    padding: 25px 20px;
+    border-radius: 14px;
+  }
+
+  .scope :global(.supportRegion) {
+    margin-bottom: 58px;
+  }
+
+  .scope :global(.supportRegionHeader) h2 {
+    font-size: 2.45rem;
+  }
+
+  .scope :global(.contactCard),
+  .scope :global(.internationalLinks) a {
+    padding: 20px;
+    border-radius: 13px;
+  }
+
+  .scope :global(.contactScript) {
+    margin-bottom: 64px;
+    padding: 28px 22px;
+    border-radius: 14px;
+  }
+
+  .scope :global(.contactScript) h2 {
+    font-size: 2.35rem;
+  }
+
+  .scope :global(.contactScript) blockquote {
+    padding: 18px 0 18px 18px;
+    font-size: 1rem;
+  }
+
+  .scope :global(.safetyPage) > h2 {
+    padding: 34px 0 14px 0;
+    font-size: 2.28rem;
+    line-height: 1.08;
+  }
+
+  .scope :global(.safetyPage) > h2::before {
+    position: static;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.72rem;
+  }
+
+  .scope :global(.safetyPage) > h2 + p {
+    margin-left: 0;
+    margin-bottom: 26px;
+    font-size: 1rem;
+    line-height: 1.72;
+  }
+
+  .scope :global(.safetyActionGrid),
+  .scope :global(.safetyPage) > h2 + :global(.plainList),
+  .scope :global(.serviceAccuracyNote),
+  .scope :global(.pageActions) {
+    margin-left: 0;
+  }
+
+  .scope :global(.safetyActionGrid) {
+    grid-template-columns: 1fr;
+    margin-bottom: 58px;
+  }
+
+  .scope :global(.safetyActionGrid) article {
+    padding: 20px !important;
+  }
+
+  .scope :global(.safetyPage) > h2 + :global(.plainList) {
+    margin-bottom: 58px;
+    border-radius: 13px;
+  }
+
+  .scope :global(.safetyPage) > h2 + :global(.plainList) li {
+    padding: 18px 18px 18px 46px;
+    font-size: 0.98rem;
+  }
+
+  .scope :global(.safetyPage) > h2 + :global(.plainList) li::before {
+    left: 20px;
+    top: 27px;
+  }
+
+  .scope :global(.serviceAccuracyNote) {
+    margin-top: 48px;
+  }
+
+  .scope :global(.pageActions) {
+    padding: 20px;
+    display: grid;
+    align-items: stretch;
+  }
+
+  .scope :global(.pageActions) :global(.button),
+  .scope :global(.pageActions) :global(.textLink) {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
