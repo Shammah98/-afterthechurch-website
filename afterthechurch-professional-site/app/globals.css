@@ -108,24 +108,33 @@ h3 { font-size: clamp(1.55rem, 2.5vw, 2.25rem); line-height: 1.1; }
 }
 
 .homeHero {
-  min-height: min(760px, 86vh); position: relative; display: grid;
+  min-height: min(800px, 88svh); position: relative; display: grid;
   align-items: end; overflow: hidden; background: var(--ink);
 }
 .heroBackground { object-fit: cover; object-position: center 58%; }
 .heroShade {
   position: absolute; inset: 0;
   background:
-    linear-gradient(90deg, rgba(27,22,18,.86) 0%, rgba(30,24,20,.62) 48%, rgba(25,20,17,.05) 80%),
-    linear-gradient(0deg, rgba(24,18,16,.5), transparent 55%);
+    linear-gradient(90deg, rgba(24,19,16,.82) 0%, rgba(30,24,20,.52) 46%, rgba(25,20,17,.04) 79%),
+    linear-gradient(0deg, rgba(22,17,15,.68) 0%, rgba(24,18,16,.18) 52%, transparent 76%);
 }
 .homeHeroInner {
-  position: relative; z-index: 2; max-width: 920px;
-  padding: clamp(70px, 10vw, 130px) clamp(22px, 7vw, 110px); color: white;
+  position: relative; z-index: 2; max-width: 790px;
+  padding: clamp(86px, 10vw, 138px) clamp(22px, 7vw, 110px); color: white;
 }
-.homeHeroInner h1 { max-width: 850px; margin: 0 0 25px; }
-.homeHeroInner > p:not(.eyebrow) {
-  max-width: 800px; font-size: clamp(1.1rem, 2.1vw, 1.36rem); color: #f7eee8;
+.homeHeroInner h1 {
+  max-width: 720px; margin: 0 0 22px;
+  font-size: clamp(3.4rem, 5.9vw, 5.8rem);
+  line-height: .98;
+  text-wrap: pretty;
 }
+.homeHeroInner .heroTagline {
+  max-width: 560px; margin: 0;
+  font-size: clamp(1.08rem, 1.8vw, 1.28rem);
+  line-height: 1.5; color: #f7eee8;
+  letter-spacing: .01em;
+}
+.homeHero .buttonRow { margin-top: 30px; }
 
 .editorialSection, .needsSection, .storiesPage, .accountPage, .adminPage, .formSection, .reviewProcess {
   padding: clamp(70px, 9vw, 125px) clamp(22px, 7vw, 110px);
@@ -750,10 +759,34 @@ legend { padding: 0 10px; font-family: var(--serif); font-size: 1.75rem; font-we
   .brandWords strong { font-size: 1.2rem; }
   .siteHeader { min-height: 72px; }
   h1 { font-size: clamp(2.7rem,13vw,4.4rem); }
-  .homeHero { min-height: 720px; }
-  .heroBackground { object-position: 62% center; }
-  .heroShade { background: linear-gradient(0deg,rgba(28,22,18,.9) 0%,rgba(30,24,20,.55) 75%,rgba(25,20,17,.12)); }
-  .homeHeroInner { padding-top: 180px; }
+  .homeHero { min-height: 690px; }
+  .heroBackground { object-position: 64% center; }
+  .heroShade {
+    background:
+      linear-gradient(0deg, rgba(22,17,15,.92) 0%, rgba(24,19,16,.64) 48%, rgba(25,20,17,.16) 76%, rgba(25,20,17,.04) 100%);
+  }
+  .homeHeroInner {
+    max-width: none;
+    padding: 255px 22px 86px;
+  }
+  .homeHeroInner h1 {
+    max-width: 13ch;
+    margin-bottom: 16px;
+    font-size: clamp(2.65rem, 11.8vw, 3.75rem);
+    line-height: .98;
+  }
+  .homeHeroInner .heroTagline {
+    max-width: 27ch;
+    font-size: 1.05rem;
+    line-height: 1.45;
+  }
+  .homeHero .buttonRow {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 26px;
+  }
+  .homeHero .button { width: 100%; }
   .reviewSteps, .reviewDetailGrid, .twoColumns, .formatChoices, .checkGrid,
   .filterColumns, .accountStoryTop, .resourceCardGrid, .safetyActionGrid { grid-template-columns: 1fr; }
   .safetyActionGrid article:nth-child(odd) { border-right: 0; }
