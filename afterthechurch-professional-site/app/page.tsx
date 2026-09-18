@@ -92,17 +92,11 @@ export default async function HomePage() {
     <p className="eyebrow lightEyebrow">A quiet place to begin</p>
 
     <h1>
-      You do not have to explain everything before you are allowed to heal.
+      Healing begins when you return to what is still yours.
     </h1>
 
-    <p>
-      Religious harm can leave you questioning your memory, your judgement and
-      even your right to feel hurt. You have been probably told that you are not the first one to experience what you went through, 
-      but that doesnt mean you should ignore it.
-      You are not required to settle every question
-      today. You do not have to forgive, reconcile, defend your beliefs or abandon
-      them before you are ready. Begin with what you know: something affected you,
-      and you deserve the space to understand it.
+    <p className="heroTagline">
+      Your judgement. Your pace. Your next step.
     </p>
 
     <div className="buttonRow">
