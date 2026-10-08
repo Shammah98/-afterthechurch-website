@@ -92,7 +92,7 @@ export default function RecoverPage() {
     ? Math.round((answered.reduce((total, question) => total + responses[question.id], 0) / (answered.length * 2)) * 100)
     : null;
   const priority = currentDanger === "yes" || questions.some((question) => question.highPriority && (responses[question.id] || 0) > 0);
-  const identifiedGroups = new Set(questions.filter((question) => (responses[question.id] || 0) > 0).map((question) => question.group));
+  const identifiedGroups = new Set<string>(questions.filter((question) => (responses[question.id] || 0) > 0).map((question) => question.group));
   const nextSteps = guidance.filter((item) => identifiedGroups.has(item.id));
   const signalText = score === null ? "No answers provided" : score < 34 ? "Fewer reported signals" : score < 67 ? "Several reported signals" : "Many reported signals";
 
