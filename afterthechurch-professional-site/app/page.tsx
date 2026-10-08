@@ -74,8 +74,8 @@ export default async function HomePage() {
             <Link className="freshFeaturedStory" href={"/stories/" + featured.id}>
               <div className="freshFeaturedImage">
                 <img
-                  src={featured.imageUrl || "/images/story-default.jpg"}
-                  alt={featured.imageUrl ? "Image selected for this survivor story" : "A reflective image accompanying a survivor story"}
+                  src={featured.imageUrl || "/api/story-placeholder"}
+                  alt={featured.imageUrl ? "Image selected for this survivor story" : "An empty church with natural light, used as a general illustration"}
                 />
                 <span className="freshImageBadge">{featured.readingMinutes} min read</span>
               </div>
@@ -88,7 +88,7 @@ export default async function HomePage() {
             </Link>
           ) : (
             <div className="freshStoryEmpty">
-              <img src="/images/story-default.jpg" alt="A quiet, reflective scene" />
+              <img src="/api/story-placeholder" alt="An empty church illuminated by natural light" />
               <div>
                 <h2>{storiesUnavailable ? "Stories are temporarily unavailable." : "A place for stories to be heard."}</h2>
                 <p>{storiesUnavailable ? "You can still open the story library and try again." : "Published accounts will appear here after consent and privacy review."}</p>
@@ -112,7 +112,7 @@ export default async function HomePage() {
             {additionalStories.map((story) => (
               <Link className="freshStoryCard" href={"/stories/" + story.id} key={story.id}>
                 <div className="freshStoryThumb">
-                  <img src={story.imageUrl || "/images/story-default.jpg"} alt="Image accompanying a survivor story" loading="lazy" />
+                  <img src={story.imageUrl || "/api/story-placeholder"} alt="Image accompanying a survivor story" loading="lazy" />
                 </div>
                 <div>
                   <p className="freshStoryMeta">{story.categories[0] || "Lived experience"} · {story.readingMinutes} min</p>

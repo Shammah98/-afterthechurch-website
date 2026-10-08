@@ -7,7 +7,7 @@ import type { ContentIntensity, MediaType, PublicStory } from "@/lib/types";
 type IdentityFilter = "all" | "anonymous" | "named";
 type SortMode = "recent" | "most_read" | "shortest";
 
-const fallbackImage = "/images/story-default.jpg";
+const fallbackImage = "/api/story-placeholder";
 
 function StoryThumbnail({ story }: { story: PublicStory }) {
   const firstSource = story.imageUrl?.trim() || fallbackImage;
@@ -17,7 +17,7 @@ function StoryThumbnail({ story }: { story: PublicStory }) {
     <div className="storyVideoThumbnail">
       <img
         src={source}
-        alt={story.imageUrl ? `Image for ${story.title}` : "A person sitting quietly in a church, used as the default image for a survivor story."}
+        alt={story.imageUrl ? `Image for ${story.title}` : "A photograph of an empty church with natural light, shown as a general illustration rather than the author's personal photo."}
         loading="lazy"
         onError={() => {
           if (source !== fallbackImage) setSource(fallbackImage);
