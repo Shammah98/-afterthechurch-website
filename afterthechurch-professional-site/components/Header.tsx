@@ -6,10 +6,10 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const navigation = [
-  ["Understand", "/resources"],
   ["Stories", "/stories"],
-  ["Practical support", "/safety"],
-  ["About", "/about"],
+  ["RECOVER", "/recover"],
+  ["Resources", "/resources"],
+  ["Safety & support", "/safety"],
   ["Share your story", "/share"]
 ];
 
