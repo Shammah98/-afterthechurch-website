@@ -66,10 +66,41 @@ const stoicReflections = [
     text: "Healing does not mean never feeling anger or fear. It can begin with refusing to let one passing emotion choose every action for you."
   }
 ];
+
+const missionPillars = [
+  {
+    number: "01",
+    title: "Understand what happened",
+    text: "Use plain-language guides to examine coercion, shunning, financial pressure, faith-healing claims and leadership abuse without being forced into one label.",
+    href: "/resources",
+    action: "Read the guides"
+  },
+  {
+    number: "02",
+    title: "Protect your next step",
+    text: "Think through safety, privacy, healthcare, housing, money and independent support before making a decision that could increase risk.",
+    href: "/safety",
+    action: "Review safety options"
+  },
+  {
+    number: "03",
+    title: "Break the isolation",
+    text: "Read moderated survivor accounts and community responses. You can recognise yourself in someone else's story without having to tell your own.",
+    href: "/stories",
+    action: "Read survivor stories"
+  },
+  {
+    number: "04",
+    title: "Seek accountability carefully",
+    text: "Learn how to document concerns, preserve evidence and choose independent reporting routes without turning recovery into a permanent investigation.",
+    href: "/resources/preparing-to-report-harm-in-a-church-charity",
+    action: "Explore reporting guidance"
+  }
+];
 export default async function HomePage() {
   let stories: PublicStory[] = [];
   try {
-    stories = await getApprovedStories(3);
+    stories = await getApprovedStories(6);
   } catch {
     stories = [];
   }
@@ -157,6 +188,29 @@ export default async function HomePage() {
     </Link>
   </div>
 </section>
+
+      <section className="missionHome editorialSection">
+        <div className="missionHomeIntro">
+          <p className="eyebrow">What AfterTheChurch is here to do</p>
+          <h2>No institution should be beyond questions, and no survivor should have to make sense of harm alone.</h2>
+          <p>
+            AfterTheChurch is built around four practical aims: understanding harmful behaviour,
+            protecting personal agency, reducing isolation and making accountability safer.
+            It is not a church, a therapy service or a substitute for emergency help.
+          </p>
+        </div>
+
+        <div className="missionPillarGrid">
+          {missionPillars.map((pillar) => (
+            <Link className="missionPillar" href={pillar.href} key={pillar.number}>
+              <span>{pillar.number}</span>
+              <h3>{pillar.title}</h3>
+              <p>{pillar.text}</p>
+              <strong>{pillar.action} <ArrowRight size={16} aria-hidden="true" /></strong>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <section className="needsSection">
         <div className="sectionIntro">
@@ -248,45 +302,65 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="storiesHome">
-        <div className="storiesHomeImage">
-          <Image
-            src="/images/friends-sunset.jpg"
-            alt="Friends standing with their arms around one another in warm sunset light."
-            fill
-            sizes="(max-width: 900px) 100vw, 50vw"
-          />
-        </div>
-
-        <div className="storiesHomeContent">
-          <p className="eyebrow">Survivor stories</p>
-          <h2>Read without being pushed into the most difficult detail.</h2>
-          <p>
-            Filter by topic, intensity, reading time, identity display, background
-            and media format. Every story opens with a notice and a short-summary
-            option.
-          </p>
-
-          {stories.length > 0 ? (
-            <div className="homeStoryList">
-              {stories.map((story) => (
-                <Link href={`/stories/${story.id}`} key={story.id}>
-                  <span>{story.readingMinutes} min · {story.contentIntensity}</span>
-                  <strong>{story.title}</strong>
-                  <small>{story.authorDisplay} · {story.churchDisplay}</small>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <p className="quietMessage">
-              Approved stories will appear here after the moderation process is active.
+      <section className="homeStoriesSection">
+        <div className="homeStoriesHeader">
+          <div>
+            <p className="eyebrow">Survivor stories</p>
+            <h2>See the people behind the subject.</h2>
+            <p>
+              Published stories appear here after moderation. Open only what you are ready to read;
+              each story includes intensity information, privacy choices and a moderated response space.
             </p>
-          )}
-
-          <Link className="button secondary" href="/stories">
-            Open Story Filters
-          </Link>
+          </div>
+          <div className="buttonRow">
+            <Link className="button primary" href="/stories">Browse All Stories</Link>
+            <Link className="button secondary" href="/share">Share Your Story</Link>
+          </div>
         </div>
+
+        {stories.length > 0 ? (
+          <div className="homeStoriesGrid">
+            {stories.map((story) => (
+              <Link className="homeStoryCard" href={`/stories/${story.id}`} key={story.id}>
+                <div className="homeStoryCardImage">
+                  <img
+                    src={story.imageUrl || "/images/story-default.jpg"}
+                    alt={
+                      story.imageUrl
+                        ? `Image for ${story.title}`
+                        : "A person sitting quietly in a church, used as the default image for this survivor story."
+                    }
+                    loading="lazy"
+                  />
+                  <span>{story.readingMinutes} min</span>
+                </div>
+                <div className="homeStoryCardBody">
+                  <p>{story.categories.slice(0, 2).join(" · ") || "Survivor story"}</p>
+                  <h3>{story.title}</h3>
+                  <small>{story.authorDisplay} · {story.churchDisplay}</small>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="homeStoriesEmpty">
+            <img
+              src="/images/story-default.jpg"
+              alt="A person sitting quietly in a church."
+              loading="lazy"
+            />
+            <div>
+              <h3>Published survivor stories will appear here.</h3>
+              <p>
+                Stories remain private until a moderator checks consent, accidental identification
+                and the privacy level selected by the author.
+              </p>
+              <Link className="textLink" href="/share">
+                Review the submission process <ArrowRight size={17} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        )}
       </section>
 
       <section className="submissionExplanation editorialSection">
@@ -350,7 +424,7 @@ export default async function HomePage() {
         </div>
         <div>
           <p>
-            AfterTheChurch was created for people who know how difficult it sis to survive in and question a 
+            AfterTheChurch was created for people who know how difficult it is to survive in and question a 
             religious community. We are developing clear
             information about leadership, funding, safeguarding, editorial
             decisions and conflicts of interest.
@@ -364,6 +438,24 @@ export default async function HomePage() {
           <Link className="textLink" href="/about">
             About the project <ArrowRight size={17} aria-hidden="true" />
           </Link>
+        </div>
+      </section>
+
+      <section className="supportHomeCallout">
+        <div>
+          <p className="eyebrow">Find independent support</p>
+          <h2>You can ask for help without first deciding what to call your experience.</h2>
+        </div>
+        <div>
+          <p>
+            The support directory points to independent crisis, abuse, healthcare and practical
+            services in several countries, with international directories for other locations.
+            AfterTheChurch does not receive referral fees from the services listed.
+          </p>
+          <div className="buttonRow">
+            <Link className="button primary" href="/safety">Find Support</Link>
+            <Link className="button secondary" href="/share">Offer Support or Guidance</Link>
+          </div>
         </div>
       </section>
 
