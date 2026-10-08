@@ -52,11 +52,11 @@ export default async function StoryPage({
 
       <img
         className="storyImage"
-        src={story.imageUrl || "/images/story-default.jpg"}
+        src={story.imageUrl || "/api/story-placeholder"}
         alt={
           story.imageUrl
             ? `Picture accompanying ${story.title}`
-            : "A person sitting quietly in a church, used as the default image for this survivor story."
+            : "A photograph of an empty church with natural light, shown as a general illustration rather than the author's personal photo."
         }
       />
 
