@@ -23,6 +23,7 @@ export default function Footer() {
           <div>
             <h2>Explore</h2>
             <Link href="/stories">Stories</Link>
+            <Link href="/recover">RECOVER</Link>
             <Link href="/resources">Resources</Link>
             <Link href="/share">Share your story</Link>
           </div>
