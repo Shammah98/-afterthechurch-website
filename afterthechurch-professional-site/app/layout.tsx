@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import QuickExit from "@/components/QuickExit";
+import FloatingContactChat from "@/components/FloatingContactChat";
 import { siteStarfieldDataUri } from "@/lib/site-starfield";
 import "./globals.css";
 import "./cosmic-theme.css";
@@ -12,6 +13,7 @@ import "./safety-pink-fix.css";
 import "./healing-theme.css";
 import "./home-refresh.css";
 import "./contact/contact.css";
+import "./floating-contact-chat.css";
 
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
@@ -73,6 +75,7 @@ export default function RootLayout({
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
+        <FloatingContactChat />
         <QuickExit />
       </body>
     </html>

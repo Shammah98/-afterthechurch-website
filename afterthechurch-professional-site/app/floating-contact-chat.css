@@ -1,0 +1,255 @@
+/* Persistent, clearly labelled contact control. Positioned ABOVE the safety Quick Exit. */
+.atcChat {
+  position: fixed;
+  right: 18px;
+  bottom: calc(86px + env(safe-area-inset-bottom, 0px));
+  z-index: 60;
+  font-family: var(--font-sans), "Source Sans 3", sans-serif;
+  color: #24382f;
+}
+.atcChatLauncher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-left: auto;
+  min-height: 54px;
+  padding: 12px 20px;
+  border: 1px solid #34694f;
+  border-radius: 999px;
+  color: #fafff9;
+  background: #214d3e;
+  font: inherit;
+  font-size: .96rem;
+  font-weight: 800;
+  letter-spacing: .005em;
+  cursor: pointer;
+  box-shadow: 0 5px 18px rgba(15, 56, 40, .24), 0 0 0 4px rgba(237,246,239,.8);
+  transition: transform .16s ease, background .16s ease;
+}
+.atcChatLauncher:hover { background: #183c30; transform: translateY(-2px); }
+.atcChatLauncher:focus-visible, .atcChatPanel :focus-visible { outline: 3px solid #bd8a5e; outline-offset: 3px; }
+.atcChatPanel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 15px);
+  width: min(390px, calc(100vw - 28px));
+  height: min(575px, calc(100dvh - 178px));
+  min-height: min(340px, calc(100dvh - 178px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #c5dacf;
+  border-radius: 18px;
+  color: #263c31;
+  background: #fffefa;
+  box-shadow: 0 24px 75px rgba(23, 58, 43, .24);
+}
+.atcChatPanelHeader {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+  padding: 16px;
+  background: #e5f1ed;
+  border-bottom: 1px solid #cbded3;
+}
+.atcChatPanelMark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  background: #d2e7dc;
+  color: #295744;
+  border-radius: 12px;
+}
+.atcChatPanelHeading { min-width: 0; flex: 1; }
+.atcChatPanelHeading h2 {
+  margin: 0;
+  font: 800 1.04rem/1.2 var(--font-sans),sans-serif;
+  letter-spacing: 0;
+  color: #204536 !important;
+}
+.atcChatPanelHeading p {
+  margin: 4px 0 0;
+  color: #557568 !important;
+  font-size: .77rem;
+  line-height: 1.25;
+}
+.atcChatClose {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 7px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #345d4b;
+  cursor: pointer;
+}
+.atcChatClose:hover { background: #d4e6da; }
+.atcChatMessages {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 15px;
+  background: #fbfcf7;
+}
+.atcChatHint { color: #586d5f !important; font-size: .91rem; }
+.atcChatWelcome { margin: auto 0; text-align: center; padding: 13px 18px; }
+.atcChatWelcome svg { color: #537a68; margin: 0 auto 8px; }
+.atcChatWelcome h3 { color: #254637 !important; font: 700 1.6rem/1.18 var(--font-serif),serif; margin: 0 0 7px; }
+.atcChatWelcome p { color: #506a59 !important; font-size: .91rem; line-height: 1.48; margin: 0 0 11px; }
+.atcChatWelcome .atcChatFinePrint { font-size: .76rem; color: #6c6c5f !important; }
+.atcChatSystemNote {
+  flex-shrink: 0;
+  max-width: 300px;
+  align-self: center;
+  margin: 3px 0 6px;
+  padding: 9px 11px;
+  border-radius: 10px;
+  background: #ebf3ec;
+  color: #516e5e !important;
+  text-align: center;
+  font-size: .73rem;
+}
+.atcChatMessage {
+  max-width: 88%;
+  padding: 11px 13px;
+  border-radius: 14px;
+  align-self: flex-start;
+  background: #f0ede4;
+  overflow-wrap: anywhere;
+}
+.atcChatMessageMine { align-self: flex-end; border-bottom-right-radius: 3px; background: #dcece2; }
+.atcChatMessageTeam { border-bottom-left-radius: 3px; }
+.atcChatMessage span { display: block; color: #315e49; font-size: .73rem; font-weight: 800; }
+.atcChatMessage p { margin: 5px 0 9px; white-space: pre-wrap; color: #253d30 !important; font-size: .91rem; line-height: 1.4; }
+.atcChatMessage time { display: block; color: #617567; font-size: .69rem; text-align: right; }
+.atcChatComposer {
+  flex-shrink: 0;
+  max-height: 62%;
+  overflow-y: auto;
+  padding: 12px 14px 10px;
+  background: #fffefa;
+  border-top: 1px solid #d5e2d7;
+}
+.atcChatField { display: block; margin: 0 0 9px; font-size: .78rem; font-weight: 800; color: #355342; }
+.atcChatField span { color: #738278; font-weight: 500; }
+.atcChatField input {
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding: 9px 10px;
+  border: 1px solid #bdcec2;
+  border-radius: 9px;
+  background: #fff;
+  color: #263b30;
+  font-size: .9rem;
+}
+.atcChatConsent {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 7px 0 11px;
+  color: #566a5e;
+  font-size: .75rem;
+  line-height: 1.38;
+}
+.atcChatConsent input { flex-shrink: 0; width: 16px; height: 16px; margin: 1px 0 0; accent-color: #326549; }
+.atcChatConsent a, .atcChatClosed a { color: #375e4d; font-weight: 800; text-underline-offset: 3px; }
+.atcChatComposer textarea {
+  display: block;
+  width: 100%;
+  min-height: 62px;
+  max-height: 120px;
+  resize: vertical;
+  border: 1px solid #c8d9cc;
+  border-radius: 10px;
+  background: #f7faf6;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: .89rem;
+  color: #294433;
+  line-height: 1.4;
+}
+.atcChatSendRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 9px;
+}
+.atcChatSendRow span { color: #758478; font-size: .7rem; }
+.atcChatSendRow button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 35px;
+  padding: 7px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: #285641;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: .81rem;
+  font-weight: 800;
+}
+.atcChatSendRow button:hover { background: #1b4030; }
+.atcChatSendRow button:disabled { opacity: .48; cursor: not-allowed; }
+.atcChatError, .atcChatSent, .atcChatClosed {
+  margin: 8px 0;
+  padding: 9px 10px;
+  border-radius: 8px;
+  font-size: .79rem;
+  line-height: 1.45;
+}
+.atcChatError { color: #89434b !important; background: #f9eae9; }
+.atcChatSent { color: #315d40 !important; background: #e7f2e8; }
+.atcChatClosed { color: #6a565b !important; background: #f5ebe9; }
+.atcChatPanelFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e1eae1;
+}
+.atcChatPanelFooter a, .atcChatPanelFooter button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 0;
+  color: #3f634e;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  font-size: .76rem;
+  font-weight: 700;
+}
+.atcChatPanelFooter button:disabled { cursor: wait; opacity: .45; }
+@media (max-width: 680px) {
+  .atcChat { right: 12px; bottom: calc(77px + env(safe-area-inset-bottom, 0px)); }
+  .atcChatLauncher { min-height: 49px; padding: 11px 15px; font-size: .84rem; }
+  .atcChatPanel { height: min(550px, calc(100dvh - 160px)); width: calc(100vw - 24px); border-radius: 15px; }
+  .atcChatPanelHeader { padding: 12px 14px; }
+  .atcChatPanelHeading h2 { font-size: .95rem; }
+  .atcChatMessages { padding: 11px; }
+  .atcChatComposer { padding: 10px 12px 8px; max-height: 70%; }
+}
+@media (max-height: 490px) {
+  .atcChatPanel { height: calc(100dvh - 145px); }
+  .atcChatMessages { min-height: 50px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atcChatLauncher { transition: none; }
+}
