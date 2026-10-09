@@ -27,6 +27,12 @@ const dataRows = [
     basis: "Consent; explicit consent where a contributor includes special-category information; legitimate interests in safe editorial review and legal claims."
   },
   {
+    data: "Private contact conversations",
+    examples: "An optional first name or nickname, private messages and team replies, message timestamps and a one-way hash of a random browser access token.",
+    purpose: "Allow visitors to contact the team privately, receive replies from authorised staff and delete their conversation.",
+    basis: "Consent for information you choose to disclose; explicit consent for special-category information you choose to include; legitimate interests in securing the messaging service."
+  },
+  {
     data: "Security and technical records",
     examples: "IP address and browser information used to create a one-way rate-limit fingerprint, timestamps, request records, security logs and error information.",
     purpose: "Prevent spam, abuse and unauthorised access; diagnose faults; protect contributors and the service.",
@@ -54,7 +60,7 @@ export default function PrivacyPage() {
         </p>
         <div className="legalMeta">
           <span><strong>Effective:</strong> 5 August 2026</span>
-          <span><strong>Last reviewed:</strong> 5 August 2026</span>
+          <span><strong>Last reviewed:</strong> 9 October 2026</span>
           <Link href="/terms">Read the Terms of Use</Link>
         </div>
       </header>
@@ -207,6 +213,7 @@ export default function PrivacyPage() {
             <h2>6. Retention and deletion</h2>
             <ul className="plainList">
               <li>Rate-limit fingerprints are automatically removed after approximately 24 hours.</li>
+              <li>Private contact conversations remain on the server until deleted through the chat page or in response to a valid deletion request. A 30-day browser access cookie expiry does not itself erase the conversation. Server security logs and backups may have separate, limited retention.</li>
               <li>Anonymous technical session identifiers are retained as needed to connect private submission controls, prevent abuse and meet legal obligations.</li>
               <li>Administrator authentication records are retained while moderation access is authorised and for the limited period needed for security or legal obligations.</li>
               <li>Pending submissions are retained while review or requested changes remain active.</li>
@@ -233,7 +240,17 @@ export default function PrivacyPage() {
               content-warning choices may also be stored in the browser.
             </p>
             <p>
-              The site does not currently use advertising or third-party behavioural
+              Private Contact Us chat uses a secure, HTTP-only cookie containing a
+              random access token, valid for up to 30 days. The server stores only a
+              hash of that token. The cookie lets this browser view its conversation
+              and any replies; possession of the browser is enough to access the chat.
+              Clearing cookies or switching devices may permanently remove the ability
+              to retrieve or delete your conversation through the site. Please contact
+              the privacy address above if that happens. Private chat content is not
+              end-to-end encrypted and can be read by authorised AfterTheChurch staff.
+            </p>
+            <p>
+                            The site does not currently use advertising or third-party behavioural
               analytics. Essential hosting and security logs may still be generated.
               If non-essential analytics, marketing cookies or similar technologies
               are introduced, the notice and consent controls must be updated before
