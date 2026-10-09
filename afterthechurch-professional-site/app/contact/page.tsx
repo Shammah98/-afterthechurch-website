@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import ContactChat from "@/components/ContactChat";
-import "./contact.css";
 
 export const metadata: Metadata = {
   title: "Contact Us — Private Chat",
