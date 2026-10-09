@@ -84,3 +84,7 @@
  .adminContactLayout { grid-template-columns:1fr; }
  .adminContactList { max-height:230px; }
 }
+
+.contactConsent { display:flex; align-items:flex-start; gap:12px; font-size:.84rem; line-height:1.55; padding:14px 4px; color:#526357; }
+.contactConsent input { flex:0 0 auto; width:18px; height:18px; margin-top:3px; accent-color:#527460; }
+.contactConsent a { color:#684c5d; font-weight:800; }
