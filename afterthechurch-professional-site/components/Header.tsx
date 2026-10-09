@@ -10,7 +10,8 @@ const navigation = [
   ["RECOVER", "/recover"],
   ["Resources", "/resources"],
   ["Safety & support", "/safety"],
-  ["Share your story", "/share"]
+  ["Share your story", "/share"],
+  ["Contact us", "/contact"]
 ];
 
 export default function Header() {

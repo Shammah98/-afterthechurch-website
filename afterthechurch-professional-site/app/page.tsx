@@ -162,7 +162,7 @@ export default async function HomePage() {
       </section>
       <div className="freshSafetyLine">
         <p>AfterTheChurch offers educational information and survivor accounts, not emergency or clinical care.</p>
-        <Link href="/safety">Safety information <ArrowRight size={15} aria-hidden="true" /></Link>
+        <div className="freshHomeContactLinks"><Link href="/contact">Contact us privately <ArrowRight size={15} aria-hidden="true" /></Link><Link href="/safety">Safety information <ArrowRight size={15} aria-hidden="true" /></Link></div>
       </div>
     </div>
   );

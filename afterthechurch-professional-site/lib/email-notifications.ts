@@ -156,3 +156,37 @@ export async function sendSupportRequestNotification(
     throw new Error(`Resend support notification failed (${response.status}): ${details}`);
   }
 }
+
+
+/**
+ * Tell authorised staff that a visitor opened a private conversation.
+ * Never place visitor messages, names, identifiers or chat access tokens in email.
+ */
+export async function sendPrivateContactNotification() {
+  const { apiKey, recipient, from, adminUrl } = notificationConfig();
+  if (!apiKey) {
+    console.info("Private contact notification skipped: email is not configured.");
+    return;
+  }
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + apiKey,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from,
+      to: [recipient],
+      subject: "New private message on AfterTheChurch",
+      text: [
+        "A visitor has started a private conversation through Contact Us.",
+        "",
+        "Sign in to the restricted inbox to read and respond:",
+        adminUrl,
+        "",
+        "The visitor's name and message have not been included in this email."
+      ].join("\n")
+    })
+  });
+  if (!response.ok) throw new Error("Private contact notification could not be delivered.");
+}

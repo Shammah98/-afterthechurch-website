@@ -26,6 +26,7 @@ export default function Footer() {
             <Link href="/recover">RECOVER</Link>
             <Link href="/resources">Resources</Link>
             <Link href="/share">Share your story</Link>
+            <Link href="/contact">Contact us</Link>
           </div>
           <div>
             <h2>Information</h2>

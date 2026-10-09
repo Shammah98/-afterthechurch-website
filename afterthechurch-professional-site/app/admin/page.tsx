@@ -3,6 +3,7 @@ import AdminCommentModeration from "@/components/AdminCommentModeration";
 import AdminDashboard from "@/components/AdminDashboard";
 import AdminPublishedStories from "@/components/AdminPublishedStories";
 import AdminSupportRequests from "@/components/AdminSupportRequests";
+import AdminContactInbox from "@/components/AdminContactInbox";
 
 export const metadata: Metadata = {
   title: "Story, Comment and Support Moderation",
@@ -22,6 +23,7 @@ export default function AdminPage() {
       </div>
       <AdminDashboard />
       <AdminSupportRequests />
+      <AdminContactInbox />
       <AdminPublishedStories />
       <AdminCommentModeration />
     </section>

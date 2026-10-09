@@ -11,6 +11,7 @@ import "./footer-polish.css";
 import "./safety-pink-fix.css";
 import "./healing-theme.css";
 import "./home-refresh.css";
+import "./contact/contact.css";
 
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
