@@ -15,7 +15,8 @@ const schema = z.object({
   message: z.string().min(2).max(3000),
   displayName: z.string().max(70).optional(),
   website: z.string().max(100).optional(),
-  startedAt: z.number().optional()
+  startedAt: z.number().optional(),
+  privacyConfirmed: z.boolean().optional()
 });
 
 function digest(token: string) {
@@ -129,6 +130,9 @@ export async function POST(request: NextRequest) {
     let newToken: string | null = null;
     let isNew = false;
     if (!threadId) {
+      if (parsed.data.privacyConfirmed !== true) {
+        return noStore({ error: "Please review and confirm the private-message information before starting." }, 400);
+      }
       const honeypot = cleanText(parsed.data.website, 100);
       if (honeypot || typeof parsed.data.startedAt !== "number" ||
           Date.now() - parsed.data.startedAt < 2500 ||
