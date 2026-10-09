@@ -18,6 +18,7 @@ export default function ContactChat() {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [privacyConfirmed, setPrivacyConfirmed] = useState(false);
   const startedAt = useRef(Date.now());
   const conversationEnd = useRef<HTMLDivElement>(null);
 
@@ -64,7 +65,7 @@ export default function ContactChat() {
         method: "POST",
         credentials: "same-origin",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: body.trim(), displayName: name.trim(), website: "", startedAt: startedAt.current })
+        body: JSON.stringify({ message: body.trim(), displayName: name.trim(), website: "", startedAt: startedAt.current, privacyConfirmed })
       });
       const result = await response.json();
       if (!response.ok) {
@@ -98,6 +99,7 @@ export default function ContactChat() {
       setName("");
       setBody("");
       setConfirmDelete(false);
+      setPrivacyConfirmed(false);
       startedAt.current = Date.now();
       setNotice("Your conversation and its messages have been deleted.");
     } catch {
@@ -164,6 +166,9 @@ export default function ContactChat() {
               <input type="text" value={name} maxLength={70} onChange={e => setName(e.target.value)} placeholder="A first name or nickname is enough"/>
             </label>
           )}
+          {!active && !loading && (
+            <label className="contactConsent"><input type="checkbox" checked={privacyConfirmed} onChange={e => setPrivacyConfirmed(e.target.checked)} required/><span>I understand that the team can read my messages and that they are stored privately on the website. I agree to the processing of any sensitive personal information I choose to include. <Link href="/privacy">Read the privacy policy</Link>.</span></label>
+          )}
           {closed ? (
             <p className="contactClosed">This conversation has been closed by the team. You can delete it and begin a new conversation if you wish to contact us again.</p>
           ) : (
@@ -172,7 +177,7 @@ export default function ContactChat() {
               <textarea id="private-contact-text" rows={3} minLength={2} maxLength={3000} required placeholder={active ? "Write your next message…" : "Write your first message…"} value={body} onChange={e => setBody(e.target.value)} disabled={busy || loading}/>
               <div className="contactComposerBottom">
                 <span>{body.length} / 3000 characters</span>
-                <button type="submit" className="button primary" disabled={busy || loading || body.trim().length < 2}>
+                <button type="submit" className="button primary" disabled={busy || loading || body.trim().length < 2 || (!active && !privacyConfirmed)}>
                   <Send size={17} aria-hidden="true"/> {busy ? "Sending…" : "Send privately"}
                 </button>
               </div>
