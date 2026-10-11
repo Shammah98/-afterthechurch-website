@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/seo";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -14,6 +15,7 @@ import "./healing-theme.css";
 import "./home-refresh.css";
 import "./contact/contact.css";
 import "./floating-contact-chat.css";
+import "./story-search.css";
 
 const serif = Cormorant_Garamond({
   subsets: ["latin"],
@@ -29,7 +31,7 @@ const sans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "AfterTheChurch | Practical support after religious harm",
     template: "%s | AfterTheChurch"
