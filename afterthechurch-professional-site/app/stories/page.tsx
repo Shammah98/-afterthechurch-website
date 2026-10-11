@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/seo";
 import Link from "next/link";
 import StoryExplorer from "@/components/StoryExplorer";
 import { storyCategories } from "@/lib/content";
 import { getApprovedStories, getStoryLibraryCounts } from "@/lib/stories";
 import type { PublicStory } from "@/lib/types";
 
-export const metadata: Metadata = { title: "Survivor Stories" };
+export const metadata: Metadata = {
+  title: "Survivor Stories | Read Real Accounts",
+  description: "Read survivor accounts of religious harm, church control, shunning, faith-healing experiences and recovery. Authors choose how to be identified.",
+  alternates: { canonical: SITE_URL + "/stories" },
+  openGraph: {
+    title: "Survivor Stories on AfterTheChurch",
+    description: "Read first-person experiences and reflections on healing after harmful religious environments.",
+    url: SITE_URL + "/stories",
+    siteName: "AfterTheChurch",
+    type: "website"
+  }
+};
 export const dynamic = "force-dynamic";
 
 export default async function StoriesPage() {

@@ -1,0 +1,66 @@
+/* Search-readable story pages with a trauma-informed opt-in disclosure. */
+.storyDetail--searchable .storySearchSummary {
+  max-width: 760px;
+  margin: 22px 0 10px;
+  color: #465e50 !important;
+  font-size: clamp(1.08rem, 1.6vw, 1.3rem);
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.storyReadingNotice {
+  margin: clamp(25px, 4vw, 42px) 0 22px;
+  padding: clamp(20px, 3vw, 30px);
+  border: 1px solid #b7d2c5;
+  border-left: 4px solid #668e7a;
+  border-radius: 8px;
+  background: #eef5ee;
+}
+.storyReadingNotice h2 {
+  margin: 0 0 9px;
+  font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+  line-height: 1.15;
+  color: #2f5240 !important;
+}
+.storyReadingNotice p {
+  margin: 0 0 10px;
+  color: #456052 !important;
+  font-size: .97rem;
+  line-height: 1.58;
+}
+.storyReadingNotice p:last-child { margin-bottom: 0; font-size: .85rem; }
+.storyFullDisclosure {
+  margin: 20px 0 clamp(30px, 5vw, 60px);
+  border: 1px solid #bccfc0;
+  border-radius: 8px;
+  background: #fcfdf9;
+  overflow: hidden;
+}
+.storyFullDisclosure > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 24px;
+  color: #ffffff;
+  background: #275e47;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 1.08rem;
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+.storyFullDisclosure > summary::-webkit-details-marker { display: none; }
+.storyFullDisclosure > summary::after { content: "+"; font-size: 1.7rem; font-weight: 400; line-height: 1; }
+.storyFullDisclosure[open] > summary::after { content: "−"; }
+.storyFullDisclosure > summary span { margin-left: auto; font-size: .79rem; font-weight: 500; color: #d9ebe0; }
+.storyFullDisclosure > summary:hover { background: #1d4d39; }
+.storyFullDisclosure > summary:focus-visible { outline: 3px solid #d6a974; outline-offset: -5px; }
+.storyFullDisclosureBody { padding: clamp(18px, 3vw, 32px); }
+.storyFullDisclosureBody .storyImage { margin-top: 0; }
+.storyFullDisclosureBody .storyLongText { overflow-wrap: anywhere; white-space: normal; }
+.storyFullDisclosureBody .storyLongText p { white-space: pre-wrap; }
+@media (max-width: 680px) {
+  .storyFullDisclosure > summary { padding: 16px 17px; font-size: 1rem; flex-wrap: wrap; }
+  .storyFullDisclosure > summary span { display: none; }
+}

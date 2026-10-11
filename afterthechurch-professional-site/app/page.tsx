@@ -1,3 +1,18 @@
+import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: { absolute: "AfterTheChurch | Survivor Stories, Healing & Recovery" },
+  description: "AfterTheChurch is a survivor-led space to read accounts of religious harm, learn about coercive control and faith-healing experiences, and find recovery resources.",
+  alternates: { canonical: SITE_URL + "/" },
+  openGraph: {
+    title: "AfterTheChurch | Survivor Stories and Recovery",
+    description: "Read survivor stories and find practical support after harmful church or religious experiences.",
+    url: SITE_URL + "/",
+    siteName: "AfterTheChurch",
+    type: "website"
+  }
+};
 import Link from "next/link";
 import { ArrowRight, BookOpen, HeartHandshake, ShieldCheck } from "lucide-react";
 import { getApprovedStories } from "@/lib/stories";
