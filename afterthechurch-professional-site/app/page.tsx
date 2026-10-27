@@ -54,20 +54,20 @@ const pathways = [
 
 const principles = [
   {
-    title: "Centre survivor voices",
-    text: "People affected by religious harm should be able to tell their own story, choose how they are identified and decide what remains public."
+    title: "Your story, your choice",
+    text: "You decide what to share, how you are identified and what stays private."
   },
   {
-    title: "Support recovery",
-    text: "Good support can include peer connection, professional care, practical safety steps and space to rebuild without pressure."
+    title: "Find support",
+    text: "Access practical safety information, peer support and professional help."
   },
   {
-    title: "Make harmful patterns visible",
-    text: "Clear information about coercion, shunning, exploitation and abuse can help people recognise what happened and make informed choices."
+    title: "Recognise harm",
+    text: "Learn about coercion, shunning, abuse and exploitation so harmful patterns are easier to name."
   },
   {
-    title: "Encourage accountability",
-    text: "Religious authority should never place a person or institution beyond scrutiny, safeguarding or appropriate independent oversight."
+    title: "Expect accountability",
+    text: "No leader or church should be beyond safeguarding, scrutiny or independent oversight."
   }
 ];
 
@@ -183,12 +183,11 @@ export default async function HomePage() {
 
       <section className="freshMission" aria-labelledby="mission-title">
         <div className="freshMissionIntro">
-          <p className="eyebrow">What AfterTheChurch is here to do</p>
-          <h2 id="mission-title">A survivor-centred space for truth, support and accountability.</h2>
+          <p className="eyebrow">What we do</p>
+          <h2 id="mission-title">Stories, support and practical information after church harm.</h2>
           <p>
-            Religious harm can be spiritual, emotional, sexual, financial, social or medical.
-            AfterTheChurch exists to make lived experiences visible without forcing people into a single
-            belief system, recovery path or public identity.
+            Share experiences, recognise harmful patterns and find support. You choose what to read,
+            what to share and whether to stay anonymous.
           </p>
         </div>
         <div className="freshPrincipleGrid">
