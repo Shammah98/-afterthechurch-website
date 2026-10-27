@@ -2,10 +2,11 @@ import { createHash } from "crypto";
 import type { NextRequest } from "next/server";
 import { createAdminClient } from "./supabase-admin";
 
-function requestFingerprint(request: NextRequest) {
+function requestFingerprint(request: NextRequest, event: string) {
   const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
   const ip = forwarded || request.headers.get("x-real-ip") || "unknown";
-  const agent = request.headers.get("user-agent") || "unknown";
+  // Use an IP-only fingerprint for admin logins so changing the user-agent does not evade throttling.
+  const agent = event === "admin_login" ? "" : request.headers.get("user-agent") || "unknown";
   const secret = process.env.RATE_LIMIT_SECRET;
 
   if (!secret && process.env.NODE_ENV === "production") {
@@ -26,7 +27,7 @@ export async function checkRateLimit(
   const supabase = createAdminClient();
   const { data, error } = await supabase.rpc("check_rate_limit", {
     p_event: event,
-    p_ip_hash: requestFingerprint(request),
+    p_ip_hash: requestFingerprint(request, event),
     p_limit: limit,
     p_window_seconds: windowSeconds
   });

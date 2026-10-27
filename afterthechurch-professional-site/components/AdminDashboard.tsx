@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAdminAccessToken, getBrowserSupabase } from "@/lib/supabase-browser";
 
 type ReviewStory = {
@@ -28,8 +28,6 @@ export default function AdminDashboard() {
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [approvedStoryId, setApprovedStoryId] = useState<string | null>(null);
   const [authorised, setAuthorised] = useState<boolean | null>(null);
-  const [email, setEmail] = useState("");
-  const [busy, setBusy] = useState(false);
 
   async function getAdminToken() {
     return getAdminAccessToken();
@@ -92,73 +90,16 @@ export default function AdminDashboard() {
     load();
   }, []);
 
-  async function signIn(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setBusy(true);
-    setStatus("Checking administrator access…");
-
-    const form = new FormData(event.currentTarget);
-    const password = String(form.get("password") || "");
-    const normalisedEmail = email.trim();
-
-    try {
-      const { error } = await getBrowserSupabase().auth.signInWithPassword({
-        email: normalisedEmail,
-        password
-      });
-
-      if (error) {
-        setAuthorised(false);
-        setStatus("The administrator email or password was not accepted.");
-        setBusy(false);
-        return;
-      }
-
-      await load();
-    } catch {
-      setAuthorised(false);
-      setStatus("Administrator sign-in could not be completed. Please try again.");
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function requestReset() {
-    const normalisedEmail = email.trim();
-    if (!normalisedEmail) {
-      setStatus("Enter the administrator email address first.");
-      return;
-    }
-
-    setBusy(true);
-    try {
-      const siteUrl = (
-        process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
-      ).replace(/\/+$/, "");
-      const { error } = await getBrowserSupabase().auth.resetPasswordForEmail(
-        normalisedEmail,
-        { redirectTo: `${siteUrl}/auth/reset` }
-      );
-
-      setStatus(
-        error
-          ? "A reset email could not be sent. Please try again."
-          : "If that administrator account exists, a password-reset email will arrive shortly."
-      );
-    } catch {
-      setStatus("A reset email could not be sent. Please try again.");
-    } finally {
-      setBusy(false);
-    }
-  }
-
   async function signOut() {
     try {
       await getBrowserSupabase().auth.signOut();
+    } catch {
+      // Revoke the admin session cookie even if Supabase sign-out fails.
+    }
+    try {
+      await fetch("/api/admin/session", { method: "DELETE", credentials: "same-origin" });
     } finally {
-      setAuthorised(false);
-      setStories([]);
-      setStatus("Administrator signed out.");
+      window.location.assign("/admin/login");
     }
   }
 
@@ -209,48 +150,9 @@ export default function AdminDashboard() {
   if (!authorised) {
     return (
       <div className="authPanel adminLogin">
-        <p className="eyebrow">Administrator sign in</p>
-        <h2>Moderation access only</h2>
-        <p>
-          Public visitors never need an account. This sign-in is restricted to
-          approved moderators whose email is listed in the private admin allowlist.
-        </p>
-
-        <form onSubmit={signIn}>
-          <label>
-            Administrator email
-            <input
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </label>
-          <label>
-            Password
-            <input
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              required
-            />
-          </label>
-          <button className="button primary authSubmit" type="submit" disabled={busy}>
-            {busy ? "Please wait…" : "Open Moderation"}
-          </button>
-          <button
-            className="linkButton backToSignIn"
-            type="button"
-            onClick={requestReset}
-            disabled={busy}
-          >
-            Forgotten administrator password?
-          </button>
-        </form>
-
-        <p className="formStatus" role="status" aria-live="polite">{status}</p>
+        <h2>Administrator session expired</h2>
+        <p>Please sign in again to view private moderation data.</p>
+        <a className="button primary" href="/admin/login">Sign in</a>
       </div>
     );
   }

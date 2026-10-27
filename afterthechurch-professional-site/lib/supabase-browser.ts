@@ -118,6 +118,21 @@ export function setRememberSession(remember: boolean) {
 }
 
 export async function getAdminAccessToken(timeoutMs = 6000) {
+  // Administrator username/password sessions are held in HTTP-only signed cookies.
+  // The opaque marker is only used by the existing client request helpers; server
+  // endpoints always validate the cookie instead of trusting this header value.
+  try {
+    const response = await fetch("/api/admin/session", {
+      credentials: "same-origin",
+      cache: "no-store"
+    });
+    if (response.ok && (await response.json()).authenticated === true) {
+      return "cookie-session";
+    }
+  } catch {
+    // Existing Supabase moderator sessions remain supported as a fallback.
+  }
+
   try {
     const sessionPromise = getBrowserSupabase().auth.getSession().then(({ data, error }) => {
       if (error) throw error;

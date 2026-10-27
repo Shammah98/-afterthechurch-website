@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { getUserFromRequest, isAdminEmail } from "@/lib/auth-server";
+import { isAdminRequest } from "@/lib/auth-server";
 import { cleanText } from "@/lib/sanitize";
 import { createAdminClient } from "@/lib/supabase-admin";
 
@@ -34,8 +34,7 @@ type SupportRequestRow = {
 };
 
 async function requireAdmin(request: NextRequest) {
-  const user = await getUserFromRequest(request);
-  return Boolean(user && isAdminEmail(user.email));
+  return isAdminRequest(request);
 }
 
 export async function GET(request: NextRequest) {
