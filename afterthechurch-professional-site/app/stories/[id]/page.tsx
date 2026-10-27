@@ -47,14 +47,14 @@ export async function generateMetadata({
       publishedTime: story.createdAt,
       // Use a stable, public illustration instead of expiring private media URLs.
       images: [
-        { url: SITE_URL + "/images/story-default.jpg", alt: "Illustration for a survivor story on AfterTheChurch" }
+        { url: SITE_URL + "/api/story-placeholder", alt: "Illustrative photograph for a survivor story on AfterTheChurch" }
       ]
     },
     twitter: {
       card: "summary_large_image",
       title: story.title,
       description,
-      images: [SITE_URL + "/images/story-default.jpg"]
+      images: [SITE_URL + "/api/story-placeholder"]
     }
   };
 }
@@ -145,7 +145,7 @@ export default async function StoryPage({
             src={story.imageUrl || "/api/story-placeholder"}
             alt={story.imageUrl
               ? "Image supplied to accompany this survivor story"
-              : "An illustrative photograph of an empty church with natural light"}
+              : "An illustrative photograph of a person seated in a church pew"}
           />
 
           {story.mediaType === "video" && story.mediaUrl && (
