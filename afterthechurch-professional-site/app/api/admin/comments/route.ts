@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getUserFromRequest, isAdminEmail } from "@/lib/auth-server";
+import { isAdminRequest } from "@/lib/auth-server";
 import { createAdminClient } from "@/lib/supabase-admin";
 
 export async function GET(request: NextRequest) {
-  const user = await getUserFromRequest(request);
-  if (!user || !isAdminEmail(user.email)) return NextResponse.json({ error: "Administrator access denied." }, { status: 403 });
+  if (!(await isAdminRequest(request))) return NextResponse.json({ error: "Administrator access denied." }, { status: 403 });
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("story_comments")
