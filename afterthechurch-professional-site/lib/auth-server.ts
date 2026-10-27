@@ -1,5 +1,6 @@
 import type { NextRequest } from "next/server";
 import { createAdminClient } from "./supabase-admin";
+import { hasAdminSession } from "./admin-session";
 
 export async function getUserFromRequest(request: NextRequest) {
   const header = request.headers.get("authorization");
@@ -22,4 +23,17 @@ export function isAdminEmail(email: string | undefined | null) {
     .filter(Boolean);
 
   return allowed.includes(email.toLowerCase());
+}
+
+/** Validates signed admin sessions or the existing Supabase admin allowlist. */
+export async function isAdminRequest(request: NextRequest) {
+  if (await hasAdminSession(request)) {
+    const origin = request.headers.get("origin");
+    if (request.method !== "GET" && request.method !== "HEAD" &&
+        origin && origin !== request.nextUrl.origin) return false;
+    return true;
+  }
+
+  const user = await getUserFromRequest(request);
+  return Boolean(user && !user.is_anonymous && isAdminEmail(user.email));
 }
