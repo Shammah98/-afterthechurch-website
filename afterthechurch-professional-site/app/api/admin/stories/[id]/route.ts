@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getUserFromRequest, isAdminEmail } from "@/lib/auth-server";
+import { isAdminRequest } from "@/lib/auth-server";
 import { cleanText } from "@/lib/sanitize";
 import { createAdminClient } from "@/lib/supabase-admin";
 
@@ -8,8 +8,7 @@ export async function PATCH(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const user = await getUserFromRequest(request);
-    if (!user || !isAdminEmail(user.email)) {
+    if (!(await isAdminRequest(request))) {
       return NextResponse.json({ error: "Administrator access denied." }, { status: 403 });
     }
 
