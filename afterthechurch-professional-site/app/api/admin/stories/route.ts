@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getUserFromRequest, isAdminEmail } from "@/lib/auth-server";
+import { isAdminRequest } from "@/lib/auth-server";
 import { createAdminClient } from "@/lib/supabase-admin";
 
 const fullSelect =
@@ -37,8 +37,7 @@ type ManagedStoryRow = {
 
 export async function GET(request: NextRequest) {
   try {
-    const user = await getUserFromRequest(request);
-    if (!user || !isAdminEmail(user.email)) {
+    if (!(await isAdminRequest(request))) {
       return NextResponse.json({ error: "Administrator access denied." }, { status: 403 });
     }
 
