@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { getUserFromRequest, isAdminEmail } from "@/lib/auth-server";
+import { isAdminRequest } from "@/lib/auth-server";
 import { cleanText } from "@/lib/sanitize";
 import { createAdminClient } from "@/lib/supabase-admin";
 
@@ -22,8 +22,7 @@ function json(data: object, status = 200) {
 }
 
 async function authorised(request: NextRequest) {
-  const user = await getUserFromRequest(request);
-  return Boolean(user && !user.is_anonymous && isAdminEmail(user.email));
+  return isAdminRequest(request);
 }
 
 export async function GET(request: NextRequest) {
